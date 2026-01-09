@@ -2,6 +2,7 @@
 "use client";
 
 import { useEffect, useRef } from "react";
+import Image from "next/image";
 
 export default function AboutPage() {
   // Animate the underline once when the hero H1 becomes visible
@@ -29,28 +30,30 @@ export default function AboutPage() {
         <div className="container hero-content">
           <div className="eyebrow">ABOUT</div>
           <h1 ref={h1Ref} className="hero-h1">
-            About Mears Law
+            About Us
             <span className="underline" aria-hidden="true"></span>
           </h1>
           <p className="lede">
-            A full-service Canadian law firm built on integrity, excellence, and dedication —
-            delivering strategic, practical, and results-driven legal solutions across industries
-            and jurisdictions.
+            At Mears Law, we provide comprehensive legal and 
+            consulting services tailored to the needs of corporations, 
+            government entities, and individuals. Our team combines legal 
+            and compliance insight with practical solutions to help clients 
+            navigate complex challenges with confidence.
           </p>
 
-          <blockquote className="pullquote">
+          {/* <blockquote className="pullquote">
             <p>
               “Legal excellence isn’t just about knowing the law—it’s about understanding how legal
               strategy serves broader business and personal objectives. Every client deserves counsel
               that’s both technically expert and strategically minded.”
             </p>
             <cite>— Carissa, Founding Attorney</cite>
-          </blockquote>
+          </blockquote> */}
         </div>
       </section>
 
       {/* ===== Who We Are + Sticky Help Card ===== */}
-      <section className="who patterned-section">
+      {/* <section className="who patterned-section">
         <div className="container who-grid">
           <div className="col prose">
             <h2>Who We Are</h2>
@@ -85,10 +88,10 @@ export default function AboutPage() {
               service through personalized attention, deep industry knowledge, and unwavering ethical
               standards.
             </p>
-          </div>
+          </div> */}
 
           {/* Sticky “bubble” that follows while this block scrolls */}
-          <aside className="col help">
+          {/* <aside className="col help">
             <div className="help-card">
               <div className="help-head">
                 <svg width="22" height="22" viewBox="0 0 24 24" aria-hidden="true">
@@ -113,16 +116,25 @@ export default function AboutPage() {
             </div>
           </aside>
         </div>
-      </section>
+      </section> */}
 
       {/* ===== Commitment ===== */}
-      <section className="commitment">
+      <section className="commitment patterned-section">
         <div className="container">
           <h2>Our Commitment</h2>
           <p className="sub">
             At Mears Law, we measure success by the trust and confidence our clients place in us. We are committed to delivering legal services that reflect our core principles:
           </p>
-
+          <div className="image-wrapper">
+            <Image
+              src="/images/ourcommitment.jpg"
+              alt="Law team advising a client"
+              width={1600}
+              height={900}
+              sizes="(max-width: 768px) 100vw, 1200px"
+              className="section-image"
+            />
+          </div>
           <div className="pill-grid">
             <div className="pill">
               <h4>Excellence</h4>
@@ -145,13 +157,23 @@ export default function AboutPage() {
       </section>
 
       {/* ===== Values ===== */}
-      <section className="values patterned-section">
+      <section className="values">
         <div className="container">
           <h2>Our Values</h2>
           <p className="sub">
             At Mears Law, we provide comprehensive legal services tailored to the needs of corporations, government entities, and individuals. Our team combines legal insight with practical solutions to help clients navigate complex challenges with confidence.
           </p>
-          <p className="sub">
+          <div className="image-wrapper">
+            <Image
+              src="/images/ourvalues.jpg"
+              alt="Law team advising a client"
+              width={1600}
+              height={900} // These values dont matter but are required(handled with CSS)
+              sizes="(max-width: 768px) 100vw, 1200px"
+              className="section-image"
+            />
+          </div>
+          <p className="sub core">
             We are guided by core values that define our approach:
           </p>
 
@@ -185,7 +207,7 @@ export default function AboutPage() {
       </section>
 
       {/* ===== Team ===== */}
-      <section className="team">
+      <section className="team patterned-section">
         <div className="container">
           <h2>Our Team</h2>
           <div className="person">
@@ -221,7 +243,7 @@ export default function AboutPage() {
 
         /* ===== Hero styling to match Services ===== */
         .about-hero {
-          padding: 64px 0 48px;
+          padding: 64px 0 40px;
           background: #ffffff;
           position: relative;
           overflow: hidden;
@@ -277,7 +299,7 @@ export default function AboutPage() {
         .lede {
           font: 400 16px/1.85 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
           color: #374151;
-          margin: 0 0 18px;
+          margin: 0;
           max-width: none;
         }
 
@@ -299,11 +321,10 @@ export default function AboutPage() {
           color: #6b7280;
         }
 
-        /* ===== Light patterned backdrop (same vibe as Services sections) ===== */
+        /* ===== Patterned backdrop vibe (like Services sections) ===== */
         .patterned-section {
           position: relative;
           overflow: hidden;
-          background: #f3f4f6;
         }
         .patterned-section::before {
           content: '';
@@ -366,7 +387,6 @@ export default function AboutPage() {
           border-bottom: 1px solid #e5e7eb;
         }
         .team { padding: 56px 0 72px; }
-
         /* Headings */
         h2 {
           font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
@@ -387,6 +407,27 @@ export default function AboutPage() {
           margin: 0 0 6px;
           color: #0a1628;
         }
+
+        .image-wrapper {
+          overflow: hidden;
+          border-radius: 14px;
+          padding: 0;
+          margin-bottom: 20px;
+        }
+          
+        :global(.section-image) {
+          display: block;
+          margin: 0 auto;
+          width: 100%;
+          height: auto;     
+          border-radius: 14px;
+          transition: transform 0.9s ease; 
+        }
+
+        :global(.section-image:hover) {
+          transform: scale(1.06); 
+        }
+
 
         /* Who grid + sticky help bubble (unchanged) */
         .who-grid {
@@ -495,6 +536,7 @@ export default function AboutPage() {
           line-height: 1.6;
           color: #334155;
         }
+ 
 
         /* Commitment + Values pills (unchanged) */
         .commitment .sub { text-align: left; margin: 4px 0 26px; max-width: none; }
@@ -505,6 +547,9 @@ export default function AboutPage() {
           grid-template-columns: repeat(3, 1fr);
           gap: 18px;
         }
+
+        .values .core { margin-top: 26px; }
+
         .pill {
           background: #ffffff;
           border: 1px solid #e5e7eb;
@@ -576,6 +621,12 @@ export default function AboutPage() {
         @media (max-width: 560px) {
           .pill-grid { grid-template-columns: 1fr; }
           
+        }
+
+        /* Ensures no pink hue on content */
+        .commitment .container, .values .container, .team .container {
+          position: relative;
+          z-index: 1;
         }
       `}</style>
     </>

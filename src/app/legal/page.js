@@ -12,7 +12,7 @@ const CheckIcon = () => (
   </svg>
 );
 
-function ServiceCard({ title, blurb, challenges, services, clients, id }) {
+function ServiceCard({ title, blurb, challenges, services, id }) {
   return (
     <article className="service" id={id}>
       <header className="svc-head">
@@ -151,15 +151,12 @@ export default function LegalPage() {
       blurb:
         "Businesses are eager to leverage AI but often face uncertainty about where to start, how to comply with regulations, and how to adopt AI responsibly. At Mears Law, we provide practical, strategic, and legal solutions to help you implement AI confidently and ethically.",
       challenges: [
-        "Uncertainty About AI Laws",
+        "Compliance with AI Laws",
         "Lack of Internal Expertise",
         "Risk of Ethical Missteps",
         "Operational Integration",
       ],
       services: [
-        { name: "AI Readiness & Strategy" },
-        { name: "Regulatory & Governance Frameworks" },
-        { name: "Outsourced AI Officer" },
         { name: "Contract & Vendor Management" },
         { name: "Risk Mitigation & Dispute Resolution" },
         { name: "Training & Advisory" },
@@ -171,16 +168,13 @@ export default function LegalPage() {
       blurb:
         "In today's data-driven world, protecting personal and business information is not just a legal requirement—it's a cornerstone of trust. At Mears Law, we help organizations navigate complex privacy laws and implement robust data protection strategies that safeguard your reputation and minimize risk.",
       challenges: [
-        "Uncertainty About Compliance: Businesses struggle to interpret privacy regulations like PIPEDA and GDPR",
+        "Compliance with Privacy Laws: Businesses struggle to interpret privacy regulations like PIPEDA and GDPR",
         "Data Breach Risks: Concerns about security vulnerabilities and liability exposure",
         "Cross-Border Data Transfers: Complexities in handling international data flows",
         "Operational Integration: Difficulty embedding privacy practices into operations",
       ],
       services: [
-        "Privacy Compliance Programs",
-        "Policy & Procedure Development",
-        "Outsourced Privacy Officer",
-        "Data Governance & Risk Management",
+        "Contract & Vendor Management",
         "Breach Response & Litigation",
         "Training & Advisory",
       ],
