@@ -4,13 +4,8 @@ import Link from "next/link";
 import styles from "./containers.module.css";
 
 const AREAS = [
-  { title: "Artifcial Intelligence" , href: "/legal#ai-regulation" },
-  { title: "Corporate", href: "/legal#corporate-law" },
-  { title: "Immigration", href: "/legal#immigration-law" },
-  { title: "Privacy and Data Protection", href: "/legal#privacy-data-protection" },
-  { title: "Real Estate", href: "/legal#real-estate-law" },
-  { title: "AI Governance", href: "/consulting#ai-governance" },
-  { title: "Privacy Compliance", href: "/consulting#privacy-compliance" },
+  { title: "Legal" , href: "/legal" },
+  { title: "Consulting", href: "/consulting" },
 ];
 
 export default function PracticeAreas() {

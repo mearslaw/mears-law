@@ -158,11 +158,11 @@ export default function ConsultingPage() {
       ],
       services: [
         "AI Governance Strategy Development",
-        "Ethical AI Framework Implementation",
         "Regulatory Compliance Consulting",
+        "ISO/IEC 42001 Implementation",
         "Risk Assessment & Mitigation",
+        "Ethical AI Framework Implementation",
         "Policy Development & Training",
-        "Ongoing Governance Advisory",
       ],
     },
     {
@@ -177,12 +177,12 @@ export default function ConsultingPage() {
         "Managing Cross-Border Requirements",
       ],
       services: [
-        "Compliance Program Development",
+        "Data Mapping",
         "Privacy Impact Assessments",
         "Regulatory Gap Analysis",
-        "Compliance Audits & Reviews",
+        "ISO/IEC 27001 Implementation",
+        "Compliance Program Development",
         "Training & Awareness Programs",
-        "Ongoing Compliance Advisory",
       ],
     },
   ];

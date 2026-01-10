@@ -25,7 +25,7 @@ export default function Home() {
           <Hero />
         </section>
       <section>
-        <OurValues  />
+        <OurValues />
       </section>
         <section>
           <Containers />
