@@ -137,7 +137,7 @@ export default function CareersPage() {
           
         <div className="apply-action">
           <a
-            href="https://form.jotform.com/253146433046048"
+            href="https://mearslaw.fillout.com/t/x2JDYQdkSwus"
             className="apply-button"
             target="_blank"
             rel="noopener noreferrer"

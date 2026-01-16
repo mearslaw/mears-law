@@ -1255,7 +1255,7 @@ export default function Footer() {
             { className: "contact-info" },
             el(
               "a",
-              { className: "contact-link", href: "https://form.jotform.com/253145514050244" },
+              { className: "contact-link", href: "https://mearslaw.fillout.com/t/xvp16xk7iius" },
               "Get Started"
             ),
             el(
