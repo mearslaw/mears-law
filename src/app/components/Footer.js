@@ -1231,7 +1231,7 @@ export default function Footer() {
         ),
         el("div", {
           className: "calendly-inline-widget",
-          "data-url": "https://calendly.com/carissa-mears-mearslaw/30min"
+          "data-url": "https://mearslaw.fillout.com/meeting-with-carissa-mears"
         })
       )
     ),
