@@ -400,6 +400,16 @@ export default function Header() {
       h(
         Link,
         {
+          href: "/services/companies",
+          className: "dropdown-item",
+          role: "menuitem",
+          onClick: closeServicesDropdown
+        },
+        "Companies"
+      ),
+      h(
+        Link,
+        {
           href: "/consulting",
           className: "dropdown-item",
           role: "menuitem",
@@ -479,6 +489,7 @@ export default function Header() {
         "div",
         { className: "mobile-submenu" },
         h(Link, { href: "/legal", onClick: closeMenu }, "Legal"),
+        h(Link, { href: "/services/companies", onClick: closeMenu }, "Companies"),
         h(Link, { href: "/consulting", onClick: closeMenu }, "Consulting")
       )
     ),
