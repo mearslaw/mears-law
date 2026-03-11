@@ -1,4 +1,5 @@
 "use client";
+import { useEffect, useRef } from "react";
 
 const CheckIcon = () => (
   <svg
@@ -24,13 +25,50 @@ const CheckIcon = () => (
   </svg>
 );
 
-function ServiceCard({ title, blurb, challenges, services, id }) {
+function ServiceCard({ title, blurb, challenges, services, id, videoSrc }) {
+  const videoRef = useRef(null);
+
+  useEffect(() => {
+    if (!videoSrc || !videoRef.current) return;
+
+    const v = videoRef.current;
+    const tryPlay = () => {
+      const p = v.play();
+      if (p && typeof p.catch === "function") p.catch(() => {});
+    };
+
+    tryPlay();
+    v.addEventListener("canplay", tryPlay);
+    return () => v.removeEventListener("canplay", tryPlay);
+  }, [videoSrc]);
+
   return (
     <article className="service" id={id}>
       <header className="svc-head">
         <h2 className="h2">{title}</h2>
         <p className="blurb">{blurb}</p>
       </header>
+
+      {videoSrc ? (
+        <div className="video-wrap">
+          <video
+            ref={videoRef}
+            className="video-player"
+            autoPlay
+            loop
+            muted
+            playsInline
+            preload="auto"
+            tabIndex={-1}
+            aria-hidden="true"
+            disablePictureInPicture
+            controlsList="nodownload noplaybackrate noremoteplayback nofullscreen"
+          >
+            <source src={videoSrc} type="video/mp4" />
+            Your browser does not support the video tag.
+          </video>
+        </div>
+      ) : null}
 
       <div className="bubble">
         <div className="bubble-col">
@@ -100,6 +138,35 @@ function ServiceCard({ title, blurb, challenges, services, id }) {
           position: relative;
         }
 
+        .video-wrap {
+          margin-top: 20px;
+          border-radius: 12px;
+          border: 1px solid #e5e7eb;
+          background: #ffffff;
+          box-shadow: 0 2px 8px rgba(10, 22, 40, 0.06);
+          overflow: hidden;
+          max-width: 1000px;
+          margin-left: auto;
+          margin-right: auto;
+        }
+
+        .video-player {
+          display: block;
+          width: 100%;
+          height: auto;
+          max-height: 1000px;
+          aspect-ratio: 16 / 9;
+          object-fit: cover;
+          background: #0f172a;
+          pointer-events: none;
+        }
+
+        @media (max-width: 720px) {
+          .video-wrap {
+            max-width: 100%;
+          }
+        }
+
         @media (min-width: 860px) {
           .bubble {
             grid-template-columns: 1fr auto 1fr;
@@ -164,6 +231,7 @@ export default function CompaniesServicesPage() {
     {
       id: "artificial-intelligence",
       title: "Artificial Intelligence",
+      videoSrc: "/artificial-intelligence.mp4",
       blurb:
         "We help organizations adopt and deploy artificial intelligence responsibly, legally, and strategically. Our work focuses on governance, risk management, vendor contracting, and regulatory readiness. Key areas include AI governance frameworks, responsible AI policies, vendor and procurement contracts, and regulatory compliance.",
       challenges: [
@@ -181,6 +249,7 @@ export default function CompaniesServicesPage() {
     {
       id: "privacy-data-protection",
       title: "Privacy and Data Protection",
+      videoSrc: "/privacy-data.mp4",
       blurb:
         "We advise organizations on building and maintaining privacy-compliant operations across the data lifecycle. Our approach integrates legal compliance with practical, operational implementation.",
       challenges: [
@@ -198,6 +267,7 @@ export default function CompaniesServicesPage() {
     {
       id: "corporate",
       title: "Corporate",
+      videoSrc: "/corporate.mp4",
       blurb:
         "We provide strategic corporate legal support to founders, growing businesses, and established organizations, with an emphasis on clarity, risk management, and scale.",
       challenges: [
@@ -220,6 +290,7 @@ export default function CompaniesServicesPage() {
     {
       id: "real-estate",
       title: "Real Estate",
+      videoSrc: "/real-estate.mp4",
       blurb:
         "We support commercial real estate transactions and operations, including acquisitions, dispositions, leasing, and financing, with a focus on risk mitigation and efficient execution.",
       challenges: [
