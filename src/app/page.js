@@ -1,8 +1,5 @@
-import Image from "next/image";
-import Link from "next/link";
 import Containers from "./components/containers.js";
 import OurValues from "./components/OurValues.js";
-import StartHere from "./components/StartHere";
 import Header from "./components/Header";
 import Footer from "./components/Footer";
 import Hero from "./components/hero";
@@ -29,8 +26,6 @@ export default function Home() {
 			<section>
 				<Hero />
 			</section>
-
-			<StartHere />
 
 			<section>
 				<OurValues />

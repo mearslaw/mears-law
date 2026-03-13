@@ -778,12 +778,11 @@ export default function Footer() {
 
       .book-lawyer-strip .strip-inner {
         display: flex;
-        flex-direction: column;
+        justify-content: center;
         align-items: center;
-        gap: 20px;
+        gap: 24px;
         padding: 32px 0;
         position: relative;
-        text-align: center;
       }
 
       .book-lawyer-strip .book-icon {
@@ -807,24 +806,6 @@ export default function Footer() {
         display: flex;
         flex-direction: column;
         gap: 4px;
-        max-width: 520px;
-      }
-
-      .book-lawyer-strip .book-steps-title {
-        margin-top: 10px;
-        font-size: 14px;
-        font-weight: 600;
-        color: #0a1628;
-      }
-
-      .book-lawyer-strip .book-steps {
-        margin: 6px auto 0;
-        padding-left: 18px;
-        font-size: 13px;
-        color: #4b5563;
-        line-height: 1.6;
-        max-width: 460px;
-        text-align: left;
       }
 
       .book-lawyer-strip .book-title {
@@ -1286,16 +1267,7 @@ export default function Footer() {
           "div",
           { className: "book-content" },
           el("div", { className: "book-title" }, "Ready to Discuss Your Matter?"),
-          el("div", { className: "book-subtitle" }, "Schedule a consultation with our experienced team"),
-          el("div", { className: "book-steps-title" }, "What Happens After You Book?"),
-          el(
-            "ol",
-            { className: "book-steps" },
-            el("li", null, "You choose a time that works for you."),
-            el("li", null, "We review your details before the call."),
-            el("li", null, "You meet with a lawyer or consultant to clarify goals and options."),
-            el("li", null, "We outline recommended next steps, timing, and fees.")
-          )
+          el("div", { className: "book-subtitle" }, "Schedule a consultation with our experienced team")
         ),
         el(
           "button",
