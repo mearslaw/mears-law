@@ -1027,6 +1027,16 @@ export default function Footer() {
         align-items: center;
       }
 
+      .site-footer .footer-disclaimer {
+        margin: 20px 0 0;
+        padding-top: 18px;
+        border-top: 1px solid rgba(148, 163, 184, 0.2);
+        font-size: 12px;
+        line-height: 1.55;
+        color: #6B7280;
+        max-width: 720px;
+      }
+
       .site-footer .footer-link {
         color: #9CA3AF;
         text-decoration: none;
@@ -1376,7 +1386,12 @@ export default function Footer() {
             "Privacy and Terms"
           )
         )
-      )
+      ),
+        el(
+          "p",
+          { className: "footer-disclaimer" },
+          "The information on this website is provided for general informational purposes only and does not constitute legal advice. Accessing this website or contacting Mears Law does not create a lawyer-client relationship."
+        )
       ),
       // Socials modal
       el(
