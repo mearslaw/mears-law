@@ -415,6 +415,7 @@ export default function Header() {
     { className: "nav-links", "aria-label": "Primary" },
     h(Link, { href: "/" }, "Home"),
     h(Link, { href: "/about" }, "About"),
+    h(Link, { href: "/insights" }, "Insights"),
     servicesDropdown,
     h(Link, { href: "/careers" }, "Careers"),
     h(Link, { href: "/contact" }, "Contact")
@@ -471,6 +472,7 @@ export default function Header() {
     { className: "mobile-links", "aria-label": "Mobile" },
     h(Link, { href: "/", onClick: closeMenu }, "Home"),
     h(Link, { href: "/about", onClick: closeMenu }, "About"),
+    h(Link, { href: "/insights", onClick: closeMenu }, "Insights"),
     h(
       "div",
       null,
