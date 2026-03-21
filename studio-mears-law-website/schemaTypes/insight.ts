@@ -32,6 +32,8 @@ export const insight = defineType({
       name: "category",
       title: "Section",
       type: "string",
+      description:
+        "On the website, Videos and Podcasts appear together in one block.",
       options: {
         list: [...CATEGORIES],
         layout: "dropdown",

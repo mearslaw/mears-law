@@ -9,8 +9,8 @@ const CATEGORY_LABELS = {
   publication: "Publications",
   quickTake: "Quick Takes",
   news: "News",
-  video: "Videos",
-  podcast: "Podcasts",
+  video: "Videos & Podcasts",
+  podcast: "Videos & Podcasts",
 };
 
 function formatDate(iso) {

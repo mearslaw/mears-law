@@ -11,15 +11,30 @@ import {
 
 export const dynamic = "force-dynamic";
 
+/** `categories` = Sanity `insight.category` values shown in this block (order preserved per section). */
 const SECTIONS = [
-  { key: "publication", label: "Publications", id: "publications" },
-  { key: "quickTake", label: "Quick Takes", id: "quick-takes" },
-  { key: "news", label: "News", id: "news" },
-  { key: "video", label: "Videos", id: "videos" },
-  { key: "podcast", label: "Podcasts", id: "podcasts" },
+  {
+    key: "publication",
+    label: "Publications",
+    id: "publications",
+    categories: ["publication"],
+  },
+  {
+    key: "quickTake",
+    label: "Quick Takes",
+    id: "quick-takes",
+    categories: ["quickTake"],
+  },
+  { key: "news", label: "News", id: "news", categories: ["news"] },
+  {
+    key: "media",
+    label: "Videos & Podcasts",
+    id: "videos-podcasts",
+    categories: ["video", "podcast"],
+  },
 ];
 
-const SECTION_KEYS = new Set(SECTIONS.map((s) => s.key));
+const KNOWN_CATEGORIES = new Set(SECTIONS.flatMap((s) => s.categories));
 
 function formatDate(iso) {
   if (!iso) return "";
@@ -106,11 +121,17 @@ export default async function InsightsPage() {
 
   const byCategory = SECTIONS.map((section) => ({
     ...section,
-    items: items.filter((i) => i.category === section.key),
+    items: items
+      .filter((i) => section.categories.includes(i.category))
+      .sort((a, b) => {
+        const ta = new Date(a.publishedAt || a._createdAt || 0).getTime();
+        const tb = new Date(b.publishedAt || b._createdAt || 0).getTime();
+        return tb - ta;
+      }),
   }));
 
   const otherItems = items.filter(
-    (i) => i.category == null || !SECTION_KEYS.has(i.category)
+    (i) => i.category == null || !KNOWN_CATEGORIES.has(i.category)
   );
   const sectionsToRender =
     otherItems.length > 0
