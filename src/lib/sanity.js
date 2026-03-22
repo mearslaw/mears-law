@@ -43,5 +43,8 @@ export const insightBySlugQuery = `*[_type == "insight" && slug.current == $slug
   publishedAt,
   excerpt,
   externalUrl,
-  thumbnail
+  thumbnail,
+  body,
+  "videoUrl": videoFile.asset->url,
+  "audioUrl": audioFile.asset->url
 }`;

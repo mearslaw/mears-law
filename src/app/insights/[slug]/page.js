@@ -2,6 +2,7 @@ import Image from "next/image";
 import Link from "next/link";
 import { notFound } from "next/navigation";
 import { client, insightBySlugQuery, urlForImage } from "../../../lib/sanity";
+import InsightPortableBody from "../InsightPortableBody";
 
 export const revalidate = 60;
 
@@ -122,6 +123,27 @@ export default async function InsightDetailPage({ params }) {
         {doc.excerpt ? (
           <p className="insights-detail-excerpt">{doc.excerpt}</p>
         ) : null}
+        {doc.category === "video" && doc.videoUrl ? (
+          <div className="insights-media-wrap">
+            <video
+              className="insights-media-video"
+              controls
+              playsInline
+              preload="metadata"
+              src={doc.videoUrl}
+            >
+              Your browser does not support embedded video.
+            </video>
+          </div>
+        ) : null}
+        {doc.category === "podcast" && doc.audioUrl ? (
+          <div className="insights-media-wrap">
+            <audio className="insights-media-audio" controls preload="metadata" src={doc.audioUrl}>
+              Your browser does not support embedded audio.
+            </audio>
+          </div>
+        ) : null}
+        <InsightPortableBody value={doc.body} />
       </div>
     </article>
   );
