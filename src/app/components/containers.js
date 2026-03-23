@@ -1,11 +1,10 @@
-
 "use client";
 import Link from "next/link";
 import styles from "./containers.module.css";
 
 const AREAS = [
-  { title: "Legal" , href: "/legal" },
-  { title: "Consulting", href: "/consulting" },
+  { title: "Companies", href: "/services/companies" },
+  { title: "Individuals", href: "/services/individuals" },
 ];
 
 export default function PracticeAreas() {
@@ -18,16 +17,18 @@ export default function PracticeAreas() {
             Our Services
           </h2>
         </header>
-        
+
         <div className={styles.practiceDivider} aria-hidden="true" />
-        
+
         <ul className={styles.practiceList} role="list">
           {AREAS.map((area) => (
             <li key={area.title} className={styles.practiceItem}>
               <Link href={area.href} className={styles.practiceLink}>
                 <span className={styles.practiceText}>{area.title}</span>
                 <div className={styles.practiceArrowContainer}>
-                  <span className={styles.practiceArrow} aria-hidden="true">→</span>
+                  <span className={styles.practiceArrow} aria-hidden="true">
+                    {"->"}
+                  </span>
                 </div>
               </Link>
             </li>

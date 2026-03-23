@@ -1,60 +1,37 @@
 "use client";
 
 import Link from "next/link";
-import { COMPANY_SERVICES } from "./companies/servicesData";
-import { INDIVIDUAL_SERVICES } from "./individuals/servicesData";
 
-const audiences = [
-  {
-    title: "Companies",
-    href: "/services/companies",
-    description:
-      "Legal support for companies operating in complex, regulated, and technology-driven environments.",
-    offerings: COMPANY_SERVICES,
-  },
-  {
-    title: "Individuals",
-    href: "/services/individuals",
-    description:
-      "Legal support for individuals facing high-stakes matters involving property, technology, and digital risk.",
-    offerings: INDIVIDUAL_SERVICES,
-  },
-];
-
-export default function ServicesPage() {
+export default function AudienceServicesPage({
+  title,
+  intro,
+  audiencePath,
+  services,
+}) {
   return (
     <main className="page">
       <section className="hero">
         <div className="container hero-content">
           <h1 className="h1">
-            Services
+            {title}
             <span className="underline"></span>
           </h1>
-          <p className="lead">
-            Choose the profile that best fits your matter, then explore the relevant service offering.
-          </p>
+          <p className="lead">{intro}</p>
         </div>
       </section>
 
       <section className="section">
         <div className="container services-grid">
-          {audiences.map((audience) => (
-            <article className="service-card" key={audience.title}>
-              <h2 className="card-title">{audience.title}</h2>
-              <p className="card-description">{audience.description}</p>
-
-              <ul className="offering-list">
-                {audience.offerings.map((offering) => (
-                  <li key={offering.slug}>
-                    <Link href={`${audience.href}/${offering.slug}`} className="offering-link">
-                      {offering.title}
-                    </Link>
-                  </li>
-                ))}
-              </ul>
-
-              <Link href={audience.href} className="card-link">
-                View all {audience.title} services
+          {services.map((service) => (
+            <article className="service-card" key={service.slug}>
+              <h2 className="card-title">{service.title}</h2>
+              <p className="card-description">{service.blurb}</p>
+              <Link
+                href={`${audiencePath}/${service.slug}`}
+                className="card-link"
+                aria-label={`View ${service.title} details`}
+              >
+                View offering
               </Link>
             </article>
           ))}
@@ -127,75 +104,52 @@ export default function ServicesPage() {
           margin: 0;
           color: #374151;
           opacity: 0.9;
-          max-width: 850px;
+          max-width: 900px;
         }
 
         .section {
-          padding: 64px 0;
+          padding: 48px 0 64px;
           background: #f3f4f6;
+          position: relative;
         }
 
         .services-grid {
           display: grid;
-          grid-template-columns: 1fr;
-          gap: 32px;
-        }
-
-        @media (min-width: 768px) {
-          .services-grid {
-            grid-template-columns: 1fr 1fr;
-          }
+          grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
+          gap: 28px;
         }
 
         .service-card {
           background: #ffffff;
-          border-radius: 16px;
           border: 1px solid #e5e7eb;
-          box-shadow: 0 4px 12px rgba(10, 22, 40, 0.08);
-          padding: 32px;
+          border-radius: 14px;
+          box-shadow: 0 2px 8px rgba(10, 22, 40, 0.06);
+          padding: 28px;
           display: grid;
-          gap: 16px;
+          gap: 14px;
+          align-content: start;
         }
 
         .card-title {
-          font-size: 32px;
+          margin: 0;
+          font-size: 30px;
           line-height: 1.2;
           color: #0a1628;
-          font-weight: 700;
-          margin: 0;
         }
 
         .card-description {
-          font-size: 16px;
-          line-height: 1.7;
+          margin: 0;
           color: #374151;
-          margin: 0;
-        }
-
-        .offering-list {
-          margin: 0;
-          padding-left: 18px;
-          display: grid;
-          gap: 8px;
-        }
-
-        .offering-link {
-          color: #1e3a5f;
-          text-decoration: none;
-          border-bottom: 1px solid transparent;
-          transition: border-color 0.2s ease;
-        }
-
-        .offering-link:hover {
-          border-color: #1e3a5f;
+          line-height: 1.7;
+          font-size: 16px;
         }
 
         .card-link {
-          font-size: 16px;
           font-weight: 600;
           color: #1e3a5f;
           text-decoration: none;
           width: fit-content;
+          padding-bottom: 2px;
           border-bottom: 1px solid transparent;
           transition: border-color 0.2s ease;
         }
@@ -218,11 +172,10 @@ export default function ServicesPage() {
           }
 
           .card-title {
-            font-size: 28px;
+            font-size: 26px;
           }
         }
       `}</style>
     </main>
   );
 }
-
