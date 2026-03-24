@@ -74,6 +74,52 @@
   max-width: 720px;
 }
 
+.insights-root .insights-section-nav {
+  position: sticky;
+  top: 110px;
+  /* Above .site-header (1000) so clicks on left-side links aren’t stolen by the logo link, which spills below the header bar. */
+  z-index: 1001;
+  background: rgba(255, 255, 255, 0.92);
+  backdrop-filter: blur(8px);
+  border-bottom: 1px solid #e5e7eb;
+  padding: 12px 0;
+  box-shadow: 0 1px 0 rgba(15, 34, 59, 0.06);
+}
+
+@media (max-width: 900px) {
+  .insights-root .insights-section-nav {
+    top: 88px;
+  }
+}
+
+.insights-root .insights-section-nav-inner {
+  display: flex;
+  flex-wrap: wrap;
+  gap: 10px 20px;
+}
+
+.insights-root .insights-section-nav-link {
+  font: 600 13px/1.2 Inter, system-ui, "Segoe UI", Roboto, Arial, sans-serif;
+  color: #4b5563;
+  text-decoration: none;
+  white-space: nowrap;
+  border: none;
+  background: none;
+  padding: 0;
+  cursor: pointer;
+  text-align: left;
+}
+
+.insights-root .insights-section-nav-link:hover {
+  color: #8b5cf6;
+}
+
+.insights-root .insights-section-nav-link:focus-visible {
+  outline: 2px solid rgba(139, 92, 246, 0.45);
+  outline-offset: 3px;
+  border-radius: 4px;
+}
+
 .insights-root .insights-page-inner {
   width: min(1200px, 92%);
   margin: 0 auto;
@@ -99,48 +145,11 @@
   border-radius: 4px;
 }
 
-.insights-root .insights-toc {
-  position: sticky;
-  top: 110px;
-  z-index: 50;
-  background: rgba(255, 255, 255, 0.92);
-  backdrop-filter: blur(8px);
-  border-bottom: 1px solid #e5e7eb;
-  padding: 12px 0;
-}
-
-@media (max-width: 900px) {
-  .insights-root .insights-toc {
-    top: 88px;
-  }
-}
-
-.insights-root .insights-toc-inner {
-  display: flex;
-  flex-wrap: wrap;
-  gap: 10px 18px;
-}
-
-.insights-root .insights-toc-link {
-  font: 600 13px/1.2 Inter, system-ui, sans-serif;
-  color: #4b5563;
-  text-decoration: none;
-  white-space: nowrap;
-}
-
-.insights-root .insights-toc-link:hover {
-  color: #8b5cf6;
-}
-
 /* overflow:visible so in-page anchors / scroll-padding aren’t broken by scroll containment */
 .insights-root .insights-section {
   position: relative;
   overflow: visible;
   padding: 48px 0 56px;
-}
-
-.insights-root .insights-section-title {
-  scroll-margin-top: 1.5rem;
 }
 
 .insights-root .insights-section::before {
@@ -173,12 +182,20 @@
 }
 
 .insights-root .insights-section-title {
+  /* ~site header + sticky section nav; html scroll-padding-top is set in JS for precision */
+  scroll-margin-top: calc(110px + 52px + 1rem);
   font-size: clamp(22px, 3vw, 28px);
   font-weight: 700;
   color: #0a1628;
   margin: 0 0 20px;
   padding-bottom: 12px;
   border-bottom: 2px solid rgba(139, 92, 246, 0.35);
+}
+
+@media (max-width: 900px) {
+  .insights-root .insights-section-title {
+    scroll-margin-top: calc(88px + 48px + 1rem);
+  }
 }
 
 .insights-root .insights-section-empty {

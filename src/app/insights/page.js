@@ -1,7 +1,8 @@
 import Image from "next/image";
 import Link from "next/link";
 import InsightsHero from "./InsightsHero";
-import InsightsTocNav from "./InsightsTocNav";
+import InsightsSectionNav from "./InsightsSectionNav";
+import { INSIGHT_PAGE_SECTIONS } from "../../lib/insightsSections";
 import {
   client,
   insightsListQuery,
@@ -11,29 +12,7 @@ import {
 
 export const dynamic = "force-dynamic";
 
-/** `categories` = Sanity `insight.category` values shown in this block (order preserved per section). */
-const SECTIONS = [
-  {
-    key: "publication",
-    label: "Publications",
-    id: "publications",
-    categories: ["publication"],
-  },
-  {
-    key: "quickTake",
-    label: "Quick Takes",
-    id: "quick-takes",
-    categories: ["quickTake"],
-  },
-  { key: "news", label: "News", id: "news", categories: ["news"] },
-  {
-    key: "media",
-    label: "Videos & Podcasts",
-    id: "videos-podcasts",
-    categories: ["video", "podcast"],
-  },
-];
-
+const SECTIONS = INSIGHT_PAGE_SECTIONS;
 const KNOWN_CATEGORIES = new Set(SECTIONS.flatMap((s) => s.categories));
 
 function formatDate(iso) {
@@ -146,14 +125,15 @@ export default async function InsightsPage() {
         ]
       : byCategory;
 
-  const tocSections =
+  const sectionNavLinks =
     otherItems.length > 0
       ? [...SECTIONS, { id: "other", label: "Other" }]
-      : SECTIONS;
+      : SECTIONS.map(({ id, label }) => ({ id, label }));
 
   return (
     <>
       <InsightsHero />
+      <InsightsSectionNav sectionLinks={sectionNavLinks} />
 
       {!sanityConfigured ? (
         <section className="insights-notice">
@@ -179,8 +159,6 @@ export default async function InsightsPage() {
           </div>
         </section>
       ) : null}
-
-      <InsightsTocNav sections={tocSections} />
 
       {sectionsToRender.map((section) => (
         <section

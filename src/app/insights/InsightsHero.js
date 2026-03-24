@@ -4,6 +4,7 @@ import { useEffect, useRef } from "react";
 
 export default function InsightsHero() {
   const h1Ref = useRef(null);
+
   useEffect(() => {
     const el = h1Ref.current;
     if (!el) return;
