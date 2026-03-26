@@ -1,6 +1,6 @@
 import Link from "next/link";
 import WebinarRegistrationForm from "./WebinarRegistrationForm";
-import { WEBINARS, WEBINAR_TOPICS } from "../../../lib/webinars";
+import { WEBINARS } from "../../../lib/webinars";
 
 export const metadata = {
   title: "Webinars",
@@ -61,10 +61,41 @@ export default function WebinarsPage() {
 
         <section className="webinars-layout" aria-label="Webinar content and registration">
           <div className="webinars-panel">
-            <h2 className="webinars-panel-title">Example Webinar Topics</h2>
-            <ul className="webinars-topic-list">
-              {WEBINAR_TOPICS.map((topic) => (
-                <li key={topic}>{topic}</li>
+            <h2 className="webinars-panel-title">Upcoming Sessions</h2>
+            <ul className="webinars-event-list">
+              {sortedWebinars.map((webinar) => (
+                <li key={webinar.id} className="webinars-event-card">
+                  <h3 className="webinars-event-title">{webinar.title}</h3>
+                  <p className="webinars-event-meta">
+                    {formatWebinarDate(webinar.scheduledAt)} | {webinar.durationMinutes} min
+                    | {formatPriceCad(webinar.priceCad)}
+                  </p>
+                  <p className="webinars-event-summary">{webinar.summary}</p>
+
+                  {webinar.embedUrl ? (
+                    <div className="webinars-recording-embed-wrap">
+                      <iframe
+                        className="webinars-recording-embed"
+                        src={webinar.embedUrl}
+                        title={`${webinar.title} recording`}
+                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                        referrerPolicy="strict-origin-when-cross-origin"
+                        allowFullScreen
+                      />
+                    </div>
+                  ) : null}
+
+                  {webinar.recordingUrl ? (
+                    <a
+                      className="webinars-recording-link"
+                      href={webinar.recordingUrl}
+                      target="_blank"
+                      rel="noopener noreferrer"
+                    >
+                      Watch recording
+                    </a>
+                  ) : null}
+                </li>
               ))}
             </ul>
           </div>
@@ -73,49 +104,6 @@ export default function WebinarsPage() {
             <h2 className="webinars-panel-title">Register for a Paid Webinar</h2>
             <WebinarRegistrationForm />
           </div>
-        </section>
-
-        <section className="webinars-panel" aria-labelledby="webinars-schedule">
-          <h2 id="webinars-schedule" className="webinars-panel-title">
-            Upcoming Sessions
-          </h2>
-
-          <ul className="webinars-event-list">
-            {sortedWebinars.map((webinar) => (
-              <li key={webinar.id} className="webinars-event-card">
-                <h3 className="webinars-event-title">{webinar.title}</h3>
-                <p className="webinars-event-meta">
-                  {formatWebinarDate(webinar.scheduledAt)} | {webinar.durationMinutes} min
-                  | {formatPriceCad(webinar.priceCad)}
-                </p>
-                <p className="webinars-event-summary">{webinar.summary}</p>
-
-                {webinar.embedUrl ? (
-                  <div className="webinars-recording-embed-wrap">
-                    <iframe
-                      className="webinars-recording-embed"
-                      src={webinar.embedUrl}
-                      title={`${webinar.title} recording`}
-                      allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                      referrerPolicy="strict-origin-when-cross-origin"
-                      allowFullScreen
-                    />
-                  </div>
-                ) : null}
-
-                {webinar.recordingUrl ? (
-                  <a
-                    className="webinars-recording-link"
-                    href={webinar.recordingUrl}
-                    target="_blank"
-                    rel="noopener noreferrer"
-                  >
-                    Watch recording
-                  </a>
-                ) : null}
-              </li>
-            ))}
-          </ul>
         </section>
 
         <section className="webinars-panel">
