@@ -1382,6 +1382,11 @@ export default function Footer() {
           { className: "footer-links" },
           el(
             Link,
+            { className: "footer-link", href: "/insights" },
+            "Insights"
+          ),
+          el(
+            Link,
             { className: "footer-link", href: "/privacy" },
             "Privacy and Terms"
           )
