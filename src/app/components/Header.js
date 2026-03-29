@@ -101,7 +101,7 @@ const CSS = `
   background: #fff;
   border-radius: 8px;
   box-shadow: 0 4px 12px rgba(0,0,0,.15);
-  min-width: 180px;
+  min-width: 220px;
   opacity: 0;
   visibility: hidden;
   transform: translateY(-8px);
@@ -122,7 +122,7 @@ const CSS = `
 .services-dropdown .dropdown-menu .dropdown-item:active,
 .services-dropdown .dropdown-menu .dropdown-item:link {
   display: block;
-  padding: 10px 20px;
+  padding: 10px 16px;
   color: #000000 !important;
   text-decoration: none !important;
   font-weight: 600 !important;
@@ -135,6 +135,66 @@ const CSS = `
 .services-dropdown .dropdown-menu .dropdown-item:hover {
   background: #f3f4f6;
   color: #0A1628 !important;
+}
+
+.dropdown-group {
+  position: relative;
+}
+
+.dropdown-parent {
+  display: flex !important;
+  justify-content: space-between;
+  align-items: center;
+  gap: 12px;
+}
+
+.submenu-arrow {
+  color: #6b7280;
+  font-size: 14px;
+  line-height: 1;
+}
+
+.dropdown-submenu {
+  position: absolute;
+  top: 0;
+  left: calc(100% - 4px);
+  min-width: 280px;
+  background: #fff;
+  border: 1px solid rgba(0,0,0,.08);
+  border-radius: 8px;
+  box-shadow: 0 4px 12px rgba(0,0,0,.15);
+  padding: 8px 0;
+  opacity: 0;
+  visibility: hidden;
+  transform: translateX(-8px);
+  transition: opacity .2s ease, transform .2s ease, visibility .2s ease;
+  z-index: 110;
+}
+
+.dropdown-group:hover > .dropdown-submenu,
+.dropdown-group:focus-within > .dropdown-submenu {
+  opacity: 1;
+  visibility: visible;
+  transform: translateX(0);
+}
+
+.services-dropdown .dropdown-submenu .dropdown-subitem,
+.services-dropdown .dropdown-submenu .dropdown-subitem:visited,
+.services-dropdown .dropdown-submenu .dropdown-subitem:active,
+.services-dropdown .dropdown-submenu .dropdown-subitem:link {
+  display: block !important;
+  width: 100%;
+  padding: 10px 16px;
+  color: #111827 !important;
+  text-decoration: none !important;
+  font-weight: 500 !important;
+  font-size: 14px;
+  line-height: 1.35;
+  white-space: normal;
+}
+
+.dropdown-subitem:hover {
+  background: #f9fafb;
 }
 
 /* CTA */
@@ -192,6 +252,10 @@ const CSS = `
 .mobile-links a:hover{ opacity:.9; }
 .mobile-submenu{ display:flex; flex-direction:column; padding-left:20px; gap:10px; margin-top:8px; }
 .mobile-submenu a{ color:rgba(255,255,255,0.85); font-weight:500; font-size:14px; }
+.mobile-submenu-group{ display:grid; gap:8px; }
+.mobile-submenu-title{ color:#fff !important; font-weight:600 !important; }
+.mobile-submenu-nested{ display:grid; gap:8px; padding-left:14px; }
+.mobile-submenu-nested a{ color:rgba(255,255,255,0.85); font-weight:500; font-size:13px; }
 .mobile-cta{ display:flex; flex-direction:column; gap:10px; padding:8px 14px 16px; }
 .mobile-cta .btn{ background:#fff; color:var(--navy); }
 .close{ border:0; background:none; color:#fff; padding:6px; }
@@ -388,24 +452,102 @@ export default function Header() {
       "div",
       { className: "dropdown-menu", role: "menu" },
       h(
-        Link,
-        {
-          href: "/legal",
-          className: "dropdown-item",
-          role: "menuitem",
-          onClick: closeServicesDropdown
-        },
-        "Legal"
+        "div",
+        { className: "dropdown-group" },
+        h(
+          Link,
+          {
+            href: "/services/companies",
+            className: "dropdown-item dropdown-parent",
+            role: "menuitem",
+            onClick: closeServicesDropdown
+          },
+          "Companies",
+          h("span", { className: "submenu-arrow", "aria-hidden": "true" }, ">")
+        ),
+        h(
+          "div",
+          { className: "dropdown-submenu" },
+          h(
+            Link,
+            {
+              href: "/services/companies/artificial-intelligence",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Artificial Intelligence"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/companies/privacy-data-protection",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Privacy and Data Protection"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/companies/corporate",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Corporate"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/companies/real-estate",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Real Estate"
+          )
+        )
       ),
       h(
-        Link,
-        {
-          href: "/consulting",
-          className: "dropdown-item",
-          role: "menuitem",
-          onClick: closeServicesDropdown
-        },
-        "Consulting"
+        "div",
+        { className: "dropdown-group" },
+        h(
+          Link,
+          {
+            href: "/services/individuals",
+            className: "dropdown-item dropdown-parent",
+            role: "menuitem",
+            onClick: closeServicesDropdown
+          },
+          "Individuals",
+          h("span", { className: "submenu-arrow", "aria-hidden": "true" }, ">")
+        ),
+        h(
+          "div",
+          { className: "dropdown-submenu" },
+          h(
+            Link,
+            {
+              href: "/services/individuals/digital-asset-protection",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Digital Asset Protection"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/individuals/real-estate",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Real Estate"
+          )
+        )
       )
     )
   );
@@ -478,8 +620,30 @@ export default function Header() {
       h(
         "div",
         { className: "mobile-submenu" },
-        h(Link, { href: "/legal", onClick: closeMenu }, "Legal"),
-        h(Link, { href: "/consulting", onClick: closeMenu }, "Consulting")
+        h(
+          "div",
+          { className: "mobile-submenu-group" },
+          h(Link, { href: "/services/companies", onClick: closeMenu, className: "mobile-submenu-title" }, "Companies"),
+          h(
+            "div",
+            { className: "mobile-submenu-nested" },
+            h(Link, { href: "/services/companies/artificial-intelligence", onClick: closeMenu }, "Artificial Intelligence"),
+            h(Link, { href: "/services/companies/privacy-data-protection", onClick: closeMenu }, "Privacy and Data Protection"),
+            h(Link, { href: "/services/companies/corporate", onClick: closeMenu }, "Corporate"),
+            h(Link, { href: "/services/companies/real-estate", onClick: closeMenu }, "Real Estate")
+          )
+        ),
+        h(
+          "div",
+          { className: "mobile-submenu-group" },
+          h(Link, { href: "/services/individuals", onClick: closeMenu, className: "mobile-submenu-title" }, "Individuals"),
+          h(
+            "div",
+            { className: "mobile-submenu-nested" },
+            h(Link, { href: "/services/individuals/digital-asset-protection", onClick: closeMenu }, "Digital Asset Protection"),
+            h(Link, { href: "/services/individuals/real-estate", onClick: closeMenu }, "Real Estate")
+          )
+        )
       )
     ),
     h(Link, { href: "/careers", onClick: closeMenu }, "Careers"),
