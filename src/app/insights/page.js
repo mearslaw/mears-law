@@ -13,7 +13,7 @@ import {
 export const dynamic = "force-dynamic";
 
 const SECTIONS = INSIGHT_PAGE_SECTIONS;
-const KNOWN_CATEGORIES = new Set(SECTIONS.flatMap((s) => s.categories));
+const KNOWN_CATEGORIES = new Set([...SECTIONS.flatMap((s) => s.categories), "webinar"]);
 
 function formatDate(iso) {
   if (!iso) return "";
@@ -26,6 +26,12 @@ function formatDate(iso) {
   } catch {
     return "";
   }
+}
+
+function sortByPublishedDateDesc(a, b) {
+  const ta = new Date(a.publishedAt || a._createdAt || 0).getTime();
+  const tb = new Date(b.publishedAt || b._createdAt || 0).getTime();
+  return tb - ta;
 }
 
 function InsightCard({ item }) {
@@ -102,12 +108,12 @@ export default async function InsightsPage() {
     ...section,
     items: items
       .filter((i) => section.categories.includes(i.category))
-      .sort((a, b) => {
-        const ta = new Date(a.publishedAt || a._createdAt || 0).getTime();
-        const tb = new Date(b.publishedAt || b._createdAt || 0).getTime();
-        return tb - ta;
-      }),
+      .sort(sortByPublishedDateDesc),
   }));
+
+  const webinarItems = items
+    .filter((i) => i.category === "webinar")
+    .sort(sortByPublishedDateDesc);
 
   const otherItems = items.filter(
     (i) => i.category == null || !KNOWN_CATEGORIES.has(i.category)
@@ -129,6 +135,7 @@ export default async function InsightsPage() {
     otherItems.length > 0
       ? [...SECTIONS, { id: "other", label: "Other" }]
       : SECTIONS.map(({ id, label }) => ({ id, label }));
+  sectionNavLinks.push({ id: "webinars", label: "Webinars" });
 
   return (
     <>
@@ -186,6 +193,38 @@ export default async function InsightsPage() {
           </div>
         </section>
       ))}
+
+      <section className="insights-section" aria-labelledby="webinars">
+        <div className="insights-section-inner">
+          <h2 id="webinars" className="insights-section-title">
+            Webinars
+          </h2>
+
+          <div className="insights-webinars-promo">
+            <p className="insights-webinars-copy">
+              We host practical, focused webinars on emerging issues in
+              technology law, privacy, AI governance, and digital risk.
+            </p>
+            <p className="insights-webinars-copy">
+              Explore upcoming paid sessions, reserve your seat, and access
+              post-event recordings in one place.
+            </p>
+            <Link href="/insights/webinars" className="insights-webinars-link">
+              View Webinar Schedule
+            </Link>
+          </div>
+
+          {webinarItems.length > 0 ? (
+            <ul className="insights-grid" role="list">
+              {webinarItems.map((item) => (
+                <li key={item._id} role="listitem">
+                  <InsightCard item={item} />
+                </li>
+              ))}
+            </ul>
+          ) : null}
+        </div>
+      </section>
     </>
   );
 }

@@ -3,11 +3,11 @@ import "./insights.css";
 export const metadata = {
   title: "Insights",
   description:
-    "Publications, quick takes, news, videos, and podcasts from Mears Law.",
+    "Publications, quick takes, news, videos, podcasts, and webinars from Mears Law.",
   openGraph: {
     title: "Insights | Mears Law",
     description:
-      "Publications, quick takes, news, videos, and podcasts from Mears Law.",
+      "Publications, quick takes, news, videos, podcasts, and webinars from Mears Law.",
     url: "https://mearslaw.ca/insights",
   },
   alternates: {

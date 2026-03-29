@@ -88,6 +88,12 @@ export default function sitemap() {
       priority: 0.85,
     },
     {
+      url: `${baseUrl}/insights/webinars`,
+      lastModified: new Date(),
+      changeFrequency: 'weekly',
+      priority: 0.8,
+    },
+    {
       url: `${baseUrl}/offices`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
