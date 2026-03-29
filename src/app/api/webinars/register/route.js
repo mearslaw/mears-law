@@ -1,5 +1,5 @@
 import { NextResponse } from "next/server";
-import { WEBINARS } from "../../../../../lib/webinars";
+import { WEBINARS } from "@/lib/webinars";
 
 const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
 
