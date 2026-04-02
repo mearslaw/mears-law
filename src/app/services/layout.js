@@ -1,14 +1,16 @@
 export const metadata = {
   title: "Services",
   description:
-    "Choose services for companies or individuals, then explore specific legal offerings across AI, privacy, corporate, digital asset protection, and real estate.",
+    "Choose services for companies or individuals, then explore specific legal offerings across AI, privacy, corporate, real estate, immigration, digital asset protection, and estates.",
   keywords: [
     "legal services",
     "company legal services",
     "individual legal services",
     "AI governance",
     "privacy and data protection",
+    "immigration legal services",
     "digital asset protection",
+    "estate planning lawyer",
     "real estate legal services",
   ],
   openGraph: {

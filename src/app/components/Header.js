@@ -507,6 +507,16 @@ export default function Header() {
               onClick: closeServicesDropdown
             },
             "Real Estate"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/companies/immigration",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Immigration"
           )
         )
       ),
@@ -545,7 +555,17 @@ export default function Header() {
               role: "menuitem",
               onClick: closeServicesDropdown
             },
-            "Real Estate"
+            "Estates"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/individuals/immigration",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Immigration"
           )
         )
       )
@@ -630,7 +650,8 @@ export default function Header() {
             h(Link, { href: "/services/companies/artificial-intelligence", onClick: closeMenu }, "Artificial Intelligence"),
             h(Link, { href: "/services/companies/privacy-data-protection", onClick: closeMenu }, "Privacy and Data Protection"),
             h(Link, { href: "/services/companies/corporate", onClick: closeMenu }, "Corporate"),
-            h(Link, { href: "/services/companies/real-estate", onClick: closeMenu }, "Real Estate")
+            h(Link, { href: "/services/companies/real-estate", onClick: closeMenu }, "Real Estate"),
+            h(Link, { href: "/services/companies/immigration", onClick: closeMenu }, "Immigration")
           )
         ),
         h(
@@ -641,7 +662,8 @@ export default function Header() {
             "div",
             { className: "mobile-submenu-nested" },
             h(Link, { href: "/services/individuals/digital-asset-protection", onClick: closeMenu }, "Digital Asset Protection"),
-            h(Link, { href: "/services/individuals/real-estate", onClick: closeMenu }, "Real Estate")
+            h(Link, { href: "/services/individuals/real-estate", onClick: closeMenu }, "Estates"),
+            h(Link, { href: "/services/individuals/immigration", onClick: closeMenu }, "Immigration")
           )
         )
       )

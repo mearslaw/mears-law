@@ -58,6 +58,12 @@ export default function sitemap() {
       priority: 0.7,
     },
     {
+      url: `${baseUrl}/services/companies/immigration`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
       url: `${baseUrl}/services/individuals/digital-asset-protection`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
@@ -65,6 +71,18 @@ export default function sitemap() {
     },
     {
       url: `${baseUrl}/services/individuals/real-estate`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/services/individuals/estates`,
+      lastModified: new Date(),
+      changeFrequency: 'monthly',
+      priority: 0.7,
+    },
+    {
+      url: `${baseUrl}/services/individuals/immigration`,
       lastModified: new Date(),
       changeFrequency: 'monthly',
       priority: 0.7,

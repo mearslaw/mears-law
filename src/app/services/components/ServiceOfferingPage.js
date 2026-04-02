@@ -26,7 +26,17 @@ const CheckIcon = () => (
   </svg>
 );
 
-const getText = (value) => (typeof value === "string" ? value : value.name);
+const getServiceItemMeta = (value) => {
+  if (typeof value === "string") {
+    return { text: value, isHeading: false, isSubitem: false };
+  }
+
+  return {
+    text: value.name,
+    isHeading: value.kind === "heading",
+    isSubitem: value.kind === "subitem",
+  };
+};
 
 export default function ServiceOfferingPage({
   audienceTitle,
@@ -82,11 +92,20 @@ export default function ServiceOfferingPage({
                 <div className="bubble-col">
                   <div className="bubble-title">Our Services</div>
                   <ul className="list services-list">
-                    {service.services.map((item, index) => (
-                      <li className="list-item" key={index}>
-                        <span>{getText(item)}</span>
-                      </li>
-                    ))}
+                    {service.services.map((item, index) => {
+                      const serviceItem = getServiceItemMeta(item);
+
+                      return (
+                        <li
+                          className={`list-item service-item${
+                            serviceItem.isHeading ? " service-item-heading" : ""
+                          }${serviceItem.isSubitem ? " service-item-subitem" : ""}`}
+                          key={index}
+                        >
+                          <span>{serviceItem.text}</span>
+                        </li>
+                      );
+                    })}
                   </ul>
                 </div>
               ) : null}
@@ -283,8 +302,17 @@ export default function ServiceOfferingPage({
           line-height: 1.6;
         }
 
-        .services-list .list-item {
+        .services-list .service-item {
           font-weight: 400;
+        }
+
+        .services-list .service-item-heading span {
+          font-weight: 700;
+          color: #0a1628;
+        }
+
+        .services-list .service-item-subitem {
+          padding-left: 14px;
         }
 
         .video-wrap {

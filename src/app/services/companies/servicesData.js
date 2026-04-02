@@ -83,4 +83,24 @@ export const COMPANY_SERVICES = [
       "Ongoing advisory",
     ],
   },
+  {
+    slug: "immigration",
+    title: "Immigration",
+    videoSrc: "/images/immigration.mp4",
+    blurb:
+      "Navigating Canada's immigration system can be complex and overwhelming. For businesses hiring global talent or entering the Canadian market, Mears Law provides strategic, efficient, and compliant solutions to help you achieve your immigration goals.",
+    challenges: [
+      "Confusing Application Processes: Clients struggle with eligibility and procedures",
+      "Delays & Compliance Risks: Missed deadlines or incomplete applications lead to costly delays",
+      "Employer Obligations: Challenges meeting compliance standards when hiring foreign workers and relocating key management personnel",
+      "Changing Regulations: Immigration laws evolve quickly, creating uncertainty",
+    ],
+    services: [
+      "Business Immigration",
+      "Work Permits & Employer Compliance",
+      "Permanent Residency & Citizenship",
+      "Appeals & Dispute Resolution",
+      "Ongoing Advisory",
+    ],
+  },
 ];
