@@ -199,7 +199,7 @@ export default function WebinarRegistrationForm() {
           required
         />
         <span>
-          I understand this is a paid webinar registration and I consent to receive
+          I understand this is a webinar registration and I consent to receive
           confirmation and follow-up emails.
         </span>
       </label>
