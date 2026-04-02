@@ -1,6 +1,6 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { WEBINARS } from "../../../lib/webinars";
 
 const DEFAULT_FORM = {
@@ -23,6 +23,19 @@ export default function WebinarRegistrationForm() {
     () => WEBINARS.map((webinar) => ({ value: webinar.id, label: webinar.title })),
     []
   );
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const url = new URL(window.location.href);
+    if (url.searchParams.get("registration") === "cancelled") {
+      setStatus({
+        type: "error",
+        message:
+          "Checkout was cancelled. Your registration has not been completed yet.",
+      });
+    }
+  }, []);
 
   function onFieldChange(e) {
     const { name, type, value, checked } = e.currentTarget;
@@ -61,16 +74,16 @@ export default function WebinarRegistrationForm() {
         throw new Error(payload?.message || "Registration could not be completed.");
       }
 
+      if (!payload?.checkoutUrl) {
+        throw new Error("Checkout session could not be started.");
+      }
+
       setStatus({
         type: "success",
-        message:
-          payload?.message ||
-          "Registration received. Please check your email for confirmation details.",
+        message: payload?.message || "Redirecting to secure Stripe checkout...",
       });
-      setForm((prev) => ({
-        ...DEFAULT_FORM,
-        webinarId: prev.webinarId || DEFAULT_FORM.webinarId,
-      }));
+
+      window.location.assign(payload.checkoutUrl);
     } catch (err) {
       setStatus({
         type: "error",
@@ -206,10 +219,10 @@ export default function WebinarRegistrationForm() {
 
       <div className="webinars-form-actions">
         <button className="webinars-form-btn" type="submit" disabled={loading}>
-          {loading ? "Submitting..." : "Register for Paid Webinar"}
+          {loading ? "Redirecting..." : "Continue to Secure Checkout"}
         </button>
         <p className="webinars-form-note">
-          Stripe checkout is being added in the next implementation phase.
+          You will be redirected to Stripe to complete payment securely.
         </p>
       </div>
     </form>

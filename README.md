@@ -34,3 +34,23 @@ You can check out [the Next.js GitHub repository](https://github.com/vercel/next
 The easiest way to deploy your Next.js app is to use the [Vercel Platform](https://vercel.com/new?utm_medium=default-template&filter=next.js&utm_source=create-next-app&utm_campaign=create-next-app-readme) from the creators of Next.js.
 
 Check out our [Next.js deployment documentation](https://nextjs.org/docs/app/building-your-application/deploying) for more details.
+
+## Webinar Payments (Stripe)
+
+To enable paid webinar registration with confirmation emails, set these in `.env.local`:
+
+```bash
+NEXT_PUBLIC_SITE_URL=http://localhost:3000
+STRIPE_SECRET_KEY=sk_test_...
+STRIPE_WEBHOOK_SECRET=whsec_...
+WEBINAR_REGISTRATION_ACCESS_KEY=...
+```
+
+- `POST /api/webinars/register` creates a Stripe Checkout session.
+- `POST /api/webinars/stripe-webhook` processes `checkout.session.completed` and sends confirmation email.
+
+For local webhook forwarding with Stripe CLI:
+
+```bash
+stripe listen --forward-to localhost:3000/api/webinars/stripe-webhook
+```

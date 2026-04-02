@@ -1,7 +1,8 @@
 import { NextResponse } from "next/server";
-import { WEBINARS } from "../../../../../lib/webinars";
+import Stripe from "stripe";
+import { WEBINARS } from "../../../../lib/webinars";
 
-const WEB3FORMS_ENDPOINT = "https://api.web3forms.com/submit";
+export const runtime = "nodejs";
 
 function clean(value) {
   return typeof value === "string" ? value.trim() : "";
@@ -11,19 +12,38 @@ function isValidEmail(email) {
   return /^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(email);
 }
 
-function formatDateTime(iso) {
-  try {
-    return new Intl.DateTimeFormat("en-CA", {
-      dateStyle: "full",
-      timeStyle: "short",
-      timeZone: "America/Toronto",
-    }).format(new Date(iso));
-  } catch {
-    return "To be announced";
+function toMetadataValue(value, maxLength = 500) {
+  return clean(value).slice(0, maxLength);
+}
+
+function getBaseUrl(request) {
+  const configured =
+    clean(process.env.NEXT_PUBLIC_SITE_URL) || clean(process.env.SITE_URL);
+
+  if (configured) {
+    return configured.replace(/\/+$/, "");
   }
+
+  const origin = clean(request.headers.get("origin"));
+  if (origin) {
+    return origin.replace(/\/+$/, "");
+  }
+
+  return request.nextUrl.origin.replace(/\/+$/, "");
 }
 
 export async function POST(request) {
+  const stripeSecretKey = clean(process.env.STRIPE_SECRET_KEY);
+  if (!stripeSecretKey) {
+    return NextResponse.json(
+      {
+        message:
+          "Stripe checkout is not configured. Add STRIPE_SECRET_KEY to .env.local.",
+      },
+      { status: 503 }
+    );
+  }
+
   let payload = {};
   try {
     payload = await request.json();
@@ -72,89 +92,68 @@ export async function POST(request) {
     );
   }
 
-  const accessKey =
-    process.env.WEBINAR_REGISTRATION_ACCESS_KEY ||
-    process.env.WEB3FORMS_ACCESS_KEY;
-
-  if (!accessKey) {
+  if (!Number.isFinite(webinar.priceCad) || webinar.priceCad <= 0) {
     return NextResponse.json(
       {
         message:
-          "Webinar registration is not configured. Add WEBINAR_REGISTRATION_ACCESS_KEY to .env.local.",
+          "Selected webinar does not have a valid price configured for checkout.",
       },
-      { status: 503 }
+      { status: 400 }
     );
   }
 
-  const attendee = `${firstName} ${lastName}`;
-  const messageLines = [
-    "New paid webinar registration",
-    "",
-    `Webinar: ${webinar.title}`,
-    `Date: ${formatDateTime(webinar.scheduledAt)}`,
-    `Price (CAD): ${webinar.priceCad}`,
-    "",
-    `Attendee: ${attendee}`,
-    `Email: ${email}`,
-    `Company: ${company}`,
-    `Job title: ${jobTitle || "Not provided"}`,
-    "",
-    `Notes: ${notes || "None"}`,
-  ];
+  const stripe = new Stripe(stripeSecretKey);
+  const baseUrl = getBaseUrl(request);
+  const unitAmountCadCents = Math.round(webinar.priceCad * 100);
 
-  const formData = new FormData();
-  formData.append("access_key", accessKey);
-  formData.append("name", attendee);
-  formData.append("email", email);
-  formData.append("subject", `Webinar registration: ${webinar.title}`);
-  formData.append("message", messageLines.join("\n"));
-  formData.append("from_name", "Mears Law Webinar Registration");
-  formData.append("replyto", email);
-  formData.append(
-    "autoresponse",
-    `Thanks for registering for "${webinar.title}" on ${formatDateTime(
-      webinar.scheduledAt
-    )}. Your registration has been received. Payment checkout details will be sent shortly.`
-  );
-
-  let web3formsResponse;
+  let session;
   try {
-    web3formsResponse = await fetch(WEB3FORMS_ENDPOINT, {
-      method: "POST",
-      body: formData,
-      cache: "no-store",
+    session = await stripe.checkout.sessions.create({
+      mode: "payment",
+      customer_email: email,
+      success_url: `${baseUrl}/insights/webinars/success?session_id={CHECKOUT_SESSION_ID}`,
+      cancel_url: `${baseUrl}/insights/webinars?registration=cancelled`,
+      line_items: [
+        {
+          quantity: 1,
+          price_data: {
+            currency: "cad",
+            unit_amount: unitAmountCadCents,
+            product_data: {
+              name: webinar.title,
+              description: webinar.summary,
+            },
+          },
+        },
+      ],
+      metadata: {
+        webinarId,
+        webinarTitle: toMetadataValue(webinar.title),
+        firstName: toMetadataValue(firstName),
+        lastName: toMetadataValue(lastName),
+        email: toMetadataValue(email),
+        company: toMetadataValue(company),
+        jobTitle: toMetadataValue(jobTitle),
+        notes: toMetadataValue(notes, 500),
+        consent: consent ? "true" : "false",
+      },
     });
   } catch {
     return NextResponse.json(
-      { message: "Registration service is currently unavailable. Please try again." },
+      { message: "Unable to start Stripe checkout. Please try again." },
       { status: 502 }
     );
   }
 
-  let web3formsPayload = {};
-  try {
-    web3formsPayload = await web3formsResponse.json();
-  } catch {}
-
-  const ok =
-    web3formsResponse.ok &&
-    (web3formsPayload?.success === true ||
-      (typeof web3formsPayload?.message === "string" &&
-        web3formsPayload.message.toLowerCase().includes("success")));
-
-  if (!ok) {
+  if (!session?.url) {
     return NextResponse.json(
-      {
-        message:
-          web3formsPayload?.message ||
-          "Registration could not be submitted. Please try again.",
-      },
+      { message: "Stripe checkout could not be initialized." },
       { status: 502 }
     );
   }
 
   return NextResponse.json({
-    message:
-      "Registration submitted. A confirmation email has been sent to your inbox.",
+    message: "Redirecting to secure Stripe checkout...",
+    checkoutUrl: session.url,
   });
 }
