@@ -425,11 +425,13 @@ export default function Header() {
     "div",
     { className: "cta" },
     h(
-      "button",
+      "a", // changed "button" to "a"
       { 
-        className: "btn btn-primary", 
-        onClick: openCalendly,
-        "aria-label": "Book consultation" 
+        className: "btn btn-primary",
+        href: "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        style: { textDecoration: 'none' }
       },
       "Book Consultation"
     ),
@@ -490,10 +492,13 @@ export default function Header() {
     "div",
     { className: "mobile-cta" },
     h(
-      "button",
+      "a",
       { 
-        className: "btn", 
-        onClick: openCalendly
+        className: "btn",
+        href: "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled",
+        target: "_blank",
+        rel: "noopener noreferrer",
+        style: { textDecoration: 'none' }
       },
       "Book Consultation"
     )
