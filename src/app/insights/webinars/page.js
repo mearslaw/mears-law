@@ -101,7 +101,7 @@ export default function WebinarsPage() {
           </div>
 
           <div className="webinars-panel">
-            <h2 className="webinars-panel-title">Register for a Paid Webinar</h2>
+            <h2 className="webinars-panel-title">Register for a Webinar</h2>
             <WebinarRegistrationForm />
           </div>
         </section>
