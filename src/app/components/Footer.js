@@ -184,7 +184,7 @@
 //         color: #E5E7EB;
 //         padding: 40px 0 28px;
 //       }
-      
+
 //       .site-footer .container {
 //         width: min(1200px, 92%);
 //         margin: 0 auto;
@@ -386,7 +386,7 @@
 //         }
 //       }
 //     `;
-    
+
 //     const tag = document.createElement("style");
 //     tag.setAttribute("data-footer-css", "true");
 //     tag.appendChild(document.createTextNode(css));
@@ -495,7 +495,7 @@
 //               { className: "contact-link", href: "/offices" },
 //               "Offices"
 //             )
-            
+
 //           )
 //         ),
 //         // Right: Social Media
@@ -1282,9 +1282,9 @@ export default function Footer() {
         el(
           "button",
           { 
-            className: "book-btn", 
-            onClick: openCalendly,
-            "aria-label": "Book a consultation" 
+            className: "book-btn",
+            onClick: () => window.open("https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled", "_blank"),
+              "aria-label": "Book a consultation"
           },
           "Book a Consultation",
           el("span", { className: "btn-arrow" }, "→")

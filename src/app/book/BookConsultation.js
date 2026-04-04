@@ -7,7 +7,8 @@ export default function BookConsultationPage() {
 
   // OPTIONAL: if you have a live scheduler (Microsoft Bookings / Calendly / Cal.com),
   // paste its public booking URL below. If left empty, only the form shows.
-  const SCHEDULER_URL = ""; 
+  // const SCHEDULER_URL = "";
+  const SCHEDULER_URL = "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled";
   // Examples:
   // const SCHEDULER_URL = "https://outlook.office365.com/owa/calendar/your-id/bookings/";
   // const SCHEDULER_URL = "https://calendly.com/your-team/consultation-30min";
@@ -104,7 +105,7 @@ export default function BookConsultationPage() {
 
       <section style={{ padding: "40px 0 64px" }}>
         <div style={{ width: "min(960px,92%)", margin: "0 auto", display: "grid", gap: 32, gridTemplateColumns: "1fr" }}>
-          
+
           {/* Left: Booking Request Form */}
           <div style={{ background: "#fff", borderRadius: 12, padding: 24, boxShadow: "0 8px 24px rgba(0,0,0,0.06)" }}>
             <h2 style={{ marginTop: 0 }}>Request a Time</h2>
@@ -205,6 +206,7 @@ export default function BookConsultationPage() {
                 src={SCHEDULER_URL}
                 style={{ width: "100%", height: 900, border: 0, borderRadius: 12 }}
                 allow="fullscreen"
+                scrolling="yes"
               />
             </div>
           ) : null}
