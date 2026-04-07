@@ -1,19 +1,22 @@
 export const metadata = {
-  title: "Legal Services",
-  description: "Comprehensive legal services including AI Regulation & Ethical Adoption, Corporate Law, Immigration Law, Real Estate Law, Privacy Law, Notary Services, and Litigation. Expert legal counsel in Toronto and Jamaica.",
+  title: "Services",
+  description:
+    "Choose services for companies or individuals, then explore specific legal offerings across AI, privacy, corporate, real estate, immigration, digital asset protection, and estates.",
   keywords: [
-    "AI law services",
-    "corporate law services",
-    "immigration law services",
-    "real estate law services",
-    "privacy law services",
-    "litigation services",
-    "notary services",
-    "legal consultation"
+    "legal services",
+    "company legal services",
+    "individual legal services",
+    "AI governance",
+    "privacy and data protection",
+    "immigration legal services",
+    "digital asset protection",
+    "estate planning lawyer",
+    "real estate legal services",
   ],
   openGraph: {
-    title: "Legal Services | Mears Law",
-    description: "Comprehensive legal services including AI Regulation, Corporate Law, Immigration Law, Real Estate Law, Privacy Law, Notary Services, and Litigation.",
+    title: "Services | Mears Law",
+    description:
+      "Explore legal services for companies and individuals, with dedicated pages for each service offering.",
     url: "https://mearslaw.ca/services",
   },
   alternates: {
@@ -24,4 +27,3 @@ export const metadata = {
 export default function ServicesLayout({ children }) {
   return children;
 }
-
