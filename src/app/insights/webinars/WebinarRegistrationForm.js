@@ -1,33 +1,54 @@
 "use client";
 
 import { useEffect, useMemo, useState } from "react";
-import { WEBINARS } from "../../../lib/webinars";
 
 const DEFAULT_CHECKOUT_MODE =
   process.env.NEXT_PUBLIC_WEBINAR_CHECKOUT_MODE === "checkout_session"
     ? "checkout_session"
     : "payment_link";
 
-const DEFAULT_FORM = {
-  webinarId: WEBINARS[0]?.id || "",
-  firstName: "",
-  lastName: "",
-  email: "",
-  company: "",
-  jobTitle: "",
-  notes: "",
-  consent: false,
-};
+function buildInitialForm(webinars) {
+  const firstId = webinars[0]?.id || "";
+  return {
+    webinarId: firstId,
+    firstName: "",
+    lastName: "",
+    email: "",
+    company: "",
+    jobTitle: "",
+    notes: "",
+    consent: false,
+  };
+}
 
-export default function WebinarRegistrationForm() {
-  const [form, setForm] = useState(DEFAULT_FORM);
+export default function WebinarRegistrationForm({ webinars = [] }) {
+  const [form, setForm] = useState(() => buildInitialForm(webinars));
   const [status, setStatus] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [checkoutMode, setCheckoutMode] = useState(DEFAULT_CHECKOUT_MODE);
 
+  useEffect(() => {
+    setForm((prev) => {
+      const next = buildInitialForm(webinars);
+      const stillValid = webinars.some((w) => w.id === prev.webinarId);
+      return {
+        ...next,
+        webinarId: stillValid ? prev.webinarId : next.webinarId,
+        firstName: prev.firstName,
+        lastName: prev.lastName,
+        email: prev.email,
+        company: prev.company,
+        jobTitle: prev.jobTitle,
+        notes: prev.notes,
+        consent: prev.consent,
+      };
+    });
+  }, [webinars]);
+
   const webinarOptions = useMemo(
-    () => WEBINARS.map((webinar) => ({ value: webinar.id, label: webinar.title })),
-    []
+    () =>
+      webinars.map((webinar) => ({ value: webinar.id, label: webinar.title })),
+    [webinars]
   );
 
   useEffect(() => {
@@ -105,6 +126,15 @@ export default function WebinarRegistrationForm() {
     } finally {
       setLoading(false);
     }
+  }
+
+  if (webinars.length === 0) {
+    return (
+      <p className="webinars-event-summary">
+        There are no upcoming paid webinars open for registration right now. Please
+        check back later or contact the firm for other training options.
+      </p>
+    );
   }
 
   return (

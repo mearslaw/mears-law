@@ -1,6 +1,8 @@
 import Link from "next/link";
 import WebinarRegistrationForm from "./WebinarRegistrationForm";
-import { WEBINARS } from "../../../lib/webinars";
+import { getWebinars } from "../../../lib/webinars";
+
+export const dynamic = "force-dynamic";
 
 export const metadata = {
   title: "Webinars",
@@ -41,9 +43,15 @@ function formatPriceCad(amount) {
   }
 }
 
-export default function WebinarsPage() {
-  const sortedWebinars = [...WEBINARS].sort(
-    (a, b) => new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime()
+export default async function WebinarsPage() {
+  const webinars = await getWebinars();
+  const sortedWebinars = [...webinars].sort(
+    (a, b) =>
+      new Date(a.scheduledAt).getTime() - new Date(b.scheduledAt).getTime()
+  );
+
+  const registrationWebinars = sortedWebinars.filter(
+    (w) => w.status === "upcoming" && w.priceCad > 0
   );
 
   return (
@@ -62,47 +70,60 @@ export default function WebinarsPage() {
         <section className="webinars-layout" aria-label="Webinar content and registration">
           <div className="webinars-panel">
             <h2 className="webinars-panel-title">Upcoming Sessions</h2>
-            <ul className="webinars-event-list">
-              {sortedWebinars.map((webinar) => (
-                <li key={webinar.id} className="webinars-event-card">
-                  <h3 className="webinars-event-title">{webinar.title}</h3>
-                  <p className="webinars-event-meta">
-                    {formatWebinarDate(webinar.scheduledAt)} | {webinar.durationMinutes} min
-                    | {formatPriceCad(webinar.priceCad)}
-                  </p>
-                  <p className="webinars-event-summary">{webinar.summary}</p>
+            {sortedWebinars.length === 0 ? (
+              <p className="webinars-event-summary">
+                No webinars are listed yet. Check back soon, or visit the{" "}
+                <Link className="webinars-recording-link" href="/insights">
+                  Insights hub
+                </Link>
+                .
+              </p>
+            ) : (
+              <ul className="webinars-event-list">
+                {sortedWebinars.map((webinar) => (
+                  <li key={webinar.id} className="webinars-event-card">
+                    <h3 className="webinars-event-title">{webinar.title}</h3>
+                    <p className="webinars-event-meta">
+                      {formatWebinarDate(webinar.scheduledAt)} |{" "}
+                      {webinar.durationMinutes} min | {formatPriceCad(webinar.priceCad)}
+                      {webinar.status !== "upcoming" ? (
+                        <span> · {webinar.status}</span>
+                      ) : null}
+                    </p>
+                    <p className="webinars-event-summary">{webinar.summary}</p>
 
-                  {webinar.embedUrl ? (
-                    <div className="webinars-recording-embed-wrap">
-                      <iframe
-                        className="webinars-recording-embed"
-                        src={webinar.embedUrl}
-                        title={`${webinar.title} recording`}
-                        allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
-                        referrerPolicy="strict-origin-when-cross-origin"
-                        allowFullScreen
-                      />
-                    </div>
-                  ) : null}
+                    {webinar.embedUrl ? (
+                      <div className="webinars-recording-embed-wrap">
+                        <iframe
+                          className="webinars-recording-embed"
+                          src={webinar.embedUrl}
+                          title={`${webinar.title} recording`}
+                          allow="accelerometer; autoplay; clipboard-write; encrypted-media; gyroscope; picture-in-picture; web-share"
+                          referrerPolicy="strict-origin-when-cross-origin"
+                          allowFullScreen
+                        />
+                      </div>
+                    ) : null}
 
-                  {webinar.recordingUrl ? (
-                    <a
-                      className="webinars-recording-link"
-                      href={webinar.recordingUrl}
-                      target="_blank"
-                      rel="noopener noreferrer"
-                    >
-                      Watch recording
-                    </a>
-                  ) : null}
-                </li>
-              ))}
-            </ul>
+                    {webinar.recordingUrl ? (
+                      <a
+                        className="webinars-recording-link"
+                        href={webinar.recordingUrl}
+                        target="_blank"
+                        rel="noopener noreferrer"
+                      >
+                        Watch recording
+                      </a>
+                    ) : null}
+                  </li>
+                ))}
+              </ul>
+            )}
           </div>
 
           <div className="webinars-panel">
             <h2 className="webinars-panel-title">Register for a Webinar</h2>
-            <WebinarRegistrationForm />
+            <WebinarRegistrationForm webinars={registrationWebinars} />
           </div>
         </section>
 

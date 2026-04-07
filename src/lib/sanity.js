@@ -48,3 +48,29 @@ export const insightBySlugQuery = `*[_type == "insight" && slug.current == $slug
   "videoUrl": videoFile.asset->url,
   "audioUrl": audioFile.asset->url
 }`;
+
+export const webinarsListQuery = `*[_type == "webinar"] | order(scheduledAt asc) {
+  _id,
+  "id": slug.current,
+  title,
+  summary,
+  scheduledAt,
+  durationMinutes,
+  priceCad,
+  status,
+  recordingUrl,
+  embedUrl
+}`;
+
+export const webinarBySlugQuery = `*[_type == "webinar" && slug.current == $slug][0]{
+  _id,
+  "id": slug.current,
+  title,
+  summary,
+  scheduledAt,
+  durationMinutes,
+  priceCad,
+  status,
+  recordingUrl,
+  embedUrl
+}`;

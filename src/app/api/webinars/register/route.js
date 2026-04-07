@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { WEBINARS } from "@/lib/webinars";
+import { getWebinarById } from "@/lib/webinars";
 
 export const runtime = "nodejs";
 
@@ -183,8 +183,8 @@ export async function POST(request) {
     );
   }
 
-  const webinar = WEBINARS.find((item) => item.id === webinarId);
-  if (!webinar) {
+  const webinar = await getWebinarById(webinarId);
+  if (!webinar || webinar.status !== "upcoming") {
     return NextResponse.json(
       { message: "Selected webinar is not available." },
       { status: 400 }

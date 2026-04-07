@@ -1,6 +1,6 @@
 # Mears Law — Sanity Studio
 
-Local Studio for the `insight` content type used on `/insights`.
+Local Studio for site content: **`insight`** (Insights listing and articles) and **`webinar`** (paid webinars on `/insights/webinars`).
 
 ```bash
 cd studio-mears-law-website

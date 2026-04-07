@@ -1,6 +1,6 @@
 import { NextResponse } from "next/server";
 import Stripe from "stripe";
-import { WEBINARS } from "@/lib/webinars";
+import { getWebinarById } from "@/lib/webinars";
 
 export const runtime = "nodejs";
 
@@ -227,7 +227,7 @@ export async function POST(request) {
     }
 
     const webinarId = clean(refreshedSession?.metadata?.webinarId);
-    const webinar = WEBINARS.find((item) => item.id === webinarId);
+    const webinar = await getWebinarById(webinarId);
     if (!webinar) {
       return NextResponse.json({ received: true, ignored: "unknown_webinar" });
     }
