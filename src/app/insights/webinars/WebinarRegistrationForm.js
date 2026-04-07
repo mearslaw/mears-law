@@ -1,7 +1,12 @@
 "use client";
 
-import { useMemo, useState } from "react";
+import { useEffect, useMemo, useState } from "react";
 import { WEBINARS } from "../../../lib/webinars";
+
+const DEFAULT_CHECKOUT_MODE =
+  process.env.NEXT_PUBLIC_WEBINAR_CHECKOUT_MODE === "checkout_session"
+    ? "checkout_session"
+    : "payment_link";
 
 const DEFAULT_FORM = {
   webinarId: WEBINARS[0]?.id || "",
@@ -18,11 +23,25 @@ export default function WebinarRegistrationForm() {
   const [form, setForm] = useState(DEFAULT_FORM);
   const [status, setStatus] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(false);
+  const [checkoutMode, setCheckoutMode] = useState(DEFAULT_CHECKOUT_MODE);
 
   const webinarOptions = useMemo(
     () => WEBINARS.map((webinar) => ({ value: webinar.id, label: webinar.title })),
     []
   );
+
+  useEffect(() => {
+    if (typeof window === "undefined") return;
+
+    const url = new URL(window.location.href);
+    if (url.searchParams.get("registration") === "cancelled") {
+      setStatus({
+        type: "error",
+        message:
+          "Checkout was cancelled. Your registration has not been completed yet.",
+      });
+    }
+  }, []);
 
   function onFieldChange(e) {
     const { name, type, value, checked } = e.currentTarget;
@@ -61,16 +80,23 @@ export default function WebinarRegistrationForm() {
         throw new Error(payload?.message || "Registration could not be completed.");
       }
 
+      if (!payload?.checkoutUrl) {
+        throw new Error("Checkout session could not be started.");
+      }
+
+      const resolvedMode =
+        payload?.mode === "checkout_session" ? "checkout_session" : "payment_link";
+      setCheckoutMode(resolvedMode);
+
       setStatus({
         type: "success",
         message:
-          payload?.message ||
-          "Registration received. Please check your email for confirmation details.",
+          resolvedMode === "payment_link"
+            ? "Redirecting to Stripe Payment Link..."
+            : payload?.message || "Redirecting to secure Stripe checkout...",
       });
-      setForm((prev) => ({
-        ...DEFAULT_FORM,
-        webinarId: prev.webinarId || DEFAULT_FORM.webinarId,
-      }));
+
+      window.location.assign(payload.checkoutUrl);
     } catch (err) {
       setStatus({
         type: "error",
@@ -206,10 +232,16 @@ export default function WebinarRegistrationForm() {
 
       <div className="webinars-form-actions">
         <button className="webinars-form-btn" type="submit" disabled={loading}>
-          {loading ? "Submitting..." : "Register for Paid Webinar"}
+          {loading
+            ? "Redirecting..."
+            : checkoutMode === "payment_link"
+              ? "Continue to Stripe Payment Link"
+              : "Continue to Secure Checkout"}
         </button>
         <p className="webinars-form-note">
-          Stripe checkout is being added in the next implementation phase.
+          {checkoutMode === "payment_link"
+            ? "Current setup uses a Stripe Payment Link checkout. You will be redirected to Stripe to complete payment."
+            : "You will be redirected to Stripe to complete payment securely."}
         </p>
       </div>
     </form>
