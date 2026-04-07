@@ -52,6 +52,7 @@ WEBINAR_REGISTRATION_ACCESS_KEY=...
 - `POST /api/webinars/stripe-webhook` processes `checkout.session.completed` and sends confirmation email.
 - If `STRIPE_SECRET_KEY` is not set, registration falls back to `STRIPE_WEBINAR_PAYMENT_LINK` and then redirects users to that Stripe payment link.
 - `NEXT_PUBLIC_WEBINAR_CHECKOUT_MODE` controls frontend button/copy (`payment_link` or `checkout_session`). Default is `payment_link`.
+- `WEBINAR_REGISTRATION_ACCESS_KEY` is optional for payment-link fallback (used only if you want registration details emailed before redirect).
 
 For local webhook forwarding with Stripe CLI:
 

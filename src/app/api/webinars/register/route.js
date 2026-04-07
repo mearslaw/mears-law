@@ -70,9 +70,10 @@ async function sendRegistrationNotification({
     clean(process.env.WEB3FORMS_ACCESS_KEY);
 
   if (!accessKey) {
-    throw new Error(
-      "Webinar registration is not configured. Add WEBINAR_REGISTRATION_ACCESS_KEY to .env.local."
-    );
+    return {
+      sent: false,
+      reason: "missing_access_key",
+    };
   }
 
   const attendee = clean(`${firstName} ${lastName}`);
@@ -137,6 +138,8 @@ async function sendRegistrationNotification({
       payload?.message || "Registration could not be submitted. Please try again."
     );
   }
+
+  return { sent: true };
 }
 
 export async function POST(request) {
