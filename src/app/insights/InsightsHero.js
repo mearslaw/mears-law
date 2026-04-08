@@ -30,10 +30,11 @@ export default function InsightsHero() {
           <span className="insights-hero-underline" aria-hidden="true" />
         </h1>
         <p className="insights-hero-lede">
-          Publications, commentary, news, and media from Mears Law — practical
-          perspectives on law, technology, and business.
+          Publications, commentary, news, and media from Mears Law - practical
+          perspectives on the law.
         </p>
       </div>
     </section>
   );
 }
+
