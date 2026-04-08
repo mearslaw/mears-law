@@ -555,6 +555,16 @@ export default function Header() {
               role: "menuitem",
               onClick: closeServicesDropdown
             },
+            "Real Estate"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/individuals/estates",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
             "Estates"
           ),
           h(
@@ -676,7 +686,8 @@ export default function Header() {
             "div",
             { className: "mobile-submenu-nested" },
             h(Link, { href: "/services/individuals/digital-asset-protection", onClick: closeMenu }, "Digital Asset Protection"),
-            h(Link, { href: "/services/individuals/real-estate", onClick: closeMenu }, "Estates"),
+            h(Link, { href: "/services/individuals/real-estate", onClick: closeMenu }, "Real Estate"),
+            h(Link, { href: "/services/individuals/estates", onClick: closeMenu }, "Estates"),
             h(Link, { href: "/services/individuals/immigration", onClick: closeMenu }, "Immigration"),
             h(Link, { href: "/services/individuals/family-law", onClick: closeMenu }, "Family")
           )
