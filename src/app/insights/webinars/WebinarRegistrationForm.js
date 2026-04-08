@@ -331,10 +331,8 @@ export default function WebinarRegistrationForm({ webinars = [] }) {
         )}
         <p className="webinars-form-note">
           {pendingStripeUrl
-            ? "You can cancel and ask your administrator to enable Stripe Checkout (STRIPE_SECRET_KEY) so the charged amount matches the price on this page."
-            : checkoutMode === "payment_link"
-              ? "If checkout shows a different price than this page, the site is using a fixed Stripe Payment Link — see warning after submit or configure STRIPE_SECRET_KEY."
-              : "You will be redirected to Stripe to complete payment securely."}
+            ? "You can cancel to stay on this page."
+            : "You will be redirected to Stripe to complete payment securely."}
         </p>
       </div>
     </form>
