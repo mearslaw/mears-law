@@ -2,11 +2,14 @@
 
 import React, { useEffect, useState, useCallback } from "react";
 import Link from "next/link";
+import { usePathname } from "next/navigation"; // Added for page-specific logic
 
 const YEAR = new Date().getFullYear();
 
 export default function Footer() {
-    // Keep the logic for updates strip and styling as is
+    const pathname = usePathname();
+    const isHomePage = pathname === "/";
+
     useEffect(() => {
         const css = `
       .site-footer, .site-footer * {
@@ -385,7 +388,8 @@ export default function Footer() {
                             )
                         )
                     ),
-                    el(
+                    // Socials only show if NOT on Home Page
+                    !isHomePage && el(
                         "div",
                         { className: "right-section" },
                         el(

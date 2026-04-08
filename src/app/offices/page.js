@@ -4,9 +4,9 @@ export const metadata = { title: "Offices — Mears Law" };
 import React from "react";
 
 export default function OfficesPage() {
-  const h = React.createElement;
+    const h = React.createElement;
 
-  const css = `
+    const css = `
     /* ===== Shared accents / motion ===== */
     @keyframes rotate { from { transform: rotate(0deg); } to { transform: rotate(360deg); } }
     @keyframes pulse {
@@ -222,111 +222,121 @@ export default function OfficesPage() {
     }
   `;
 
-  const gmap = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
+    const gmap = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 
-  // Canada (Toronto)
-  const caLine1 = "Suite 2500, 120 Adelaide Street West";
-  const caLine2 = "Toronto, Ontario, M5H 1T1";
-  const caQuery = `${caLine1}, ${caLine2}`;
-  const telCA = "(437) 888-2974";
-  const faxCA = "(647) 374-0066";
+    // Canada (Toronto)
+    const caLine1 = "Suite 2500, 120 Adelaide Street West";
+    const caLine2 = "Toronto, Ontario, M5H 1T1";
+    const caQuery = `${caLine1}, ${caLine2}`;
+    const telCA = "(437) 888-2974";
+    const faxCA = "(647) 374-0066";
 
-  // Caribbean (Kingston)
-  const jmLine1 = "19 Cargill Avenue";
-  const jmLine2 = "Kingston 10, Jamaica";
-  const jmQuery = `${jmLine1}, ${jmLine2}`;
-  const telJM = "(876) 299-7746";
+    // Caribbean (Kingston)
+    const jmLine1 = "19 Cargill Avenue";
+    const jmLine2 = "Kingston 10, Jamaica";
+    const jmQuery = `${jmLine1}, ${jmLine2}`;
+    const telJM = "(876) 299-7746";
 
-  return h(React.Fragment, null,
-    h("style", { dangerouslySetInnerHTML: { __html: css } }),
-    h("main", { className: "offices-root" },
+    return h(React.Fragment, null,
+        h("style", { dangerouslySetInnerHTML: { __html: css } }),
+        h("main", { className: "offices-root" },
 
-      /* Decorative background and hero */
-      h("section", { className: "hero" },
-        h("div", { className: "hero-inner" },
-          h("h1", { className: "offices-title" }, "Our Offices",
-            h("span", { className: "underline", "aria-hidden": "true" })
-          ),
-          h("p", { className: "subtitle" }, "Serving clients across North America and the Caribbean")
-        )
-      ),
-
-      h("div", { className: "offices-wrap" },
-        h("div", { className: "background-globe", "aria-hidden": "true" },
-          h("div", { className: "globe-circle" }),
-          h("div", { className: "globe-circle-2" }),
-          h("div", { className: "globe-arc" }),
-          h("div", { className: "globe-dots" },
-            h("div", { className: "dot dot-1" }),
-            h("div", { className: "dot dot-2" }),
-            h("div", { className: "dot dot-3" }),
-            h("div", { className: "dot dot-4" }),
-            h("div", { className: "dot dot-5" }),
-            h("div", { className: "dot dot-6" }),
-            h("div", { className: "vertical-dot v-dot-1" }),
-            h("div", { className: "vertical-dot v-dot-2" }),
-            h("div", { className: "vertical-dot v-dot-3" }),
-            h("div", { className: "vertical-dot v-dot-4" }),
-            h("div", { className: "vertical-dot v-dot-5" }),
-            h("div", { className: "vertical-dot v-dot-6" })
-          )
-        ),
-
-        h("div", { className: "content-wrapper" },
-          h("section", { className: "cards" },
-
-            // Canada
-            h("div", { className: "office-card" },
-              h("h2", { className: "office-name" }, "Canada"),
-              h("div", { className: "addr-block", "aria-label": "Toronto address" },
-                h("div", { className: "addr-line" }, caLine1),
-                h("div", { className: "addr-line" }, caLine2)
-              ),
-              h("div", { className: "links" },
-                h("a", {
-                  className: "btn-link",
-                  href: gmap(caQuery),
-                  target: "_blank",
-                  rel: "noopener noreferrer"
-                }, "View on Google Maps →")
-              ),
-              h("div", { className: "contact-section" },
-                h("div", { className: "contact-row tel" },
-                  h("span", { className: "label" }, "Tel:"),
-                  h("a", { className: "number", href: "tel:+14378882974" }, telCA)
-                ),
-                h("div", { className: "contact-row fax" },
-                  h("span", { className: "label" }, "Fax:"),
-                  h("span", { className: "number" }, faxCA)
+            /* Decorative background and hero */
+            h("section", { className: "hero" },
+                h("div", { className: "hero-inner" },
+                    h("h1", { className: "offices-title" }, "Our Offices",
+                        h("span", { className: "underline", "aria-hidden": "true" })
+                    ),
+                    h("p", { className: "subtitle" }, "Serving clients across North America and the Caribbean")
                 )
-              )
             ),
 
-            // Caribbean
-            h("div", { className: "office-card" },
-              h("h2", { className: "office-name" }, "Caribbean"),
-              h("div", { className: "addr-block", "aria-label": "Kingston address" },
-                h("div", { className: "addr-line" }, jmLine1),
-                h("div", { className: "addr-line" }, jmLine2)
-              ),
-              h("div", { className: "links" },
-                h("a", {
-                  className: "btn-link",
-                  href: gmap(jmQuery),
-                  target: "_blank",
-                  rel: "noopener noreferrer"
-                }, "View on Google Maps →")
-              ),
-              h("div", { className: "contact-section" },
-                h("div", { className: "contact-row tel" },
-                  h("span", { className: "label" }, "Tel:"),
-                  h("a", { className: "number", href: "tel:+18762997746" }, telJM)
+            h("div", { className: "offices-wrap" },
+                h("div", { className: "background-globe", "aria-hidden": "true" },
+                    h("div", { className: "globe-circle" }),
+                    h("div", { className: "globe-circle-2" }),
+                    h("div", { className: "globe-arc" }),
+                    h("div", { className: "globe-dots" },
+                        h("div", { className: "dot dot-1" }),
+                        h("div", { className: "dot dot-2" }),
+                        h("div", { className: "dot dot-3" }),
+                        h("div", { className: "dot dot-4" }),
+                        h("div", { className: "dot dot-5" }),
+                        h("div", { className: "dot dot-6" }),
+                        h("div", { className: "vertical-dot v-dot-1" }),
+                        h("div", { className: "vertical-dot v-dot-2" }),
+                        h("div", { className: "vertical-dot v-dot-3" }),
+                        h("div", { className: "vertical-dot v-dot-4" }),
+                        h("div", { className: "vertical-dot v-dot-5" }),
+                        h("div", { className: "vertical-dot v-dot-6" })
+                    )
+                ),
+
+                h("div", { className: "content-wrapper" },
+                    h("section", { className: "cards" },
+
+                        // Canada
+                        h("div", { className: "office-card" },
+                            h("h2", { className: "office-name" }, "Canada"),
+
+                            // Conditionally render placeholder instead of address/link
+                            h("div", {
+                                    style: {
+                                        padding: '24px',
+                                        backgroundColor: '#f8fafc',
+                                        borderRadius: '12px',
+                                        border: '1px dashed #cbd5e1',
+                                        textAlign: 'center'
+                                    }
+                                },
+                                h("div", { style: { fontSize: '32px', marginBottom: '12px' } }, "📍"),
+                                h("p", {
+                                    style: {
+                                        fontSize: '15px',
+                                        color: '#64748b',
+                                        lineHeight: '1.5',
+                                        margin: 0
+                                    }
+                                }, "We are currently updating our Toronto office location details. Please contact us directly for our latest address.")
+                            ),
+
+                            h("div", { className: "contact-section" },
+                                h("div", { className: "contact-row tel" },
+                                    h("span", { className: "label" }, "Tel:"),
+                                    h("a", { className: "number", href: "tel:+14378882974" }, telCA)
+                                ),
+                                h("div", { className: "contact-row fax" },
+                                    h("span", { className: "label" }, "Fax:"),
+                                    h("span", { className: "number" }, faxCA)
+                                )
+                            )
+                        ),
+
+                        // Caribbean
+                        h("div", { className: "office-card" },
+                            h("h2", { className: "office-name" }, "Caribbean"),
+                            h("div", { className: "addr-block", "aria-label": "Kingston address" },
+                                h("div", { className: "addr-line" }, jmLine1),
+                                h("div", { className: "addr-line" }, jmLine2)
+                            ),
+                            h("div", { className: "links" },
+                                h("a", {
+                                    className: "btn-link",
+                                    href: gmap(jmQuery),
+                                    target: "_blank",
+                                    rel: "noopener noreferrer"
+                                }, "View on Google Maps →")
+                            ),
+                            h("div", { className: "contact-section" },
+                                h("div", { className: "contact-row tel" },
+                                    h("span", { className: "label" }, "Tel:"),
+                                    h("a", { className: "number", href: "tel:+18762997746" }, telJM)
+                                )
+                            )
+                        )
+                    )
                 )
-              )
             )
-          )
         )
-      )
-    )
-  );
+    );
 }

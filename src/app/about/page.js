@@ -172,7 +172,7 @@ export default function AboutPage() {
             </p>
             <div className="image-wrapper">
               <Image
-                  src="/images/ourvalues.jpg"
+                  src="/images/ourvalues.jpg" //  hand with a flower to show values, etc
                   alt="Law team advising a client"
                   width={1600}
                   height={900} // These values dont matter but are required(handled with CSS)
