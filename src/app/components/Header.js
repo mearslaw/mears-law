@@ -2,7 +2,7 @@
 import React, { useState, useCallback, useEffect, createElement as h, Fragment } from "react";
 import Link from "next/link";
 
-/* ---------- inline CSS (copied from your JSX block, unchanged in look/feel) ---------- */
+// inline css
 const CSS = `
 /* Vars + base */
 .site-header{
@@ -35,7 +35,7 @@ const CSS = `
 .brand-mark-img{
   width:160px; height:auto; display:block; object-fit:contain;
   filter: drop-shadow(0 3px 10px rgba(0,0,0,.28));
-  margin-top:12px;             /* positioned lower */
+  margin-top:12px;              /* positioned lower */
   margin-bottom:-6px;
   flex-shrink:0;
 }
@@ -58,7 +58,7 @@ const CSS = `
   outline:2px solid rgba(234,242,255,.35); outline-offset:3px; border-radius:6px;
 }
 
-/* Services Dropdown */
+/* Services/About Dropdown */
 .services-dropdown {
   position: relative;
 }
@@ -195,346 +195,282 @@ const CSS = `
 .mobile-cta{ display:flex; flex-direction:column; gap:10px; padding:8px 14px 16px; }
 .mobile-cta .btn{ background:#fff; color:var(--navy); }
 .close{ border:0; background:none; color:#fff; padding:6px; }
-
-/* Calendly Modal */
-.calendly-overlay {
-}
-
-.calendly-overlay.open {
-  display: flex;
-  opacity: 1;
-}
-
-.calendly-modal {
-  background: white;
-  border-radius: 12px;
-  width: 100%;
-  max-width: 1000px;
-  height: 90vh;
-  max-height: 750px;
-  position: relative;
-  box-shadow: 0 20px 60px rgba(0, 0, 0, 0.3);
-  overflow: hidden;
-  transform: scale(0.95);
-  transition: transform 0.3s ease;
-}
-
-.calendly-overlay.open .calendly-modal {
-  transform: scale(1);
-}
-
-.calendly-close {
-  position: absolute;
-  top: 16px;
-  right: 16px;
-  background: rgba(0, 0, 0, 0.6);
-  color: white;
-  border: none;
-  border-radius: 50%;
-  width: 40px;
-  height: 40px;
-  display: flex;
-  align-items: center;
-  justify-content: center;
-  cursor: pointer;
-  z-index: 2001;
-  transition: background 0.2s ease;
-  font-size: 24px;
-  line-height: 1;
-}
-
-.calendly-close:hover {
-  background: rgba(0, 0, 0, 0.8);
-}
-
-.calendly-inline-widget {
-  width: 100%;
-  height: 100%;
-  min-width: 320px;
-}
 `;
 
-/* ---------- inject CSS once ---------- */
 function useInlineStyles(id, cssText) {
-  useEffect(() => {
-    if (typeof document === "undefined") return;
-    let el = document.getElementById(id);
-    if (!el) {
-      el = document.createElement("style");
-      el.id = id;
-      el.type = "text/css";
-      el.appendChild(document.createTextNode(cssText));
-      document.head.appendChild(el);
-    }
-  }, [id, cssText]);
+    useEffect(() => {
+        if (typeof document === "undefined") return;
+        let el = document.getElementById(id);
+        if (!el) {
+            el = document.createElement("style");
+            el.id = id;
+            el.type = "text/css";
+            el.appendChild(document.createTextNode(cssText));
+            document.head.appendChild(el);
+        }
+    }, [id, cssText]);
 }
 
-/* ---------- Load Calendly script ---------- */
-function useFilloutScript() {
-  useEffect(() => {
-    if (typeof window === "undefined") return;
-
-    if (!document.querySelector('script[src*="fillout.com/embed"]')) {
-      const script = document.createElement("script");
-      script.src = "https://server.fillout.com/embed/v1/";
-      script.async = true;
-      document.body.appendChild(script);
-    }
-  }, []);
-}
-
-/* ---------- icons (no JSX) ---------- */
 const IconHamburger = () =>
-  h(
-    "svg",
-    { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", "aria-hidden": "true" },
-    h("path", { d: "M3 6h18M3 12h18M3 18h18" })
-  );
+    h(
+        "svg",
+        { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", "aria-hidden": "true" },
+        h("path", { d: "M3 6h18M3 12h18M3 18h18" })
+    );
 
 const IconClose = () =>
-  h(
-    "svg",
-    { width: 26, height: 26, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", "aria-hidden": "true" },
-    h("path", { d: "M18 6L6 18M6 6l12 12" })
-  );
+    h(
+        "svg",
+        { width: 26, height: 26, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", "aria-hidden": "true" },
+        h("path", { d: "M18 6L6 18M6 6l12 12" })
+    );
 
 const IconChevronDown = () =>
-  h(
-    "svg",
-    { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" },
-    h("path", { d: "M6 9l6 6 6-6" })
-  );
+    h(
+        "svg",
+        { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" },
+        h("path", { d: "M6 9l6 6 6-6" })
+    );
 
-/* ---------- component (no JSX) ---------- */
 export default function Header() {
-  useInlineStyles("ml-header-inline-css", CSS);
-  useFilloutScript();
+    useInlineStyles("ml-header-inline-css", CSS);
 
-  const [isOpen, setIsOpen] = useState(false);
-  const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
-  const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
-  
-  const toggleMenu = useCallback(() => setIsOpen((v) => !v), []);
-  const closeMenu = useCallback(() => setIsOpen(false), []);
-  const toggleServicesDropdown = useCallback(() => setIsServicesDropdownOpen((v) => !v), []);
-  const closeServicesDropdown = useCallback(() => setIsServicesDropdownOpen(false), []);
-  
-  const openCalendly = useCallback((e) => {
-    e.preventDefault();
-    setIsCalendlyOpen(true);
-    closeMenu(); // Close mobile menu if open
-  }, [closeMenu]);
+    const [isOpen, setIsOpen] = useState(false);
+    const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+    const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
 
-  const closeCalendly = useCallback(() => {
-    setIsCalendlyOpen(false);
-  }, []);
+    const toggleMenu = useCallback(() => setIsOpen((v) => !v), []);
+    const closeMenu = useCallback(() => setIsOpen(false), []);
 
-  // Close modal on escape key
-  useEffect(() => {
-    const handleEscape = (e) => {
-      if (e.key === 'Escape' && isCalendlyOpen) {
-        closeCalendly();
-      }
-    };
-    
-    if (isCalendlyOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
-    }
-    
-    return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
-    };
-  }, [isCalendlyOpen, closeCalendly]);
+    const toggleServicesDropdown = useCallback(() => {
+        setIsServicesDropdownOpen((v) => !v);
+        setIsAboutDropdownOpen(false); // Close other dropdown
+    }, []);
+    const closeServicesDropdown = useCallback(() => setIsServicesDropdownOpen(false), []);
 
-  // Close dropdown when clicking outside
-  useEffect(() => {
-    if (!isServicesDropdownOpen) return;
-    
-    const handleClickOutside = (e) => {
-      if (!e.target.closest('.services-dropdown')) {
-        closeServicesDropdown();
-      }
-    };
-    
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [isServicesDropdownOpen, closeServicesDropdown]);
+    const toggleAboutDropdown = useCallback(() => {
+        setIsAboutDropdownOpen((v) => !v);
+        setIsServicesDropdownOpen(false); // Close other dropdown
+    }, []);
+    const closeAboutDropdown = useCallback(() => setIsAboutDropdownOpen(false), []);
 
-  /* brand */
-  const brandLink = h(
-    Link,
-    { className: "brand", href: "/", "aria-label": "Mears Law home" },
-    h("img", { src: "/images/mears-logo.png", alt: "Mears Law logo", className: "brand-mark-img" })
-  );
+    // Close dropdowns when clicking outside
+    useEffect(() => {
+        if (!isServicesDropdownOpen && !isAboutDropdownOpen) return;
 
-  /* desktop primary nav */
-  const servicesDropdown = h(
-    "div",
-    { className: `services-dropdown${isServicesDropdownOpen ? " open" : ""}` },
-    h(
-      "button",
-      {
-        className: "services-trigger",
-        onClick: toggleServicesDropdown,
-        "aria-expanded": isServicesDropdownOpen,
-        "aria-haspopup": "true"
-      },
-      "Services",
-      h(IconChevronDown)
-    ),
-    h(
-      "div",
-      { className: "dropdown-menu", role: "menu" },
-      h(
+        const handleClickOutside = (e) => {
+            if (!e.target.closest('.services-dropdown')) {
+                closeServicesDropdown();
+                closeAboutDropdown();
+            }
+        };
+
+        document.addEventListener('click', handleClickOutside);
+        return () => document.removeEventListener('click', handleClickOutside);
+    }, [isServicesDropdownOpen, isAboutDropdownOpen, closeServicesDropdown, closeAboutDropdown]);
+
+    const bookingUrl = "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled";
+
+    /* brand */
+    const brandLink = h(
         Link,
-        {
-          href: "/legal",
-          className: "dropdown-item",
-          role: "menuitem",
-          onClick: closeServicesDropdown
-        },
-        "Legal"
-      ),
-      h(
-        Link,
-        {
-          href: "/consulting",
-          className: "dropdown-item",
-          role: "menuitem",
-          onClick: closeServicesDropdown
-        },
-        "Consulting"
-      )
-    )
-  );
+        { className: "brand", href: "/", "aria-label": "Mears Law home" },
+        h("img", { src: "/images/mears-logo.png", alt: "Mears Law logo", className: "brand-mark-img" })
+    );
 
-  const navLinks = h(
-    "nav",
-    { className: "nav-links", "aria-label": "Primary" },
-    h(Link, { href: "/" }, "Home"),
-    h(Link, { href: "/about" }, "About"),
-    servicesDropdown,
-    h(Link, { href: "/careers" }, "Careers"),
-    h(Link, { href: "/contact" }, "Contact"),
-  );
-
-  /* desktop cta + hamburger */
-  const ctaBlock = h(
-    "div",
-    { className: "cta" },
-    h(
-      "button",
-      { 
-        className: "btn btn-primary", 
-        onClick: openCalendly,
-        "aria-label": "Book consultation" 
-      },
-      "Book Consultation"
-    ),
-    h(
-      "button",
-      { className: "hamburger", "aria-label": "Open menu", onClick: toggleMenu },
-      h(IconHamburger)
-    )
-  );
-
-  const topBar = h(
-    "div",
-    { className: "container nav" },
-    brandLink,
-    navLinks,
-    ctaBlock
-  );
-
-  const headerEl = h("header", { className: "site-header" }, topBar);
-
-  /* mobile drawer */
-  const drawerHeader = h(
-    "div",
-    { className: "drawer-header" },
-    h(
-      Link,
-      { className: "brand", href: "/", onClick: closeMenu, "aria-label": "Mears Law home" },
-      h("img", { src: "/images/mears-logo.png", alt: "Mears Law logo", className: "brand-mark-img small" })
-    ),
-    h(
-      "button",
-      { className: "close", "aria-label": "Close menu", onClick: closeMenu },
-      h(IconClose)
-    )
-  );
-
-  const mobileLinks = h(
-    "nav",
-    { className: "mobile-links", "aria-label": "Mobile" },
-    h(Link, { href: "/", onClick: closeMenu }, "Home"),
-    h(Link, { href: "/about", onClick: closeMenu }, "About"),
-    h(
-      "div",
-      null,
-      h("div", { style: { fontWeight: 600, color: "#fff", marginBottom: "8px" } }, "Services"),
-      h(
+    /* About Dropdown */
+    const aboutDropdown = h(
         "div",
-        { className: "mobile-submenu" },
-        h(Link, { href: "/legal", onClick: closeMenu }, "Legal"),
-        h(Link, { href: "/consulting", onClick: closeMenu }, "Consulting")
-      )
-    ),
-    h(Link, { href: "/careers", onClick: closeMenu }, "Careers"),
-    h(Link, { href: "/contact", onClick: closeMenu }, "Contact"),
-  );
+        { className: `services-dropdown${isAboutDropdownOpen ? " open" : ""}` },
+        h(
+            "button",
+            {
+                className: "services-trigger",
+                onClick: toggleAboutDropdown,
+                "aria-expanded": isAboutDropdownOpen,
+                "aria-haspopup": "true"
+            },
+            "About Us",
+            h(IconChevronDown)
+        ),
+        h(
+            "div",
+            { className: "dropdown-menu", role: "menu" },
+            h(
+                Link,
+                {
+                    href: "/about",
+                    className: "dropdown-item",
+                    role: "menuitem",
+                    onClick: closeAboutDropdown
+                },
+                "Our Firm"
+            ),
+            h(
+                Link,
+                {
+                    href: "/team",
+                    className: "dropdown-item",
+                    role: "menuitem",
+                    onClick: closeAboutDropdown
+                },
+                "Meet our Team"
+            )
+        )
+    );
 
-  const mobileCta = h(
-    "div",
-    { className: "mobile-cta" },
-    h(
-      "button",
-      { 
-        className: "btn", 
-        onClick: openCalendly
-      },
-      "Book Consultation"
-    )
-  );
+    /* Services Dropdown */
+    const servicesDropdown = h(
+        "div",
+        { className: `services-dropdown${isServicesDropdownOpen ? " open" : ""}` },
+        h(
+            "button",
+            {
+                className: "services-trigger",
+                onClick: toggleServicesDropdown,
+                "aria-expanded": isServicesDropdownOpen,
+                "aria-haspopup": "true"
+            },
+            "Services",
+            h(IconChevronDown)
+        ),
+        h(
+            "div",
+            { className: "dropdown-menu", role: "menu" },
+            h(
+                Link,
+                {
+                    href: "/legal",
+                    className: "dropdown-item",
+                    role: "menuitem",
+                    onClick: closeServicesDropdown
+                },
+                "Legal"
+            ),
+            h(
+                Link,
+                {
+                    href: "/consulting",
+                    className: "dropdown-item",
+                    role: "menuitem",
+                    onClick: closeServicesDropdown
+                },
+                "Consulting"
+            )
+        )
+    );
 
-  const drawer = h(
-    "div",
-    { className: `mobile-drawer${isOpen ? " open" : ""}` },
-    drawerHeader,
-    mobileLinks,
-    mobileCta
-  );
+    const navLinks = h(
+        "nav",
+        { className: "nav-links", "aria-label": "Primary" },
+        h(Link, { href: "/" }, "Home"),
+        aboutDropdown,
+        servicesDropdown,
+        h(Link, { href: "/careers" }, "Careers"),
+        h(Link, { href: "/contact" }, "Contact"),
+    );
 
-  /* Calendly modal */
-  const calendlyModal = h(
-    "div",
-    { 
-      className: `calendly-overlay${isCalendlyOpen ? " open" : ""}`,
-      onClick: closeCalendly
-    },
-    h(
-      "div",
-      { 
-        className: "calendly-modal",
-        onClick: (e) => e.stopPropagation()
-      },
-      h(
-        "button",
-        { 
-          className: "calendly-close",
-          onClick: closeCalendly,
-          "aria-label": "Close calendar"
-        },
-        "×"
-      ),
-      h("iframe", {
-        src: "https://mearslaw.fillout.com/meeting-with-carissa-mears",
-        style: { width: "100%", height: "100%", border: "none" }
-      })    
-    )
-  );
+    /* desktop cta and hamburger */
+    const ctaBlock = h(
+        "div",
+        { className: "cta" },
+        h(
+            "a",
+            {
+                className: "btn btn-primary",
+                href: bookingUrl,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                "aria-label": "Book consultation"
+            },
+            "Book Consultation"
+        ),
+        h(
+            "button",
+            { className: "hamburger", "aria-label": "Open menu", onClick: toggleMenu },
+            h(IconHamburger)
+        )
+    );
 
-  return h(Fragment, null, headerEl, drawer, calendlyModal);
+    const topBar = h(
+        "div",
+        { className: "container nav" },
+        brandLink,
+        navLinks,
+        ctaBlock
+    );
+
+    const headerEl = h("header", { className: "site-header" }, topBar);
+
+    /* mobile drawer */
+    const drawerHeader = h(
+        "div",
+        { className: "drawer-header" },
+        h(
+            Link,
+            { className: "brand", href: "/", onClick: closeMenu, "aria-label": "Mears Law home" },
+            h("img", { src: "/images/mears-logo.png", alt: "Mears Law logo", className: "brand-mark-img small" })
+        ),
+        h(
+            "button",
+            { className: "close", "aria-label": "Close menu", onClick: closeMenu },
+            h(IconClose)
+        )
+    );
+
+    const mobileLinks = h(
+        "nav",
+        { className: "mobile-links", "aria-label": "Mobile" },
+        h(Link, { href: "/", onClick: closeMenu }, "Home"),
+        h(
+            "div",
+            null,
+            h("div", { style: { fontWeight: 600, color: "#fff", marginBottom: "8px" } }, "About Us"),
+            h(
+                "div",
+                { className: "mobile-submenu" },
+                h(Link, { href: "/about", onClick: closeMenu }, "Our Firm"),
+                h(Link, { href: "/team", onClick: closeMenu }, "Meet our Team")
+            )
+        ),
+        h(
+            "div",
+            null,
+            h("div", { style: { fontWeight: 600, color: "#fff", marginBottom: "8px" } }, "Services"),
+            h(
+                "div",
+                { className: "mobile-submenu" },
+                h(Link, { href: "/legal", onClick: closeMenu }, "Legal"),
+                h(Link, { href: "/consulting", onClick: closeMenu }, "Consulting")
+            )
+        ),
+        h(Link, { href: "/careers", onClick: closeMenu }, "Careers"),
+        h(Link, { href: "/contact", onClick: closeMenu }, "Contact"),
+    );
+
+    const mobileCta = h(
+        "div",
+        { className: "mobile-cta" },
+        h(
+            "a",
+            {
+                className: "btn",
+                href: bookingUrl,
+                target: "_blank",
+                rel: "noopener noreferrer",
+                onClick: closeMenu
+            },
+            "Book Consultation"
+        )
+    );
+
+    const drawer = h(
+        "div",
+        { className: `mobile-drawer${isOpen ? " open" : ""}` },
+        drawerHeader,
+        mobileLinks,
+        mobileCta
+    );
+
+    return h(Fragment, null, headerEl, drawer);
 }

@@ -1,7 +1,7 @@
 "use client";
 
+import React, { useEffect, useRef, createElement as h, Fragment } from "react";
 import Link from "next/link";
-import { useEffect, useRef } from "react";
 
 export default function TeamPage() {
     const h1Ref = useRef(null);
@@ -24,18 +24,16 @@ export default function TeamPage() {
 
     return (
         <>
-            {/* ===== Hero ===== */}
+            {/* Hero */}
             <section className="team-hero">
                 <div className="container hero-content">
                     <div className="eyebrow">OUR TEAM</div>
                     <h1 ref={h1Ref} className="hero-h1">
-                        Meet Carissa
+                        Meet our Team
                         <span className="underline" aria-hidden="true" />
                     </h1>
                     <p className="lede">
-                        Mears Law is led by Carissa Mears — a lawyer at the frontier of AI governance,
-                        privacy law, and technology regulation, with the transactional depth to turn
-                        policy into practice.
+                        Carissa advises governments, organizations, and founders on the legal issues that define modern risk — artificial intelligence, privacy, cybersecurity, and corporate transactions. She also counsels professionals and families on legal matters with clients across Canada and the Caribbean.
                     </p>
 
                     <div className="hero-meta">
@@ -55,7 +53,7 @@ export default function TeamPage() {
                 </div>
             </section>
 
-            {/* ===== Stats bar ===== */}
+            {/* Stats bar */}
             <section className="stats-section patterned-section">
                 <div className="container stats-grid">
                     {[
@@ -73,43 +71,15 @@ export default function TeamPage() {
                 </div>
             </section>
 
-            {/* ===== About Carissa ===== */}
-            <section className="about-carissa">
-                <div className="container">
-                    <h2>About Carissa</h2>
-                    <p className="sub">
-                        With over a decade of experience advising businesses, governments, and
-                        international organizations, Carissa brings rare fluency across AI law, data
-                        privacy, corporate transactions, real estate, and estates. Her work spans
-                        boardrooms, policy chambers, and global platforms — always grounded in clear,
-                        practical counsel that clients can act on.
-                    </p>
+            {/* Note: "About Carissa" highlights grid removed as it was repetitive in the site and didn't look very clean due to that */}
 
-                    <div className="highlights-grid">
-                        {[
-                            { code: "LL.M.", label: "Privacy &amp; Cybersecurity Law", sub: "Osgoode Hall Law School, York University" },
-                            { code: "AIGP", label: "Certified AI Governance Professional", sub: "International Association of Privacy Professionals" },
-                            { code: "CIPM", label: "Certified Information Privacy Manager", sub: "International Association of Privacy Professionals" },
-                            // CHANGED: Fellow → Former Fellow
-                            { code: "CAIDP", label: "Former Fellow, Centre for AI &amp; Digital Policy", sub: "EU AI Policy Lead" },
-                        ].map((h, i) => (
-                            <div key={i} className="highlight-card">
-                                <div className="highlight-code" dangerouslySetInnerHTML={{ __html: h.code }} />
-                                <div className="highlight-label" dangerouslySetInnerHTML={{ __html: h.label }} />
-                                <div className="highlight-sub">{h.sub}</div>
-                            </div>
-                        ))}
-                    </div>
-                </div>
-            </section>
-
-            {/* ===== Practice Areas ===== */}
+            {/* Practice Areas */}
             <section className="practice patterned-section">
                 <div className="container">
                     <h2>Practice Areas</h2>
                     <p className="sub">
-                        Carissa&apos;s practice spans six core areas — from cutting-edge AI and privacy law
-                        to corporate transactions, real estate, and estates.
+                        Carissa manages the delivery of legal services across the firm's practice areas — from cutting-edge AI and privacy law to corporate transactions, real estate, and estates.
+                        Carissa also advises founders, professionals and individuals on complex matters throughout various stages of their lives. She works with clients across Canada and the Caribbean.
                     </p>
                     <div className="pill-grid">
                         {[
@@ -131,7 +101,7 @@ export default function TeamPage() {
                             {
                                 num: "04",
                                 title: "Corporate & Commercial",
-                                body: "Incorporations, shareholder agreements, commercial contracts, and ongoing corporate counsel for technology companies and growing businesses.",
+                                body: "Mergers and Acquisitions, incorporations, shareholder agreements, commercial contracts, and ongoing corporate counsel for technology companies and growing businesses.",
                             },
                             {
                                 num: "05",
@@ -154,7 +124,7 @@ export default function TeamPage() {
                 </div>
             </section>
 
-            {/* ===== Experience ===== */}
+            {/* Experience */}
             <section className="experience">
                 <div className="container">
                     <h2>Experience</h2>
@@ -168,7 +138,6 @@ export default function TeamPage() {
                         {[
                             {
                                 org: "Centre for AI & Digital Policy",
-                                // CHANGED: Fellow → Former Fellow; tense updated to past
                                 role: "Former Fellow — EU AI Policy Lead",
                                 desc: "Led a research team focused on EU AI Act enforcement and accountability. Contributed to the AI and Democratic Values Index, with policy work cited by regulators and featured in global governance initiatives including submissions to the United Nations and European Union.",
                             },
@@ -215,7 +184,7 @@ export default function TeamPage() {
                 </div>
             </section>
 
-            {/* ===== Thought Leadership ===== */}
+            {/* Thought Leadership */}
             <section className="thought patterned-section">
                 <div className="container">
                     <h2>Thought Leadership</h2>
@@ -226,7 +195,6 @@ export default function TeamPage() {
                     <div className="pill-grid thought-grid">
                         {[
                             {
-                                // CHANGED: "United Nations" → "United Nations Development Program"
                                 label: "United Nations Development Program",
                                 body: "Facilitated a governance session for the UNDP before an audience of global leaders, politicians, judges, and senior decision-makers on AI accountability and democratic values.",
                             },
@@ -332,7 +300,6 @@ export default function TeamPage() {
                             <div className="cred-section-title cred-gap">RECOGNITION &amp; AFFILIATIONS</div>
                             <div className="cred-rule" />
                             {[
-                                // CHANGED: "Fellow" → "Former Fellow"
                                 { role: "Former Fellow", org: "Centre for AI and Digital Policy (CAIDP)" },
                                 { role: "Member", org: "Law Association of Trinidad & Tobago (LATT)" },
                                 { role: "Member", org: "Law Society of Ontario (LSO)" },
@@ -447,7 +414,7 @@ export default function TeamPage() {
                     color: #0a1628;
                 }
 
-                /* ===== Patterned sections ===== */
+                // patterned sections
                 .patterned-section {
                     position: relative;
                     overflow: hidden;
@@ -482,10 +449,6 @@ export default function TeamPage() {
                     0% { transform: translate(0, 0) rotate(0deg); }
                     50% { transform: translate(-10%, -10%) rotate(180deg); }
                     100% { transform: translate(0, 0) rotate(360deg); }
-                }
-
-                @media (prefers-reduced-motion: reduce) {
-                    .patterned-section::after { animation: none; }
                 }
 
                 /* ===== Stats ===== */
@@ -530,12 +493,6 @@ export default function TeamPage() {
                 }
 
                 /* ===== Shared section styles ===== */
-                .about-carissa {
-                    padding: 64px 0;
-                    background: #ffffff;
-                    border-bottom: 1px solid #e5e7eb;
-                }
-
                 .practice {
                     padding: 64px 0;
                     background: #fafbfc;
@@ -582,46 +539,7 @@ export default function TeamPage() {
                     margin: 0 0 32px;
                 }
 
-                /* ===== Highlights ===== */
-                .highlights-grid {
-                    display: grid;
-                    grid-template-columns: repeat(4, 1fr);
-                    gap: 16px;
-                }
-
-                .highlight-card {
-                    background: #ffffff;
-                    border: 1px solid #e5e7eb;
-                    border-radius: 14px;
-                    padding: 20px 18px;
-                    box-shadow: 0 4px 12px rgba(0, 0, 0, 0.04);
-                    transition: transform 260ms ease, box-shadow 260ms ease, border-color 260ms ease;
-                }
-
-                .highlight-card:hover {
-                    transform: translateY(-3px);
-                    border-color: #8B5CF6;
-                    box-shadow: 0 12px 24px rgba(139, 92, 246, 0.12);
-                }
-
-                .highlight-code {
-                    font: 700 20px/1 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-                    color: #0a1628;
-                    margin-bottom: 6px;
-                }
-
-                .highlight-label {
-                    font: 600 13px/1.4 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-                    color: #374151;
-                    margin-bottom: 4px;
-                }
-
-                .highlight-sub {
-                    font: 400 12px/1.5 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-                    color: #6b7280;
-                }
-
-                /* ===== Pill grid ===== */
+                // pill grid
                 .pill-grid {
                     display: grid;
                     grid-template-columns: repeat(3, 1fr);
@@ -696,8 +614,8 @@ export default function TeamPage() {
                     font: 400 14.5px/1.8 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
                     color: #374151;
                 }
-
-                /* ===== Credentials ===== */
+                
+                // credentials
                 .cred-columns {
                     display: grid;
                     grid-template-columns: 1fr 1fr;
@@ -778,7 +696,6 @@ export default function TeamPage() {
                     margin-top: 2px;
                 }
 
-                /* UPDATED: wider first col to fit "Former Fellow" without wrapping */
                 .affil-row {
                     display: grid;
                     grid-template-columns: 110px 1fr;
@@ -805,11 +722,7 @@ export default function TeamPage() {
                     color: #0a1628;
                 }
 
-                /* ===== Responsive ===== */
-                @media (max-width: 1024px) {
-                    .highlights-grid { grid-template-columns: repeat(2, 1fr); }
-                }
-
+                // Responsive
                 @media (max-width: 900px) {
                     .stats-grid { grid-template-columns: repeat(3, 1fr); }
                     .pill-grid { grid-template-columns: repeat(2, 1fr); }
@@ -820,7 +733,6 @@ export default function TeamPage() {
 
                 @media (max-width: 600px) {
                     .stats-grid { grid-template-columns: repeat(2, 1fr); }
-                    .highlights-grid { grid-template-columns: 1fr; }
                     .pill-grid { grid-template-columns: 1fr; }
                     .hero-meta { flex-direction: column; }
                 }

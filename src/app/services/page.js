@@ -3,55 +3,73 @@ import Link from "next/link";
 
 export default function ServicesPage() {
   return (
-    <main className="page">
-      {/* HERO */}
-      <section className="hero">
-        <div className="container hero-content">
-          <h1 className="h1">
-            Services
-            <span className="underline"></span>
-          </h1>
-          <p className="lead">
-            We focus on the practice areas where we deliver the most value—so you get senior
-            attention, practical advice, and outcomes that matter.
-          </p>
-        </div>
-      </section>
+      <main className="page">
+        {/* HERO */}
+        <section className="hero">
+          <div className="container hero-content">
+            <h1 className="h1">
+              Services
+              <span className="underline"></span>
+            </h1>
+            <p className="lead">
+              Carissa advises founders, professionals, and individuals on complex matters throughout various stages of their lives.
+              We focus on the practice areas where we deliver the most value—so you get senior attention and practical advice.
+            </p>
+          </div>
+        </section>
 
-      {/* SERVICE CARDS */}
-      <section className="section">
-        <div className="container services-grid">
-          <Link href="/legal" className="service-card">
-            <div className="card-content">
-              <h2 className="card-title">Legal Services</h2>
-              <p className="card-description">
-                Comprehensive legal services including AI Regulation, Corporate Law, Immigration Law,
-                Real Estate Law, and Privacy Law. Expert legal counsel to help you navigate complex
-                legal challenges with confidence.
-              </p>
-              <div className="card-footer">
-                <span className="card-link">Explore Legal Services →</span>
+        {/* SERVICE CARDS */}
+        <section className="section">
+          <div className="container services-grid">
+            <Link href="/legal" className="service-card">
+              <div className="card-content">
+                <h2 className="card-title">Legal Services</h2>
+                <p className="card-description">
+                  Comprehensive legal services including AI Regulation, Corporate Law (Mergers & Acquisitions), Immigration Law,
+                  Family Law, and Real Estate. Expert legal counsel to help you navigate complex challenges with confidence.
+                </p>
+                <div className="card-footer">
+                  <span className="card-link">Explore Legal Services →</span>
+                </div>
+              </div>
+            </Link>
+
+            <Link href="/consulting" className="service-card">
+              <div className="card-content">
+                <h2 className="card-title">Consulting Services</h2>
+                <p className="card-description">
+                  Strategic consulting for AI Governance and Privacy Compliance. We help organizations
+                  establish robust governance structures and maintain compliance through expert guidance
+                  and comprehensive frameworks.
+                </p>
+                <div className="card-footer">
+                  <span className="card-link">Explore Consulting Services →</span>
+                </div>
+              </div>
+            </Link>
+          </div>
+        </section>
+
+        {/* NEW: PERSONAL & FAMILY LAW SECTION */}
+        <section className="section" style={{ paddingTop: 0 }}>
+          <div className="container">
+            <div className="individual-services-box">
+              <h2 className="card-title" style={{ marginBottom: '24px' }}>Individual & Family Services</h2>
+              <div className="personal-grid">
+                <div className="personal-item">
+                  <h3>Immigration Law</h3>
+                  <p>Strategic counsel for work permits, study permits, and permanent residency applications. We ensure a seamless transition for professionals and their families as they navigate Canadian and international borders.</p>
+                </div>
+                <div className="personal-item">
+                  <h3>Family Law</h3>
+                  <p>Compassionate legal support for pivotal life transitions. We specialize in domestic contracts, including marriage and cohabitation agreements, ensuring your interests and future are secured with discretion.</p>
+                </div>
               </div>
             </div>
-          </Link>
+          </div>
+        </section>
 
-          <Link href="/consulting" className="service-card">
-            <div className="card-content">
-              <h2 className="card-title">Consulting Services</h2>
-              <p className="card-description">
-                Strategic consulting services for AI Governance and Privacy Compliance. We help
-                organizations establish robust governance structures and maintain compliance through
-                expert guidance and comprehensive frameworks.
-              </p>
-              <div className="card-footer">
-                <span className="card-link">Explore Consulting Services →</span>
-              </div>
-            </div>
-          </Link>
-        </div>
-      </section>
-
-      <style jsx>{`
+        <style jsx>{`
         :root{
           --ink:#0A1628;
           --body:#374151;
@@ -104,17 +122,9 @@ export default function ServicesPage() {
         }
 
         @keyframes expandUnderline {
-          0% {
-            width: 0;
-            opacity: 0;
-          }
-          50% {
-            opacity: 1;
-          }
-          100% {
-            width: 120px;
-            opacity: 1;
-          }
+          0% { width: 0; opacity: 0; }
+          50% { opacity: 1; }
+          100% { width: 120px; opacity: 1; }
         }
         
         .lead{ 
@@ -123,14 +133,9 @@ export default function ServicesPage() {
           margin:0; 
           color:#374151; 
           opacity:.9; 
+          max-width: 800px;
         }
         
-        @media (max-width:720px){ 
-          .h1{ font-size:36px; } 
-          .lead{ font-size:18px; } 
-          .hero{ padding:48px 0 36px; }
-        }
-
         .section{ 
           padding:64px 0;
           background:#f3f4f6;
@@ -141,61 +146,12 @@ export default function ServicesPage() {
         .section::before {
           content: '';
           position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          bottom: 0;
+          inset: 0;
           background-image: 
-            repeating-linear-gradient(
-              90deg,
-              transparent,
-              transparent 60px,
-              rgba(139, 92, 246, 0.04) 60px,
-              rgba(139, 92, 246, 0.04) 61px
-            ),
-            repeating-linear-gradient(
-              0deg,
-              transparent,
-              transparent 60px,
-              rgba(139, 92, 246, 0.04) 60px,
-              rgba(139, 92, 246, 0.04) 61px
-            );
+            repeating-linear-gradient(90deg, transparent, transparent 60px, rgba(139, 92, 246, 0.04) 60px, rgba(139, 92, 246, 0.04) 61px),
+            repeating-linear-gradient(0deg, transparent, transparent 60px, rgba(139, 92, 246, 0.04) 60px, rgba(139, 92, 246, 0.04) 61px);
           pointer-events: none;
           z-index: 0;
-        }
-
-        .section::after {
-          content: '';
-          position: absolute;
-          top: -100%;
-          left: -100%;
-          width: 300%;
-          height: 300%;
-          background: 
-            radial-gradient(circle at 30% 50%, rgba(139, 92, 246, 0.15) 0%, transparent 25%),
-            radial-gradient(circle at 70% 50%, rgba(167, 139, 250, 0.12) 0%, transparent 25%),
-            radial-gradient(circle at 50% 80%, rgba(196, 181, 253, 0.1) 0%, transparent 25%);
-          animation: moveGradient 40s linear infinite;
-          pointer-events: none;
-          z-index: 0;
-        }
-
-        @keyframes moveGradient {
-          0% {
-            transform: translate(0, 0) rotate(0deg);
-          }
-          50% {
-            transform: translate(-10%, -10%) rotate(180deg);
-          }
-          100% {
-            transform: translate(0, 0) rotate(360deg);
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .section::after {
-            animation: none;
-          }
         }
 
         .services-grid {
@@ -227,33 +183,10 @@ export default function ServicesPage() {
           overflow: hidden;
         }
 
-        .service-card::before {
-          content: '';
-          position: absolute;
-          top: 0;
-          left: 0;
-          right: 0;
-          height: 4px;
-          background: linear-gradient(90deg, #8B5CF6, #A78BFA, #C4B5FD);
-          transform: scaleX(0);
-          transform-origin: left;
-          transition: transform 0.3s ease;
-        }
-
         .service-card:hover {
           transform: translateY(-4px);
           box-shadow: 0 8px 24px rgba(10, 22, 40, 0.12);
           border-color: #8B5CF6;
-        }
-
-        .service-card:hover::before {
-          transform: scaleX(1);
-        }
-
-        .card-content {
-          display: flex;
-          flex-direction: column;
-          gap: 16px;
         }
 
         .card-title {
@@ -264,16 +197,38 @@ export default function ServicesPage() {
           margin: 0;
         }
 
-        .card-description {
-          font-size: 16px;
-          line-height: 1.7;
-          color: #374151;
-          margin: 0;
-          flex: 1;
+        .individual-services-box {
+          background: #FFFFFF;
+          border-radius: 16px;
+          border: 1px solid #E5E7EB;
+          padding: 48px;
+          position: relative;
+          z-index: 1;
         }
 
-        .card-footer {
-          margin-top: 8px;
+        .personal-grid {
+          display: grid;
+          grid-template-columns: 1fr;
+          gap: 32px;
+        }
+
+        @media (min-width: 768px) {
+          .personal-grid {
+            grid-template-columns: 1fr 1fr;
+          }
+        }
+
+        .personal-item h3 {
+          font-size: 20px;
+          color: #0A1628;
+          margin-bottom: 12px;
+          font-weight: 700;
+        }
+
+        .personal-item p {
+          font-size: 15px;
+          line-height: 1.6;
+          color: #4b5563;
         }
 
         .card-link {
@@ -282,27 +237,8 @@ export default function ServicesPage() {
           color: #8B5CF6;
           display: inline-flex;
           align-items: center;
-          transition: transform 0.2s ease;
-        }
-
-        .service-card:hover .card-link {
-          transform: translateX(4px);
-        }
-
-        @media (max-width: 720px) {
-          .service-card {
-            padding: 32px 24px;
-          }
-
-          .card-title {
-            font-size: 28px;
-          }
-
-          .card-description {
-            font-size: 15px;
-          }
         }
       `}</style>
-    </main>
+      </main>
   );
 }
