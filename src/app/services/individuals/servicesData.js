@@ -98,6 +98,7 @@ export const INDIVIDUAL_SERVICES = [
   {
     slug: "family-law",
     title: "Family",
+    videoSrc: "/images/family.mp4",
     blurb:
       "Family transitions - separation, divorce, and the reorganization of family life - carry significant legal, financial, and personal consequences. We provide clear, strategic legal counsel to individuals navigating these changes, with particular focus on clients whose circumstances involve property, business interests, estates, or cross-border complexity.",
     blurb2:
