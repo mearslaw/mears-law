@@ -55,6 +55,21 @@ function getStripePaymentLink() {
   );
 }
 
+/** Payment Link mode only: per-webinar link in CMS, else site-wide default. */
+function resolvePaymentLinkUrl(webinar) {
+  const perWebinar = clean(webinar?.stripePaymentLinkUrl);
+  if (perWebinar) {
+    try {
+      // eslint-disable-next-line no-new
+      new URL(perWebinar);
+      return perWebinar;
+    } catch {
+      // fall through to global
+    }
+  }
+  return getStripePaymentLink();
+}
+
 async function sendRegistrationNotification({
   webinar,
   firstName,
@@ -203,7 +218,7 @@ export async function POST(request) {
 
   const stripeSecretKey = clean(process.env.STRIPE_SECRET_KEY);
   if (!stripeSecretKey) {
-    const paymentLink = getStripePaymentLink();
+    const paymentLink = resolvePaymentLinkUrl(webinar);
     if (!paymentLink) {
       return NextResponse.json(
         {
@@ -250,10 +265,15 @@ export async function POST(request) {
       );
     }
 
+    const usesSiteDefaultPaymentLink = !clean(webinar.stripePaymentLinkUrl);
+
     return NextResponse.json({
       message: "Redirecting to secure Stripe checkout...",
       checkoutUrl: paymentLink,
       mode: "payment_link",
+      /** True when redirecting to STRIPE_WEBINAR_PAYMENT_LINK / default — amount is fixed in Stripe, not Sanity. */
+      usesSiteDefaultPaymentLink,
+      listedPriceCad: webinar.priceCad,
     });
   }
 
@@ -311,5 +331,7 @@ export async function POST(request) {
     message: "Redirecting to secure Stripe checkout...",
     checkoutUrl: session.url,
     mode: "checkout_session",
+    usesSiteDefaultPaymentLink: false,
+    listedPriceCad: webinar.priceCad,
   });
 }

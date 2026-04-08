@@ -59,7 +59,8 @@ export const webinarsListQuery = `*[_type == "webinar"] | order(scheduledAt asc)
   priceCad,
   status,
   recordingUrl,
-  embedUrl
+  embedUrl,
+  stripePaymentLinkUrl
 }`;
 
 export const webinarBySlugQuery = `*[_type == "webinar" && slug.current == $slug][0]{
@@ -72,5 +73,6 @@ export const webinarBySlugQuery = `*[_type == "webinar" && slug.current == $slug
   priceCad,
   status,
   recordingUrl,
-  embedUrl
+  embedUrl,
+  stripePaymentLinkUrl
 }`;

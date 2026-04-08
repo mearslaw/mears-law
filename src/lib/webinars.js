@@ -21,6 +21,7 @@ export const WEBINAR_TOPICS = [
  *   status: string,
  *   recordingUrl: string,
  *   embedUrl: string,
+ *   stripePaymentLinkUrl: string,
  * }}
  */
 export function normalizeWebinar(doc) {
@@ -35,6 +36,7 @@ export function normalizeWebinar(doc) {
     status: doc.status || "upcoming",
     recordingUrl: doc.recordingUrl || "",
     embedUrl: doc.embedUrl || "",
+    stripePaymentLinkUrl: doc.stripePaymentLinkUrl || "",
   };
 }
 

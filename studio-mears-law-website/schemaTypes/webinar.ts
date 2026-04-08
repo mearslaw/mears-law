@@ -56,8 +56,16 @@ export const webinar = defineType({
       name: "priceCad",
       title: "Price (CAD)",
       type: "number",
-      description: "Whole dollars (e.g. 149). Used for Stripe checkout.",
+      description:
+        "Whole dollars (e.g. 149). With STRIPE_SECRET_KEY on the site, Checkout uses this amount. Without API checkout, use “Stripe Payment Link URL” below (or one site-wide link—see README).",
       validation: (rule) => rule.required().positive(),
+    }),
+    defineField({
+      name: "stripePaymentLinkUrl",
+      title: "Stripe Payment Link URL",
+      type: "url",
+      description:
+        "Only when the site does NOT use STRIPE_SECRET_KEY: paste this webinar’s Payment Link from Stripe (price must match Price CAD). If empty, the site-wide env link is used—then all webinars share one Stripe price.",
     }),
     defineField({
       name: "status",

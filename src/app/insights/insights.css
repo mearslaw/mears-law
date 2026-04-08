@@ -715,6 +715,16 @@
   cursor: not-allowed;
 }
 
+.insights-root .webinars-form-btn-secondary {
+  background: #fff;
+  color: #0f223b;
+  border: 1px solid #cbd5e1;
+}
+
+.insights-root .webinars-form-btn-secondary:hover {
+  background: #f8fafc;
+}
+
 .insights-root .webinars-form-note {
   margin: 0;
   font-size: 13px;
@@ -736,6 +746,12 @@
 .insights-root .webinars-form-status-err {
   background: #fee2e2;
   color: #7f1d1d;
+}
+
+.insights-root .webinars-form-status-warn {
+  background: #fef3c7;
+  color: #78350f;
+  border: 1px solid #fcd34d;
 }
 
 @media (max-width: 960px) {

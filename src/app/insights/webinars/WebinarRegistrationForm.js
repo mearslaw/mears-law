@@ -21,11 +21,24 @@ function buildInitialForm(webinars) {
   };
 }
 
+function formatCad(n) {
+  try {
+    return new Intl.NumberFormat("en-CA", {
+      style: "currency",
+      currency: "CAD",
+      maximumFractionDigits: 0,
+    }).format(Number(n));
+  } catch {
+    return `${n} CAD`;
+  }
+}
+
 export default function WebinarRegistrationForm({ webinars = [] }) {
   const [form, setForm] = useState(() => buildInitialForm(webinars));
   const [status, setStatus] = useState({ type: "", message: "" });
   const [loading, setLoading] = useState(false);
   const [checkoutMode, setCheckoutMode] = useState(DEFAULT_CHECKOUT_MODE);
+  const [pendingStripeUrl, setPendingStripeUrl] = useState(null);
 
   useEffect(() => {
     setForm((prev) => {
@@ -44,6 +57,11 @@ export default function WebinarRegistrationForm({ webinars = [] }) {
       };
     });
   }, [webinars]);
+
+  useEffect(() => {
+    setPendingStripeUrl(null);
+    setStatus({ type: "", message: "" });
+  }, [form.webinarId]);
 
   const webinarOptions = useMemo(
     () =>
@@ -72,9 +90,14 @@ export default function WebinarRegistrationForm({ webinars = [] }) {
     }));
   }
 
+  function goToStripe(url) {
+    window.location.assign(url);
+  }
+
   async function onSubmit(e) {
     e.preventDefault();
     setStatus({ type: "", message: "" });
+    setPendingStripeUrl(null);
 
     if (!form.consent) {
       setStatus({
@@ -109,6 +132,20 @@ export default function WebinarRegistrationForm({ webinars = [] }) {
         payload?.mode === "checkout_session" ? "checkout_session" : "payment_link";
       setCheckoutMode(resolvedMode);
 
+      const useFixedSiteLink =
+        resolvedMode === "payment_link" && payload?.usesSiteDefaultPaymentLink;
+
+      if (useFixedSiteLink) {
+        const listed = formatCad(payload.listedPriceCad);
+        setPendingStripeUrl(payload.checkoutUrl);
+        setStatus({
+          type: "warning",
+          message: `This site uses one shared Stripe Payment Link. The amount Stripe charges is set in Stripe (often CA$149), not the price shown on this page (${listed}). To charge the listed price, your team should set STRIPE_SECRET_KEY (Checkout) or add a “Stripe Payment Link URL” for this webinar in the CMS. When you continue, you will leave this site to pay on Stripe.`,
+        });
+        setLoading(false);
+        return;
+      }
+
       setStatus({
         type: "success",
         message:
@@ -117,7 +154,7 @@ export default function WebinarRegistrationForm({ webinars = [] }) {
             : payload?.message || "Redirecting to secure Stripe checkout...",
       });
 
-      window.location.assign(payload.checkoutUrl);
+      goToStripe(payload.checkoutUrl);
     } catch (err) {
       setStatus({
         type: "error",
@@ -252,7 +289,9 @@ export default function WebinarRegistrationForm({ webinars = [] }) {
           className={`webinars-form-status ${
             status.type === "success"
               ? "webinars-form-status-ok"
-              : "webinars-form-status-err"
+              : status.type === "warning"
+                ? "webinars-form-status-warn"
+                : "webinars-form-status-err"
           }`}
           role="status"
         >
@@ -261,17 +300,41 @@ export default function WebinarRegistrationForm({ webinars = [] }) {
       ) : null}
 
       <div className="webinars-form-actions">
-        <button className="webinars-form-btn" type="submit" disabled={loading}>
-          {loading
-            ? "Redirecting..."
-            : checkoutMode === "payment_link"
-              ? "Continue to Stripe Payment Link"
-              : "Continue to Secure Checkout"}
-        </button>
+        {pendingStripeUrl ? (
+          <>
+            <button
+              type="button"
+              className="webinars-form-btn"
+              onClick={() => goToStripe(pendingStripeUrl)}
+            >
+              Continue to Stripe (amount may differ from listing)
+            </button>
+            <button
+              type="button"
+              className="webinars-form-btn webinars-form-btn-secondary"
+              onClick={() => {
+                setPendingStripeUrl(null);
+                setStatus({ type: "", message: "" });
+              }}
+            >
+              Cancel
+            </button>
+          </>
+        ) : (
+          <button className="webinars-form-btn" type="submit" disabled={loading}>
+            {loading
+              ? "Working..."
+              : checkoutMode === "payment_link"
+                ? "Continue to Stripe Payment Link"
+                : "Continue to Secure Checkout"}
+          </button>
+        )}
         <p className="webinars-form-note">
-          {checkoutMode === "payment_link"
-            ? "Current setup uses a Stripe Payment Link checkout. You will be redirected to Stripe to complete payment."
-            : "You will be redirected to Stripe to complete payment securely."}
+          {pendingStripeUrl
+            ? "You can cancel and ask your administrator to enable Stripe Checkout (STRIPE_SECRET_KEY) so the charged amount matches the price on this page."
+            : checkoutMode === "payment_link"
+              ? "If checkout shows a different price than this page, the site is using a fixed Stripe Payment Link — see warning after submit or configure STRIPE_SECRET_KEY."
+              : "You will be redirected to Stripe to complete payment securely."}
         </p>
       </div>
     </form>
