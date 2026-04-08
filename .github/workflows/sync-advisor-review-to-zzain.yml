@@ -1,9 +1,9 @@
-name: Sync branches to zzain fork
+name: Sync advisor-review to zzain fork
 
 on:
   push:
     branches:
-      - '**'
+      - advisor-review
   workflow_dispatch:
 
 permissions:
@@ -19,7 +19,7 @@ jobs:
         with:
           fetch-depth: 0
 
-      - name: Push branch to matching branch on zzain fork
+      - name: Push advisor-review to zzain fork
         env:
           ZZAIN_PUSH_TOKEN: ${{ secrets.ZZAIN_PUSH_TOKEN }}
         run: |
@@ -31,4 +31,4 @@ jobs:
           git config user.name "github-actions[bot]"
           git config user.email "41898282+github-actions[bot]@users.noreply.github.com"
           git remote add zzain "https://x-access-token:${ZZAIN_PUSH_TOKEN}@github.com/zzain0728/mears-law.git"
-          git push --force zzain HEAD:${{ github.ref_name }}
+          git push --force zzain HEAD:advisor-review
