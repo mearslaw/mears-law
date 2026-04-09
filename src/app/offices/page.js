@@ -225,8 +225,8 @@ export default function OfficesPage() {
     const gmap = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 
     // Canada (Toronto)
-    const caLine1 = "Suite 2500, 120 Adelaide Street West";
-    const caLine2 = "Toronto, Ontario, M5H 1T1";
+    const caLine1 = "Floor 48, 1 King Street West";
+    const caLine2 = "Toronto, Ontario, M5H 1A1";
     const caQuery = `${caLine1}, ${caLine2}`;
     const telCA = "(437) 888-2974";
     const faxCA = "(647) 374-0066";
@@ -278,28 +278,18 @@ export default function OfficesPage() {
                         // Canada
                         h("div", { className: "office-card" },
                             h("h2", { className: "office-name" }, "Canada"),
-
-                            // Conditionally render placeholder instead of address/link
-                            h("div", {
-                                    style: {
-                                        padding: '24px',
-                                        backgroundColor: '#f8fafc',
-                                        borderRadius: '12px',
-                                        border: '1px dashed #cbd5e1',
-                                        textAlign: 'center'
-                                    }
-                                },
-                                h("div", { style: { fontSize: '32px', marginBottom: '12px' } }, "📍"),
-                                h("p", {
-                                    style: {
-                                        fontSize: '15px',
-                                        color: '#64748b',
-                                        lineHeight: '1.5',
-                                        margin: 0
-                                    }
-                                }, "We are currently updating our Toronto office location details. Please contact us directly for our latest address.")
+                            h("div", { className: "addr-block", "aria-label": "Toronto address" },
+                                h("div", { className: "addr-line" }, caLine1),
+                                h("div", { className: "addr-line" }, caLine2)
                             ),
-
+                            h("div", { className: "links" },
+                                h("a", {
+                                    className: "btn-link",
+                                    href: gmap(caQuery),
+                                    target: "_blank",
+                                    rel: "noopener noreferrer"
+                                }, "View on Google Maps →")
+                            ),
                             h("div", { className: "contact-section" },
                                 h("div", { className: "contact-row tel" },
                                     h("span", { className: "label" }, "Tel:"),
