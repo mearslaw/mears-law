@@ -254,13 +254,9 @@ export default function AboutPage() {
         {/* Just a replacement for now - another member has worked on this already*/}
         <section className="team patterned-section">
           <div className="container">
-            <h1> Just a replacement for now </h1>
-            <p> Another team member has worked on this section</p>
             <h4>Our Team</h4>
             <p style={{fontSize: "16px", lineHeight: "1.85", color: "#374151", marginBottom: "24px"}}>
-              Mears Law is led by Carissa Mears, a lawyer at the frontier of AI governance,
-              privacy law, and technology regulation — with the transactional depth to turn
-              policy into practice.
+              Carissa advises governments, organizations, and founders on the legal issues that define modern risk — artificial intelligence, privacy, cybersecurity, and corporate transactions. She also counsels professionals and families on legal matters with clients across Canada and the Caribbean.
             </p>
 
             <Link href="/team" style={{
