@@ -377,11 +377,20 @@ export default function Header() {
   const [isOpen, setIsOpen] = useState(false);
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
+  const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
   
   const toggleMenu = useCallback(() => setIsOpen((v) => !v), []);
   const closeMenu = useCallback(() => setIsOpen(false), []);
-  const toggleServicesDropdown = useCallback(() => setIsServicesDropdownOpen((v) => !v), []);
+  const toggleServicesDropdown = useCallback(() => {
+    setIsServicesDropdownOpen((v) => !v);
+    setIsAboutDropdownOpen(false);
+  }, []);
   const closeServicesDropdown = useCallback(() => setIsServicesDropdownOpen(false), []);
+  const toggleAboutDropdown = useCallback(() => {
+    setIsAboutDropdownOpen((v) => !v);
+    setIsServicesDropdownOpen(false);
+  }, []);
+  const closeAboutDropdown = useCallback(() => setIsAboutDropdownOpen(false), []);
   
   const openCalendly = useCallback((e) => {
     e.preventDefault();
@@ -414,23 +423,65 @@ export default function Header() {
 
   // Close dropdown when clicking outside
   useEffect(() => {
-    if (!isServicesDropdownOpen) return;
+    if (!isServicesDropdownOpen && !isAboutDropdownOpen) return;
     
     const handleClickOutside = (e) => {
       if (!e.target.closest('.services-dropdown')) {
         closeServicesDropdown();
+        closeAboutDropdown();
       }
     };
     
     document.addEventListener('click', handleClickOutside);
     return () => document.removeEventListener('click', handleClickOutside);
-  }, [isServicesDropdownOpen, closeServicesDropdown]);
+  }, [isServicesDropdownOpen, isAboutDropdownOpen, closeServicesDropdown, closeAboutDropdown]);
 
   /* brand */
   const brandLink = h(
     Link,
     { className: "brand", href: "/", "aria-label": "Mears Law home" },
     h("img", { src: "/images/mears-logo.png", alt: "Mears Law logo", className: "brand-mark-img" })
+  );
+
+  /* desktop primary nav */
+  const aboutDropdown = h(
+    "div",
+    { className: `services-dropdown${isAboutDropdownOpen ? " open" : ""}` },
+    h(
+      "button",
+      {
+        className: "services-trigger",
+        onClick: toggleAboutDropdown,
+        "aria-expanded": isAboutDropdownOpen,
+        "aria-haspopup": "true"
+      },
+      "About Us",
+      h(IconChevronDown)
+    ),
+    h(
+      "div",
+      { className: "dropdown-menu", role: "menu" },
+      h(
+        Link,
+        {
+          href: "/about",
+          className: "dropdown-item",
+          role: "menuitem",
+          onClick: closeAboutDropdown
+        },
+        "Our Firm"
+      ),
+      h(
+        Link,
+        {
+          href: "/team",
+          className: "dropdown-item",
+          role: "menuitem",
+          onClick: closeAboutDropdown
+        },
+        "Meet our Team"
+      )
+    )
   );
 
   /* desktop primary nav */
@@ -596,7 +647,7 @@ export default function Header() {
     "nav",
     { className: "nav-links", "aria-label": "Primary" },
     h(Link, { href: "/" }, "Home"),
-    h(Link, { href: "/about" }, "About"),
+    aboutDropdown,
     h(Link, { href: "/insights" }, "Insights"),
     servicesDropdown,
     h(Link, { href: "/careers" }, "Careers"),
@@ -655,7 +706,17 @@ export default function Header() {
     "nav",
     { className: "mobile-links", "aria-label": "Mobile" },
     h(Link, { href: "/", onClick: closeMenu }, "Home"),
-    h(Link, { href: "/about", onClick: closeMenu }, "About"),
+    h(
+      "div",
+      null,
+      h("div", { style: { fontWeight: 600, color: "#fff", marginBottom: "8px" } }, "About Us"),
+      h(
+        "div",
+        { className: "mobile-submenu" },
+        h(Link, { href: "/about", onClick: closeMenu }, "Our Firm"),
+        h(Link, { href: "/team", onClick: closeMenu }, "Meet our Team")
+      )
+    ),
     h(Link, { href: "/insights", onClick: closeMenu }, "Insights"),
     h(
       "div",
