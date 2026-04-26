@@ -6,24 +6,20 @@ export function generateStaticParams() {
   return INDIVIDUAL_SERVICES.map((service) => ({ service: service.slug }));
 }
 
-export function generateMetadata({ params }) {
-  const service = INDIVIDUAL_SERVICES.find((item) => item.slug === params.service);
+export async function generateMetadata({ params }) {
+  // Await the params
+  const { service: serviceSlug } = await params;
+  const service = INDIVIDUAL_SERVICES.find((item) => item.slug === serviceSlug);
 
   if (!service) {
-    return {
-      title: "Individuals Service",
-      description: "Individual legal service details",
-    };
+    return { title: "Service Not Found" };
   }
-
-  return {
-    title: `${service.title} - Individuals`,
-    description: service.blurb,
-  };
+  return { title: `${service.title} — Mears Law` };
 }
 
-export default function IndividualServiceOfferingPage({ params }) {
-  const service = INDIVIDUAL_SERVICES.find((item) => item.slug === params.service);
+export default async function IndividualServiceOfferingPage({ params }) {
+  const { service: serviceSlug } = await params;
+  const service = INDIVIDUAL_SERVICES.find((item) => item.slug === serviceSlug);
 
   if (!service) {
     notFound();

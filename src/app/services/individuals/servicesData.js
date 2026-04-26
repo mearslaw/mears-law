@@ -1,14 +1,14 @@
 export const INDIVIDUALS_INTRO =
-  "We advise individuals on high-stakes legal matters involving property, technology, and digital risk, with a practical and protective approach.";
+    "We advise individuals on high-stakes legal matters involving property, technology, and digital risk, with a practical and protective approach.";
 
 export const INDIVIDUAL_SERVICES = [
   {
     slug: "digital-asset-protection",
     title: "Digital Asset Protection",
     blurb:
-      "Digital assets require intentional legal planning and risk management. We advise individuals on protecting, documenting, and responding to risks involving digital assets, online accounts, and digital credentials.",
+        "Digital assets require intentional legal planning and risk management. We advise individuals on protecting, documenting, and responding to risks involving digital assets, online accounts, and digital credentials.",
     note:
-      "This includes advisory support following unauthorized access, fraud, or loss, without guaranteeing recovery outcomes.",
+        "This includes advisory support following unauthorized access, fraud, or loss, without guaranteeing recovery outcomes.",
     videoSrc: "/digital-asset.mp4",
     challenges: [
       "Unauthorized access, fraud, or loss: individuals need immediate legal guidance and response planning",
@@ -28,7 +28,7 @@ export const INDIVIDUAL_SERVICES = [
     slug: "real-estate",
     title: "Real Estate",
     blurb:
-      "We represent individuals in residential real estate transactions, ensuring that purchases, sales, and refinancing matters proceed smoothly and with legal protection at every stage.",
+        "We represent individuals in residential real estate transactions, ensuring that purchases, sales, and refinancing matters proceed smoothly and with legal protection at every stage.",
     videoSrc: "/images/real-estate_insights.mp4",
     challenges: [
       "Complex contracts: buyers and sellers struggle with understanding legal terms",
@@ -48,7 +48,7 @@ export const INDIVIDUAL_SERVICES = [
     slug: "estates",
     title: "Estates",
     blurb:
-      "We assist individuals and families with wills, powers of attorney, estate planning, and the administration of estates. Our goal is to provide clarity, protection, and peace of mind whether you are planning for the future or navigating the responsibilities that follow a loved one's passing.",
+        "We assist individuals and families with wills, powers of attorney, estate planning, and the administration of estates. Our goal is to provide clarity, protection, and peace of mind whether you are planning for the future or navigating the responsibilities that follow a loved one's passing.",
     challenges: [
       "Unclear or outdated estate plans: individuals often struggle to create legally enforceable wills or to keep documents current with life changes",
       "Family disputes and uncertainty: without clear instructions, families face confusion, conflict, or costly court proceedings",
@@ -81,9 +81,9 @@ export const INDIVIDUAL_SERVICES = [
     title: "Family",
     videoSrc: "/images/family.mp4",
     blurb:
-      "Family transitions - separation, divorce, and the reorganization of family life - carry significant legal, financial, and personal consequences. We provide clear, strategic legal counsel to individuals navigating these changes, with particular focus on clients whose circumstances involve property, business interests, estates, or cross-border complexity.",
+        "Family transitions - separation, divorce, and the reorganization of family life - carry significant legal, financial, and personal consequences. We provide clear, strategic legal counsel to individuals navigating these changes, with particular focus on clients whose circumstances involve property, business interests, estates, or cross-border complexity.",
     blurb2:
-      "Our approach is direct and solutions-oriented. We help clients understand their rights and obligations, protect their financial interests, and reach resolutions that are durable and fair - whether through negotiation, mediation, or litigation.",
+        "Our approach is direct and solutions-oriented. We help clients understand their rights and obligations, protect their financial interests, and reach resolutions that are durable and fair - whether through negotiation, mediation, or litigation.",
     challenges: [
       "Property and asset division: separating parties often face disputes over the equalization of net family property, including real estate, business interests, investment portfolios, and digital assets.",
       "Spousal and child support: calculating, negotiating, and enforcing support obligations under the Divorce Act and Family Law Act requires precision and an understanding of the financial picture on both sides.",
@@ -140,18 +140,18 @@ export const INDIVIDUAL_SERVICES = [
     title: "Immigration",
     videoSrc: "/images/immigration.mp4",
     blurb:
-      "Navigating Canada's immigration system can be complex and overwhelming. We advise individuals and families on temporary and permanent immigration pathways with practical, strategic, and compliant support.",
+        "Navigating Canada's immigration system can be complex and overwhelming. Whether you are seeking to reunite with family, pursue your education, or build a new life in Canada, Mears Law provides compassionate, efficient, and strategic legal support to help you achieve your personal immigration goals.",
     challenges: [
-      "Unclear pathway selection: individuals often need guidance choosing the right temporary or permanent stream for their goals",
-      "Documentation and timing pressure: incomplete evidence or missed filing windows can delay decisions or trigger refusals",
-      "Status continuity concerns: extensions, transitions, and restorations must be handled carefully to avoid gaps in legal status",
-      "Cross-border family and travel factors: family timelines and travel needs can add complexity to application strategy",
+      "Confusing Application Processes: Individuals often struggle to determine their eligibility and navigate program nuances.",
+      "Delays & Compliance Risks: Incomplete applications or missed deadlines can lead to stressful delays or permanent refusals.",
+      "Family & Future Planning: Challenges in meeting strict requirements for sponsorship or transitions to permanent status.",
+      "Changing Regulations: Immigration laws evolve quickly, creating uncertainty for those planning their future in Canada.",
     ],
     services: [
-      "Visitor, study, and work permit applications",
-      "Permit extensions, restorations, and status transitions",
-      "Family sponsorship and permanent residence applications",
-      "Citizenship applications",
+      "Family Sponsorship",
+      "Study & Work Permits",
+      "Permanent Residency & Citizenship",
+      "Appeals & Dispute Resolution",
       "Ongoing Advisory",
     ],
   },
