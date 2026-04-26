@@ -142,16 +142,16 @@ export const INDIVIDUAL_SERVICES = [
     blurb:
       "Navigating Canada's immigration system can be complex and overwhelming. We advise individuals and families on temporary and permanent immigration pathways with practical, strategic, and compliant support.",
     challenges: [
-      "Confusing eligibility and application pathways: individuals may be unsure which stream is right for their goals",
-      "Delays and refusals: incomplete applications, weak supporting documentation, or missed deadlines can create costly setbacks",
-      "Maintaining legal status: renewals, extensions, and status transitions must be managed carefully to avoid compliance risks",
-      "Rapidly changing rules: immigration requirements can shift and create uncertainty for applicants and families",
+      "Unclear pathway selection: individuals often need guidance choosing the right temporary or permanent stream for their goals",
+      "Documentation and timing pressure: incomplete evidence or missed filing windows can delay decisions or trigger refusals",
+      "Status continuity concerns: extensions, transitions, and restorations must be handled carefully to avoid gaps in legal status",
+      "Cross-border family and travel factors: family timelines and travel needs can add complexity to application strategy",
     ],
     services: [
-      "Temporary residence applications (visitor, study, and work permits)",
-      "Permanent residence pathways",
+      "Visitor, study, and work permit applications",
+      "Permit extensions, restorations, and status transitions",
+      "Family sponsorship and permanent residence applications",
       "Citizenship applications",
-      "Refusals, reconsiderations, and appeals",
       "Ongoing Advisory",
     ],
   },
