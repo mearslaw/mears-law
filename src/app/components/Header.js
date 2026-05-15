@@ -581,6 +581,16 @@ export default function Header() {
               onClick: closeServicesDropdown
             },
             "Immigration"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/companies/employment",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Employment"
           )
         )
       ),
@@ -749,7 +759,8 @@ export default function Header() {
             h(Link, { href: "/services/companies/privacy-data-protection", onClick: closeMenu }, "Privacy and Data Protection"),
             h(Link, { href: "/services/companies/corporate", onClick: closeMenu }, "Corporate"),
             h(Link, { href: "/services/companies/real-estate", onClick: closeMenu }, "Real Estate"),
-            h(Link, { href: "/services/companies/immigration", onClick: closeMenu }, "Immigration")
+            h(Link, { href: "/services/companies/immigration", onClick: closeMenu }, "Immigration"),
+            h(Link, { href: "/services/companies/employment", onClick: closeMenu }, "Employment")
           )
         ),
         h(

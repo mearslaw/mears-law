@@ -103,4 +103,33 @@ export const COMPANY_SERVICES = [
       "Ongoing Advisory",
     ],
   },
+  {
+    slug: "employment",
+    title: "Employment",
+    blurb:
+      "We provide strategic employment law advice to Canadian employers, with a focus on compliance with the Employment Standards Act, 2000 (ESA), the Ontario Human Rights Code, and related workplace legislation. Our practice supports founders, growing companies, and established organizations in managing workforce risk while enabling sustainable growth.",
+    blurb2:
+      "We work with employers to navigate complex employment obligations with clarity, discretion, and commercial judgment.",
+    challenges: [
+      "Hiring and onboarding: ensuring employment agreements comply with the ESA and are enforceable",
+      "Worker classification: mitigating risk related to employee vs. independent contractor misclassification",
+      "Workplace compliance: meeting obligations under the ESA, Human Rights Code, and occupational health and safety laws",
+      "Performance management: addressing misconduct, absenteeism, and underperformance while minimizing liability",
+      "Accommodation obligations: managing disability, family status, and other protected grounds under human rights legislation",
+      "Terminations and layoffs: reducing exposure to wrongful dismissal claims, statutory violations, and reputational harm",
+      "Remote and hybrid work: navigating cross-provincial employment law risks",
+      "Complaints and claims: responding to Ministry of Labour investigations, human rights applications, and civil claims",
+    ],
+    services: [
+      "Drafting and reviewing employment agreements, executive contracts, and contractor agreements",
+      "ESA-compliant termination clauses and compensation structures",
+      "Workplace policies and employee handbooks, including harassment and accommodation policies",
+      "Employment standards and compliance audits",
+      "Performance management, discipline, and documentation strategies",
+      "Terminations, layoffs, and workforce restructurings, including ESA and common-law risk analysis",
+      "Human rights matters and duty to accommodate guidance",
+      "Internal workplace investigations and dispute resolution",
+      "Ongoing employment law advisory for Canadian employers",
+    ],
+  },
 ];
