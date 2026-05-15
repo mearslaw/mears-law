@@ -158,6 +158,7 @@ export const INDIVIDUAL_SERVICES = [
   {
     slug: "privacy-data-breaches",
     title: "Privacy & Data Breaches",
+    videoSrc: "/privacy-data-breaches.mp4",
     blurb:
       "We represent individuals affected by serious privacy breaches and misuse of personal information, where failures in data protection or information handling have meaningful personal, financial, or professional consequences.",
     challenges: [
@@ -179,6 +180,7 @@ export const INDIVIDUAL_SERVICES = [
   {
     slug: "employment",
     title: "Employment",
+    videoSrc: "/employment-individuals.mp4",
     blurb:
       "We act for employees, executives, and professionals in high-stakes employment matters where compensation, career impact, and leverage truly matter. Our practice focuses on situations involving termination, senior roles, and enforceable rights—where experienced legal strategy can materially improve outcomes.",
     blurb2:

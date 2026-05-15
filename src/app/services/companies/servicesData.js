@@ -106,6 +106,7 @@ export const COMPANY_SERVICES = [
   {
     slug: "employment",
     title: "Employment",
+    videoSrc: "/employment-companies.mp4",
     blurb:
       "We provide strategic employment law advice to Canadian employers, with a focus on compliance with the Employment Standards Act, 2000 (ESA), the Ontario Human Rights Code, and related workplace legislation. Our practice supports founders, growing companies, and established organizations in managing workforce risk while enabling sustainable growth.",
     blurb2:
