@@ -176,4 +176,32 @@ export const INDIVIDUAL_SERVICES = [
       "Privacy-related dispute resolution and litigation",
     ],
   },
+  {
+    slug: "employment",
+    title: "Employment",
+    blurb:
+      "We act for employees, executives, and professionals in high-stakes employment matters where compensation, career impact, and leverage truly matter. Our practice focuses on situations involving termination, senior roles, and enforceable rights—where experienced legal strategy can materially improve outcomes.",
+    blurb2:
+      "We are selective in the matters we take on to ensure focused, commercially meaningful results for our clients.",
+    note:
+      "If you have been dismissed, offered severance, or asked to sign a release or employment agreement, we encourage you to seek legal advice promptly.",
+    challenges: [
+      "Termination or forced resignation: sudden job loss, dismissal without cause, or constructive dismissal",
+      "Inadequate severance offers: employer offers that significantly undervalue legal entitlements",
+      "Defective employment contracts: termination clauses and restrictive covenants that may be unenforceable",
+      "Executive and professional exits: senior roles involving bonuses, equity, or reputational considerations",
+      "Career-limiting workplace actions: discipline or changes that undermine role, compensation, or status",
+      "Power imbalances: disputes where the employer controls information, leverage, and timing",
+    ],
+    services: [
+      "Wrongful dismissal and constructive dismissal claims",
+      "Severance and exit package review and negotiation",
+      "Review and negotiation of employment and executive contracts",
+      "Analysis of termination clause enforceability and ESA compliance",
+      "Compensation disputes involving bonuses, incentives, equity, and commissions",
+      "Executive departures and negotiated exits",
+      "Strategic use of human rights claims where they impact termination or compensation",
+      "Employment-related dispute resolution and negotiation",
+    ],
+  },
 ];
