@@ -372,11 +372,6 @@ export default function Footer() {
                                 "Get Started"
                             ),
                             el(
-                                "a",
-                                { className: "contact-link", href: "mailto:info@mearslaw.ca" },
-                                "Email"
-                            ),
-                            el(
                                 Link,
                                 { className: "contact-link", href: "/contact" },
                                 "Leave us a message"
