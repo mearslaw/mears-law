@@ -660,6 +660,16 @@ export default function Header() {
               onClick: closeServicesDropdown
             },
             "Family"
+          ),
+          h(
+            Link,
+            {
+              href: "/services/individuals/privacy-data-breaches",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown
+            },
+            "Privacy & Data Breaches"
           )
         )
       )
@@ -774,7 +784,8 @@ export default function Header() {
             h(Link, { href: "/services/individuals/real-estate", onClick: closeMenu }, "Real Estate"),
             h(Link, { href: "/services/individuals/estates", onClick: closeMenu }, "Estates"),
             h(Link, { href: "/services/individuals/immigration", onClick: closeMenu }, "Immigration"),
-            h(Link, { href: "/services/individuals/family-law", onClick: closeMenu }, "Family")
+            h(Link, { href: "/services/individuals/family-law", onClick: closeMenu }, "Family"),
+            h(Link, { href: "/services/individuals/privacy-data-breaches", onClick: closeMenu }, "Privacy & Data Breaches")
           )
         )
       )

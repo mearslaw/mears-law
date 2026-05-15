@@ -155,4 +155,25 @@ export const INDIVIDUAL_SERVICES = [
       "Ongoing Advisory",
     ],
   },
+  {
+    slug: "privacy-data-breaches",
+    title: "Privacy & Data Breaches",
+    blurb:
+      "We represent individuals affected by serious privacy breaches and misuse of personal information, where failures in data protection or information handling have meaningful personal, financial, or professional consequences.",
+    challenges: [
+      "Large-scale data breaches: personal information exposed due to inadequate safeguards or system failures",
+      "Sensitive information disclosure: unauthorized sharing of financial, employment, or medical information",
+      "Identity misuse and risk exposure: loss of control over personal data and resulting downstream impact",
+      "Institutional failures: delayed, incomplete, or inadequate breach response and notification",
+      "Power imbalance: individuals facing well-resourced organizations following a breach",
+    ],
+    services: [
+      "Representation in privacy and data breach claims",
+      "Matters involving unauthorized disclosure of medical or health information",
+      "Claims arising from identity misuse, fraud, or related consequences",
+      "Collective and coordinated privacy actions where appropriate",
+      "Strategic advisory following data breach notification",
+      "Privacy-related dispute resolution and litigation",
+    ],
+  },
 ];
