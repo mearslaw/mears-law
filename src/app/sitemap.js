@@ -64,12 +64,6 @@ export default function sitemap() {
       priority: 0.7,
     },
     {
-      url: `${baseUrl}/services/individuals/digital-asset-protection`,
-      lastModified: new Date(),
-      changeFrequency: 'monthly',
-      priority: 0.7,
-    },
-    {
       url: `${baseUrl}/services/individuals/real-estate`,
       lastModified: new Date(),
       changeFrequency: 'monthly',

@@ -3,27 +3,6 @@ export const INDIVIDUALS_INTRO =
 
 export const INDIVIDUAL_SERVICES = [
   {
-    slug: "digital-asset-protection",
-    title: "Digital Asset Protection",
-    blurb:
-      "Digital assets require intentional legal planning and risk management. We advise individuals on protecting, documenting, and responding to risks involving digital assets, online accounts, and digital credentials.",
-    note: "This includes advisory support following unauthorized access, fraud, or loss, without guaranteeing recovery outcomes.",
-    videoSrc: "/digital-asset.mp4",
-    challenges: [
-      "Unauthorized access, fraud, or loss: individuals need immediate legal guidance and response planning",
-      "Digital asset documentation gaps: incomplete records can weaken protection and response efforts",
-      "Online account and credential risk: exposed credentials can increase legal and practical risk",
-      "Lack of structured planning: digital assets can remain vulnerable without clear risk management steps",
-    ],
-    services: [
-      "Digital asset protection advisory",
-      "Documentation and record-keeping guidance",
-      "Advisory support following unauthorized access, fraud, or loss",
-      "Risk management and response planning",
-      "Ongoing advisory",
-    ],
-  },
-  {
     slug: "real-estate",
     title: "Real Estate",
     blurb:

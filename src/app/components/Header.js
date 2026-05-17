@@ -666,16 +666,6 @@ export default function Header() {
           h(
             Link,
             {
-              href: "/services/individuals/digital-asset-protection",
-              className: "dropdown-subitem",
-              role: "menuitem",
-              onClick: closeServicesDropdown,
-            },
-            "Digital Asset Protection",
-          ),
-          h(
-            Link,
-            {
               href: "/services/individuals/real-estate",
               className: "dropdown-subitem",
               role: "menuitem",
@@ -919,14 +909,6 @@ export default function Header() {
           h(
             "div",
             { className: "mobile-submenu-nested" },
-            h(
-              Link,
-              {
-                href: "/services/individuals/digital-asset-protection",
-                onClick: closeMenu,
-              },
-              "Digital Asset Protection",
-            ),
             h(
               Link,
               { href: "/services/individuals/real-estate", onClick: closeMenu },
