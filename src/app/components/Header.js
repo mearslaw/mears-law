@@ -671,7 +671,7 @@ export default function Header() {
               role: "menuitem",
               onClick: closeServicesDropdown,
             },
-            "Privacy & Data Breaches",
+            "Privacy, Data & Digital Rights",
           ),
           h(
             Link,
@@ -915,7 +915,7 @@ export default function Header() {
                 href: "/services/individuals/privacy-data-breaches",
                 onClick: closeMenu,
               },
-              "Privacy & Data Breaches",
+              "Privacy, Data & Digital Rights",
             ),
             h(
               Link,

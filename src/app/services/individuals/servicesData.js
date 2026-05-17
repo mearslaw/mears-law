@@ -4,7 +4,7 @@ export const INDIVIDUALS_INTRO =
 export const INDIVIDUAL_SERVICES = [
   {
     slug: "privacy-data-breaches",
-    title: "Privacy & Data Breaches",
+    title: "Privacy, Data & Digital Rights",
     videoSrc: "/privacy-data-breaches.mp4",
     blurb:
       "We represent individuals affected by serious privacy breaches and misuse of personal information, where failures in data protection or information handling have meaningful personal, financial, or professional consequences.",
