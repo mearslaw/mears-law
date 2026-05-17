@@ -1,5 +1,11 @@
 "use client";
-import React, { useState, useCallback, useEffect, createElement as h, Fragment } from "react";
+import React, {
+  useState,
+  useCallback,
+  useEffect,
+  createElement as h,
+  Fragment,
+} from "react";
 import Link from "next/link";
 
 /* ---------- inline CSS (copied from your JSX block, unchanged in look/feel) ---------- */
@@ -364,22 +370,50 @@ function useFilloutScript() {
 const IconHamburger = () =>
   h(
     "svg",
-    { width: 28, height: 28, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", "aria-hidden": "true" },
-    h("path", { d: "M3 6h18M3 12h18M3 18h18" })
+    {
+      width: 28,
+      height: 28,
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: 2,
+      strokeLinecap: "round",
+      "aria-hidden": "true",
+    },
+    h("path", { d: "M3 6h18M3 12h18M3 18h18" }),
   );
 
 const IconClose = () =>
   h(
     "svg",
-    { width: 26, height: 26, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", "aria-hidden": "true" },
-    h("path", { d: "M18 6L6 18M6 6l12 12" })
+    {
+      width: 26,
+      height: 26,
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: 2,
+      strokeLinecap: "round",
+      "aria-hidden": "true",
+    },
+    h("path", { d: "M18 6L6 18M6 6l12 12" }),
   );
 
 const IconChevronDown = () =>
   h(
     "svg",
-    { width: 14, height: 14, viewBox: "0 0 24 24", fill: "none", stroke: "currentColor", strokeWidth: 2, strokeLinecap: "round", strokeLinejoin: "round", "aria-hidden": "true" },
-    h("path", { d: "M6 9l6 6 6-6" })
+    {
+      width: 14,
+      height: 14,
+      viewBox: "0 0 24 24",
+      fill: "none",
+      stroke: "currentColor",
+      strokeWidth: 2,
+      strokeLinecap: "round",
+      strokeLinejoin: "round",
+      "aria-hidden": "true",
+    },
+    h("path", { d: "M6 9l6 6 6-6" }),
   );
 
 /* ---------- component (no JSX) ---------- */
@@ -391,25 +425,34 @@ export default function Header() {
   const [isCalendlyOpen, setIsCalendlyOpen] = useState(false);
   const [isServicesDropdownOpen, setIsServicesDropdownOpen] = useState(false);
   const [isAboutDropdownOpen, setIsAboutDropdownOpen] = useState(false);
-  
+
   const toggleMenu = useCallback(() => setIsOpen((v) => !v), []);
   const closeMenu = useCallback(() => setIsOpen(false), []);
   const toggleServicesDropdown = useCallback(() => {
     setIsServicesDropdownOpen((v) => !v);
     setIsAboutDropdownOpen(false);
   }, []);
-  const closeServicesDropdown = useCallback(() => setIsServicesDropdownOpen(false), []);
+  const closeServicesDropdown = useCallback(
+    () => setIsServicesDropdownOpen(false),
+    [],
+  );
   const toggleAboutDropdown = useCallback(() => {
     setIsAboutDropdownOpen((v) => !v);
     setIsServicesDropdownOpen(false);
   }, []);
-  const closeAboutDropdown = useCallback(() => setIsAboutDropdownOpen(false), []);
-  
-  const openCalendly = useCallback((e) => {
-    e.preventDefault();
-    setIsCalendlyOpen(true);
-    closeMenu(); // Close mobile menu if open
-  }, [closeMenu]);
+  const closeAboutDropdown = useCallback(
+    () => setIsAboutDropdownOpen(false),
+    [],
+  );
+
+  const openCalendly = useCallback(
+    (e) => {
+      e.preventDefault();
+      setIsCalendlyOpen(true);
+      closeMenu(); // Close mobile menu if open
+    },
+    [closeMenu],
+  );
 
   const closeCalendly = useCallback(() => {
     setIsCalendlyOpen(false);
@@ -418,42 +461,51 @@ export default function Header() {
   // Close modal on escape key
   useEffect(() => {
     const handleEscape = (e) => {
-      if (e.key === 'Escape' && isCalendlyOpen) {
+      if (e.key === "Escape" && isCalendlyOpen) {
         closeCalendly();
       }
     };
-    
+
     if (isCalendlyOpen) {
-      document.addEventListener('keydown', handleEscape);
-      document.body.style.overflow = 'hidden';
+      document.addEventListener("keydown", handleEscape);
+      document.body.style.overflow = "hidden";
     }
-    
+
     return () => {
-      document.removeEventListener('keydown', handleEscape);
-      document.body.style.overflow = '';
+      document.removeEventListener("keydown", handleEscape);
+      document.body.style.overflow = "";
     };
   }, [isCalendlyOpen, closeCalendly]);
 
   // Close dropdown when clicking outside
   useEffect(() => {
     if (!isServicesDropdownOpen && !isAboutDropdownOpen) return;
-    
+
     const handleClickOutside = (e) => {
-      if (!e.target.closest('.services-dropdown')) {
+      if (!e.target.closest(".services-dropdown")) {
         closeServicesDropdown();
         closeAboutDropdown();
       }
     };
-    
-    document.addEventListener('click', handleClickOutside);
-    return () => document.removeEventListener('click', handleClickOutside);
-  }, [isServicesDropdownOpen, isAboutDropdownOpen, closeServicesDropdown, closeAboutDropdown]);
+
+    document.addEventListener("click", handleClickOutside);
+    return () => document.removeEventListener("click", handleClickOutside);
+  }, [
+    isServicesDropdownOpen,
+    isAboutDropdownOpen,
+    closeServicesDropdown,
+    closeAboutDropdown,
+  ]);
 
   /* brand */
   const brandLink = h(
     Link,
     { className: "brand", href: "/", "aria-label": "Mears Law home" },
-    h("img", { src: "/images/mears-logo.png", alt: "Mears Law logo", className: "brand-mark-img" })
+    h("img", {
+      src: "/images/mears-logo.png",
+      alt: "Mears Law logo",
+      className: "brand-mark-img",
+    }),
   );
 
   /* desktop primary nav */
@@ -466,10 +518,10 @@ export default function Header() {
         className: "services-trigger",
         onClick: toggleAboutDropdown,
         "aria-expanded": isAboutDropdownOpen,
-        "aria-haspopup": "true"
+        "aria-haspopup": "true",
       },
       "About Us",
-      h(IconChevronDown)
+      h(IconChevronDown),
     ),
     h(
       "div",
@@ -480,9 +532,9 @@ export default function Header() {
           href: "/about",
           className: "dropdown-item",
           role: "menuitem",
-          onClick: closeAboutDropdown
+          onClick: closeAboutDropdown,
         },
-        "Our Firm"
+        "Our Firm",
       ),
       h(
         Link,
@@ -490,11 +542,11 @@ export default function Header() {
           href: "/team",
           className: "dropdown-item",
           role: "menuitem",
-          onClick: closeAboutDropdown
+          onClick: closeAboutDropdown,
         },
-        "Meet our Team"
-      )
-    )
+        "Meet our Team",
+      ),
+    ),
   );
 
   /* desktop primary nav */
@@ -507,10 +559,10 @@ export default function Header() {
         className: "services-trigger",
         onClick: toggleServicesDropdown,
         "aria-expanded": isServicesDropdownOpen,
-        "aria-haspopup": "true"
+        "aria-haspopup": "true",
       },
       "Services",
-      h(IconChevronDown)
+      h(IconChevronDown),
     ),
     h(
       "div",
@@ -524,10 +576,10 @@ export default function Header() {
             href: "/services/companies",
             className: "dropdown-item dropdown-parent",
             role: "menuitem",
-            onClick: closeServicesDropdown
+            onClick: closeServicesDropdown,
           },
           "Companies",
-          h("span", { className: "submenu-arrow", "aria-hidden": "true" }, ">")
+          h("span", { className: "submenu-arrow", "aria-hidden": "true" }, ">"),
         ),
         h(
           "div",
@@ -538,9 +590,9 @@ export default function Header() {
               href: "/services/companies/artificial-intelligence",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Artificial Intelligence"
+            "Artificial Intelligence",
           ),
           h(
             Link,
@@ -548,9 +600,9 @@ export default function Header() {
               href: "/services/companies/privacy-data-protection",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Privacy and Data Protection"
+            "Privacy and Data Protection",
           ),
           h(
             Link,
@@ -558,9 +610,9 @@ export default function Header() {
               href: "/services/companies/corporate",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Corporate"
+            "Corporate",
           ),
           h(
             Link,
@@ -568,9 +620,9 @@ export default function Header() {
               href: "/services/companies/real-estate",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Real Estate"
+            "Real Estate",
           ),
           h(
             Link,
@@ -578,9 +630,9 @@ export default function Header() {
               href: "/services/companies/immigration",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Immigration"
+            "Immigration",
           ),
           h(
             Link,
@@ -588,11 +640,11 @@ export default function Header() {
               href: "/services/companies/employment",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Employment"
-          )
-        )
+            "Employment",
+          ),
+        ),
       ),
       h(
         "div",
@@ -603,10 +655,10 @@ export default function Header() {
             href: "/services/individuals",
             className: "dropdown-item dropdown-parent",
             role: "menuitem",
-            onClick: closeServicesDropdown
+            onClick: closeServicesDropdown,
           },
           "Individuals",
-          h("span", { className: "submenu-arrow", "aria-hidden": "true" }, ">")
+          h("span", { className: "submenu-arrow", "aria-hidden": "true" }, ">"),
         ),
         h(
           "div",
@@ -617,9 +669,9 @@ export default function Header() {
               href: "/services/individuals/digital-asset-protection",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Digital Asset Protection"
+            "Digital Asset Protection",
           ),
           h(
             Link,
@@ -627,9 +679,9 @@ export default function Header() {
               href: "/services/individuals/real-estate",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Real Estate"
+            "Real Estate",
           ),
           h(
             Link,
@@ -637,9 +689,9 @@ export default function Header() {
               href: "/services/individuals/estates",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Estates"
+            "Estates",
           ),
           h(
             Link,
@@ -647,9 +699,9 @@ export default function Header() {
               href: "/services/individuals/immigration",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Immigration"
+            "Immigration",
           ),
           h(
             Link,
@@ -657,9 +709,9 @@ export default function Header() {
               href: "/services/individuals/family-law",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Family"
+            "Family",
           ),
           h(
             Link,
@@ -667,9 +719,9 @@ export default function Header() {
               href: "/services/individuals/privacy-data-breaches",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Privacy & Data Breaches"
+            "Privacy & Data Breaches",
           ),
           h(
             Link,
@@ -677,13 +729,23 @@ export default function Header() {
               href: "/services/individuals/employment",
               className: "dropdown-subitem",
               role: "menuitem",
-              onClick: closeServicesDropdown
+              onClick: closeServicesDropdown,
             },
-            "Employment"
-          )
-        )
-      )
-    )
+            "Employment",
+          ),
+          h(
+            Link,
+            {
+              href: "/services/individuals/serious-injury-complex-claims",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown,
+            },
+            "Serious Injury & Complex Claims",
+          ),
+        ),
+      ),
+    ),
   );
 
   const navLinks = h(
@@ -703,20 +765,24 @@ export default function Header() {
     { className: "cta" },
     h(
       "a", // changed "button" to "a"
-      { 
+      {
         className: "btn btn-primary",
         href: "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled",
         target: "_blank",
         rel: "noopener noreferrer",
-        style: { textDecoration: 'none' }
+        style: { textDecoration: "none" },
       },
-      "Book Consultation"
+      "Book Consultation",
     ),
     h(
       "button",
-      { className: "hamburger", "aria-label": "Open menu", onClick: toggleMenu },
-      h(IconHamburger)
-    )
+      {
+        className: "hamburger",
+        "aria-label": "Open menu",
+        onClick: toggleMenu,
+      },
+      h(IconHamburger),
+    ),
   );
 
   const topBar = h(
@@ -724,7 +790,7 @@ export default function Header() {
     { className: "container nav" },
     brandLink,
     navLinks,
-    ctaBlock
+    ctaBlock,
   );
 
   const headerEl = h("header", { className: "site-header" }, topBar);
@@ -735,14 +801,23 @@ export default function Header() {
     { className: "drawer-header" },
     h(
       Link,
-      { className: "brand", href: "/", onClick: closeMenu, "aria-label": "Mears Law home" },
-      h("img", { src: "/images/mears-logo.png", alt: "Mears Law logo", className: "brand-mark-img small" })
+      {
+        className: "brand",
+        href: "/",
+        onClick: closeMenu,
+        "aria-label": "Mears Law home",
+      },
+      h("img", {
+        src: "/images/mears-logo.png",
+        alt: "Mears Law logo",
+        className: "brand-mark-img small",
+      }),
     ),
     h(
       "button",
       { className: "close", "aria-label": "Close menu", onClick: closeMenu },
-      h(IconClose)
-    )
+      h(IconClose),
+    ),
   );
 
   const mobileLinks = h(
@@ -752,54 +827,150 @@ export default function Header() {
     h(
       "div",
       null,
-      h("div", { style: { fontWeight: 600, color: "#fff", marginBottom: "8px" } }, "About Us"),
+      h(
+        "div",
+        { style: { fontWeight: 600, color: "#fff", marginBottom: "8px" } },
+        "About Us",
+      ),
       h(
         "div",
         { className: "mobile-submenu" },
         h(Link, { href: "/about", onClick: closeMenu }, "Our Firm"),
-        h(Link, { href: "/team", onClick: closeMenu }, "Meet our Team")
-      )
+        h(Link, { href: "/team", onClick: closeMenu }, "Meet our Team"),
+      ),
     ),
     h(Link, { href: "/insights", onClick: closeMenu }, "Insights"),
     h(
       "div",
       null,
-      h("div", { style: { fontWeight: 600, color: "#fff", marginBottom: "8px" } }, "Services"),
+      h(
+        "div",
+        { style: { fontWeight: 600, color: "#fff", marginBottom: "8px" } },
+        "Services",
+      ),
       h(
         "div",
         { className: "mobile-submenu" },
         h(
           "div",
           { className: "mobile-submenu-group" },
-          h(Link, { href: "/services/companies", onClick: closeMenu, className: "mobile-submenu-title" }, "Companies"),
+          h(
+            Link,
+            {
+              href: "/services/companies",
+              onClick: closeMenu,
+              className: "mobile-submenu-title",
+            },
+            "Companies",
+          ),
           h(
             "div",
             { className: "mobile-submenu-nested" },
-            h(Link, { href: "/services/companies/artificial-intelligence", onClick: closeMenu }, "Artificial Intelligence"),
-            h(Link, { href: "/services/companies/privacy-data-protection", onClick: closeMenu }, "Privacy and Data Protection"),
-            h(Link, { href: "/services/companies/corporate", onClick: closeMenu }, "Corporate"),
-            h(Link, { href: "/services/companies/real-estate", onClick: closeMenu }, "Real Estate"),
-            h(Link, { href: "/services/companies/immigration", onClick: closeMenu }, "Immigration"),
-            h(Link, { href: "/services/companies/employment", onClick: closeMenu }, "Employment")
-          )
+            h(
+              Link,
+              {
+                href: "/services/companies/artificial-intelligence",
+                onClick: closeMenu,
+              },
+              "Artificial Intelligence",
+            ),
+            h(
+              Link,
+              {
+                href: "/services/companies/privacy-data-protection",
+                onClick: closeMenu,
+              },
+              "Privacy and Data Protection",
+            ),
+            h(
+              Link,
+              { href: "/services/companies/corporate", onClick: closeMenu },
+              "Corporate",
+            ),
+            h(
+              Link,
+              { href: "/services/companies/real-estate", onClick: closeMenu },
+              "Real Estate",
+            ),
+            h(
+              Link,
+              { href: "/services/companies/immigration", onClick: closeMenu },
+              "Immigration",
+            ),
+            h(
+              Link,
+              { href: "/services/companies/employment", onClick: closeMenu },
+              "Employment",
+            ),
+          ),
         ),
         h(
           "div",
           { className: "mobile-submenu-group" },
-          h(Link, { href: "/services/individuals", onClick: closeMenu, className: "mobile-submenu-title" }, "Individuals"),
+          h(
+            Link,
+            {
+              href: "/services/individuals",
+              onClick: closeMenu,
+              className: "mobile-submenu-title",
+            },
+            "Individuals",
+          ),
           h(
             "div",
             { className: "mobile-submenu-nested" },
-            h(Link, { href: "/services/individuals/digital-asset-protection", onClick: closeMenu }, "Digital Asset Protection"),
-            h(Link, { href: "/services/individuals/real-estate", onClick: closeMenu }, "Real Estate"),
-            h(Link, { href: "/services/individuals/estates", onClick: closeMenu }, "Estates"),
-            h(Link, { href: "/services/individuals/immigration", onClick: closeMenu }, "Immigration"),
-            h(Link, { href: "/services/individuals/family-law", onClick: closeMenu }, "Family"),
-            h(Link, { href: "/services/individuals/privacy-data-breaches", onClick: closeMenu }, "Privacy & Data Breaches"),
-            h(Link, { href: "/services/individuals/employment", onClick: closeMenu }, "Employment")
-          )
-        )
-      )
+            h(
+              Link,
+              {
+                href: "/services/individuals/digital-asset-protection",
+                onClick: closeMenu,
+              },
+              "Digital Asset Protection",
+            ),
+            h(
+              Link,
+              { href: "/services/individuals/real-estate", onClick: closeMenu },
+              "Real Estate",
+            ),
+            h(
+              Link,
+              { href: "/services/individuals/estates", onClick: closeMenu },
+              "Estates",
+            ),
+            h(
+              Link,
+              { href: "/services/individuals/immigration", onClick: closeMenu },
+              "Immigration",
+            ),
+            h(
+              Link,
+              { href: "/services/individuals/family-law", onClick: closeMenu },
+              "Family",
+            ),
+            h(
+              Link,
+              {
+                href: "/services/individuals/privacy-data-breaches",
+                onClick: closeMenu,
+              },
+              "Privacy & Data Breaches",
+            ),
+            h(
+              Link,
+              { href: "/services/individuals/employment", onClick: closeMenu },
+              "Employment",
+            ),
+            h(
+              Link,
+              {
+                href: "/services/individuals/serious-injury-complex-claims",
+                onClick: closeMenu,
+              },
+              "Serious Injury & Complex Claims",
+            ),
+          ),
+        ),
+      ),
     ),
     h(Link, { href: "/careers", onClick: closeMenu }, "Careers"),
     h(Link, { href: "/contact", onClick: closeMenu }, "Contact"),
@@ -810,15 +981,15 @@ export default function Header() {
     { className: "mobile-cta" },
     h(
       "a",
-      { 
+      {
         className: "btn",
         href: "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled",
         target: "_blank",
         rel: "noopener noreferrer",
-        style: { textDecoration: 'none' }
+        style: { textDecoration: "none" },
       },
-      "Book Consultation"
-    )
+      "Book Consultation",
+    ),
   );
 
   const drawer = h(
@@ -826,36 +997,36 @@ export default function Header() {
     { className: `mobile-drawer${isOpen ? " open" : ""}` },
     drawerHeader,
     mobileLinks,
-    mobileCta
+    mobileCta,
   );
 
   /* Calendly modal */
   const calendlyModal = h(
     "div",
-    { 
+    {
       className: `calendly-overlay${isCalendlyOpen ? " open" : ""}`,
-      onClick: closeCalendly
+      onClick: closeCalendly,
     },
     h(
       "div",
-      { 
+      {
         className: "calendly-modal",
-        onClick: (e) => e.stopPropagation()
+        onClick: (e) => e.stopPropagation(),
       },
       h(
         "button",
-        { 
+        {
           className: "calendly-close",
           onClick: closeCalendly,
-          "aria-label": "Close calendar"
+          "aria-label": "Close calendar",
         },
-        "×"
+        "×",
       ),
       h("iframe", {
         src: "https://mearslaw.fillout.com/meeting-with-carissa-mears",
-        style: { width: "100%", height: "100%", border: "none" }
-      })    
-    )
+        style: { width: "100%", height: "100%", border: "none" },
+      }),
+    ),
   );
 
   return h(Fragment, null, headerEl, drawer, calendlyModal);
