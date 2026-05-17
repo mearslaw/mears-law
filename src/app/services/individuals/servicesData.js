@@ -17,6 +17,7 @@ export const INDIVIDUAL_SERVICES = [
     ],
     services: [
       "Representation in privacy and data breach claims",
+      "Representation in AI and automated decision-making misuse claims",
       "Matters involving unauthorized disclosure of medical or health information",
       "Claims arising from identity misuse, fraud, or related consequences",
       "Collective and coordinated privacy actions where appropriate",
