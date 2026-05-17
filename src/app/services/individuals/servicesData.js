@@ -3,6 +3,82 @@ export const INDIVIDUALS_INTRO =
 
 export const INDIVIDUAL_SERVICES = [
   {
+    slug: "privacy-data-breaches",
+    title: "Privacy & Data Breaches",
+    videoSrc: "/privacy-data-breaches.mp4",
+    blurb:
+      "We represent individuals affected by serious privacy breaches and misuse of personal information, where failures in data protection or information handling have meaningful personal, financial, or professional consequences.",
+    challenges: [
+      "Large-scale data breaches: personal information exposed due to inadequate safeguards or system failures",
+      "Sensitive information disclosure: unauthorized sharing of financial, employment, or medical information",
+      "Identity misuse and risk exposure: loss of control over personal data and resulting downstream impact",
+      "Institutional failures: delayed, incomplete, or inadequate breach response and notification",
+      "Power imbalance: individuals facing well-resourced organizations following a breach",
+    ],
+    services: [
+      "Representation in privacy and data breach claims",
+      "Matters involving unauthorized disclosure of medical or health information",
+      "Claims arising from identity misuse, fraud, or related consequences",
+      "Collective and coordinated privacy actions where appropriate",
+      "Strategic advisory following data breach notification",
+      "Privacy-related dispute resolution and litigation",
+    ],
+  },
+  {
+    slug: "serious-injury-complex-claims",
+    title: "Serious Injury & Complex Claims",
+    blurb:
+      "We act for individuals in high-stakes disputes where the financial, professional, or personal consequences are significant. Our practice focuses on complex matters involving injury, professional error, and insurance conflict.",
+    blurb2:
+      "We are selective in the matters we take on to ensure focused, high-value advocacy and meaningful results for our clients.",
+    challenges: [
+      "Serious injury and loss: physical or psychological harm with long-term financial or personal consequences",
+      "Professional negligence: harm caused by professionals failing to meet required standards",
+      "Insurance resistance: delayed, denied, or undervalued claims by insurers",
+      "Undervalued claims: situations where liability or damages are disputed or minimized",
+      "Complex liability issues: multiple parties, technical evidence, or expert-driven disputes",
+      "Power imbalances: navigating claims against institutions, professionals, or well-resourced defendants",
+    ],
+    services: [
+      "Personal injury claims involving significant physical or psychological harm",
+      "Professional negligence claims",
+      "Insurance disputes, including denial of coverage and underpayment",
+      "Assessment and prosecution of complex civil claims",
+      "Strategic negotiation and dispute resolution",
+      "Litigation in appropriate cases where resolution cannot be achieved",
+      "Advising on damages, liability, and claim viability at an early stage",
+    ],
+    note: "Where appropriate, we offer initial case assessments and may act on a contingency basis in matters that meet our criteria. If you believe you have suffered a serious injury, financial loss, or harm due to the actions of another party or professional, we encourage you to seek legal advice promptly.",
+  },
+  {
+    slug: "employment",
+    title: "Employment",
+    videoSrc: "/employment-individuals.mp4",
+    blurb:
+      "We act for employees, executives, and professionals in high-stakes employment matters where compensation, career impact, and leverage truly matter. Our practice focuses on situations involving termination, senior roles, and enforceable rights—where experienced legal strategy can materially improve outcomes.",
+    blurb2:
+      "We are selective in the matters we take on to ensure focused, commercially meaningful results for our clients.",
+    note: "If you have been dismissed, offered severance, or asked to sign a release or employment agreement, we encourage you to seek legal advice promptly.",
+    challenges: [
+      "Termination or forced resignation: sudden job loss, dismissal without cause, or constructive dismissal",
+      "Inadequate severance offers: employer offers that significantly undervalue legal entitlements",
+      "Defective employment contracts: termination clauses and restrictive covenants that may be unenforceable",
+      "Executive and professional exits: senior roles involving bonuses, equity, or reputational considerations",
+      "Career-limiting workplace actions: discipline or changes that undermine role, compensation, or status",
+      "Power imbalances: disputes where the employer controls information, leverage, and timing",
+    ],
+    services: [
+      "Wrongful dismissal and constructive dismissal claims",
+      "Severance and exit package review and negotiation",
+      "Review and negotiation of employment and executive contracts",
+      "Analysis of termination clause enforceability and ESA compliance",
+      "Compensation disputes involving bonuses, incentives, equity, and commissions",
+      "Executive departures and negotiated exits",
+      "Strategic use of human rights claims where they impact termination or compensation",
+      "Employment-related dispute resolution and negotiation",
+    ],
+  },
+  {
     slug: "real-estate",
     title: "Real Estate",
     blurb:
@@ -52,6 +128,26 @@ export const INDIVIDUAL_SERVICES = [
       "Updates to existing plans",
       "Guidance during life changes (marriage, divorce, births, acquisitions)",
       "Long-term strategic planning support",
+    ],
+  },
+  {
+    slug: "immigration",
+    title: "Immigration",
+    videoSrc: "/images/immigration.mp4",
+    blurb:
+      "Navigating Canada's immigration system can be complex and overwhelming. Whether you are seeking to reunite with family, pursue your education, or build a new life in Canada, Mears Law provides compassionate, efficient, and strategic legal support to help you achieve your personal immigration goals.",
+    challenges: [
+      "Confusing Application Processes: Individuals often struggle to determine their eligibility and navigate program nuances.",
+      "Delays & Compliance Risks: Incomplete applications or missed deadlines can lead to stressful delays or permanent refusals.",
+      "Family & Future Planning: Challenges in meeting strict requirements for sponsorship or transitions to permanent status.",
+      "Changing Regulations: Immigration laws evolve quickly, creating uncertainty for those planning their future in Canada.",
+    ],
+    services: [
+      "Family Sponsorship",
+      "Study & Work Permits",
+      "Permanent Residency & Citizenship",
+      "Appeals & Dispute Resolution",
+      "Ongoing Advisory",
     ],
   },
   {
@@ -127,101 +223,5 @@ export const INDIVIDUAL_SERVICES = [
         name: "Long-term planning support for blended families",
       },
     ],
-  },
-  {
-    slug: "immigration",
-    title: "Immigration",
-    videoSrc: "/images/immigration.mp4",
-    blurb:
-      "Navigating Canada's immigration system can be complex and overwhelming. Whether you are seeking to reunite with family, pursue your education, or build a new life in Canada, Mears Law provides compassionate, efficient, and strategic legal support to help you achieve your personal immigration goals.",
-    challenges: [
-      "Confusing Application Processes: Individuals often struggle to determine their eligibility and navigate program nuances.",
-      "Delays & Compliance Risks: Incomplete applications or missed deadlines can lead to stressful delays or permanent refusals.",
-      "Family & Future Planning: Challenges in meeting strict requirements for sponsorship or transitions to permanent status.",
-      "Changing Regulations: Immigration laws evolve quickly, creating uncertainty for those planning their future in Canada.",
-    ],
-    services: [
-      "Family Sponsorship",
-      "Study & Work Permits",
-      "Permanent Residency & Citizenship",
-      "Appeals & Dispute Resolution",
-      "Ongoing Advisory",
-    ],
-  },
-  {
-    slug: "privacy-data-breaches",
-    title: "Privacy & Data Breaches",
-    videoSrc: "/privacy-data-breaches.mp4",
-    blurb:
-      "We represent individuals affected by serious privacy breaches and misuse of personal information, where failures in data protection or information handling have meaningful personal, financial, or professional consequences.",
-    challenges: [
-      "Large-scale data breaches: personal information exposed due to inadequate safeguards or system failures",
-      "Sensitive information disclosure: unauthorized sharing of financial, employment, or medical information",
-      "Identity misuse and risk exposure: loss of control over personal data and resulting downstream impact",
-      "Institutional failures: delayed, incomplete, or inadequate breach response and notification",
-      "Power imbalance: individuals facing well-resourced organizations following a breach",
-    ],
-    services: [
-      "Representation in privacy and data breach claims",
-      "Matters involving unauthorized disclosure of medical or health information",
-      "Claims arising from identity misuse, fraud, or related consequences",
-      "Collective and coordinated privacy actions where appropriate",
-      "Strategic advisory following data breach notification",
-      "Privacy-related dispute resolution and litigation",
-    ],
-  },
-  {
-    slug: "employment",
-    title: "Employment",
-    videoSrc: "/employment-individuals.mp4",
-    blurb:
-      "We act for employees, executives, and professionals in high-stakes employment matters where compensation, career impact, and leverage truly matter. Our practice focuses on situations involving termination, senior roles, and enforceable rights—where experienced legal strategy can materially improve outcomes.",
-    blurb2:
-      "We are selective in the matters we take on to ensure focused, commercially meaningful results for our clients.",
-    note: "If you have been dismissed, offered severance, or asked to sign a release or employment agreement, we encourage you to seek legal advice promptly.",
-    challenges: [
-      "Termination or forced resignation: sudden job loss, dismissal without cause, or constructive dismissal",
-      "Inadequate severance offers: employer offers that significantly undervalue legal entitlements",
-      "Defective employment contracts: termination clauses and restrictive covenants that may be unenforceable",
-      "Executive and professional exits: senior roles involving bonuses, equity, or reputational considerations",
-      "Career-limiting workplace actions: discipline or changes that undermine role, compensation, or status",
-      "Power imbalances: disputes where the employer controls information, leverage, and timing",
-    ],
-    services: [
-      "Wrongful dismissal and constructive dismissal claims",
-      "Severance and exit package review and negotiation",
-      "Review and negotiation of employment and executive contracts",
-      "Analysis of termination clause enforceability and ESA compliance",
-      "Compensation disputes involving bonuses, incentives, equity, and commissions",
-      "Executive departures and negotiated exits",
-      "Strategic use of human rights claims where they impact termination or compensation",
-      "Employment-related dispute resolution and negotiation",
-    ],
-  },
-  {
-    slug: "serious-injury-complex-claims",
-    title: "Serious Injury & Complex Claims",
-    blurb:
-      "We act for individuals in high-stakes disputes where the financial, professional, or personal consequences are significant. Our practice focuses on complex matters involving injury, professional error, and insurance conflict.",
-    blurb2:
-      "We are selective in the matters we take on to ensure focused, high-value advocacy and meaningful results for our clients.",
-    challenges: [
-      "Serious injury and loss: physical or psychological harm with long-term financial or personal consequences",
-      "Professional negligence: harm caused by professionals failing to meet required standards",
-      "Insurance resistance: delayed, denied, or undervalued claims by insurers",
-      "Undervalued claims: situations where liability or damages are disputed or minimized",
-      "Complex liability issues: multiple parties, technical evidence, or expert-driven disputes",
-      "Power imbalances: navigating claims against institutions, professionals, or well-resourced defendants",
-    ],
-    services: [
-      "Personal injury claims involving significant physical or psychological harm",
-      "Professional negligence claims",
-      "Insurance disputes, including denial of coverage and underpayment",
-      "Assessment and prosecution of complex civil claims",
-      "Strategic negotiation and dispute resolution",
-      "Litigation in appropriate cases where resolution cannot be achieved",
-      "Advising on damages, liability, and claim viability at an early stage",
-    ],
-    note: "Where appropriate, we offer initial case assessments and may act on a contingency basis in matters that meet our criteria. If you believe you have suffered a serious injury, financial loss, or harm due to the actions of another party or professional, we encourage you to seek legal advice promptly.",
-  },
+  }
 ];

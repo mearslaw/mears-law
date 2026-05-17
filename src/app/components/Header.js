@@ -666,6 +666,36 @@ export default function Header() {
           h(
             Link,
             {
+              href: "/services/individuals/privacy-data-breaches",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown,
+            },
+            "Privacy & Data Breaches",
+          ),
+          h(
+            Link,
+            {
+              href: "/services/individuals/serious-injury-complex-claims",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown,
+            },
+            "Serious Injury & Complex Claims",
+          ),
+          h(
+            Link,
+            {
+              href: "/services/individuals/employment",
+              className: "dropdown-subitem",
+              role: "menuitem",
+              onClick: closeServicesDropdown,
+            },
+            "Employment",
+          ),
+          h(
+            Link,
+            {
               href: "/services/individuals/real-estate",
               className: "dropdown-subitem",
               role: "menuitem",
@@ -702,36 +732,6 @@ export default function Header() {
               onClick: closeServicesDropdown,
             },
             "Family",
-          ),
-          h(
-            Link,
-            {
-              href: "/services/individuals/privacy-data-breaches",
-              className: "dropdown-subitem",
-              role: "menuitem",
-              onClick: closeServicesDropdown,
-            },
-            "Privacy & Data Breaches",
-          ),
-          h(
-            Link,
-            {
-              href: "/services/individuals/employment",
-              className: "dropdown-subitem",
-              role: "menuitem",
-              onClick: closeServicesDropdown,
-            },
-            "Employment",
-          ),
-          h(
-            Link,
-            {
-              href: "/services/individuals/serious-injury-complex-claims",
-              className: "dropdown-subitem",
-              role: "menuitem",
-              onClick: closeServicesDropdown,
-            },
-            "Serious Injury & Complex Claims",
           ),
         ),
       ),
@@ -911,6 +911,27 @@ export default function Header() {
             { className: "mobile-submenu-nested" },
             h(
               Link,
+              {
+                href: "/services/individuals/privacy-data-breaches",
+                onClick: closeMenu,
+              },
+              "Privacy & Data Breaches",
+            ),
+            h(
+              Link,
+              {
+                href: "/services/individuals/serious-injury-complex-claims",
+                onClick: closeMenu,
+              },
+              "Serious Injury & Complex Claims",
+            ),
+            h(
+              Link,
+              { href: "/services/individuals/employment", onClick: closeMenu },
+              "Employment",
+            ),
+            h(
+              Link,
               { href: "/services/individuals/real-estate", onClick: closeMenu },
               "Real Estate",
             ),
@@ -928,27 +949,6 @@ export default function Header() {
               Link,
               { href: "/services/individuals/family-law", onClick: closeMenu },
               "Family",
-            ),
-            h(
-              Link,
-              {
-                href: "/services/individuals/privacy-data-breaches",
-                onClick: closeMenu,
-              },
-              "Privacy & Data Breaches",
-            ),
-            h(
-              Link,
-              { href: "/services/individuals/employment", onClick: closeMenu },
-              "Employment",
-            ),
-            h(
-              Link,
-              {
-                href: "/services/individuals/serious-injury-complex-claims",
-                onClick: closeMenu,
-              },
-              "Serious Injury & Complex Claims",
             ),
           ),
         ),
