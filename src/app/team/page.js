@@ -53,6 +53,28 @@ export default function TeamPage() {
                 </div>
             </section>
 
+            {/* Meet Our Team */}
+            <section className="meet-team" aria-labelledby="meet-team-heading">
+                <div className="container">
+                    <h2 id="meet-team-heading">Meet Our Team</h2>
+                    <article className="team-card">
+                        <div className="team-photo" aria-hidden="true" />
+                        <div className="team-card-body">
+                            <h3 className="team-name">Carissa Mears, LL.B., LL.M.</h3>
+                            <a
+                                className="team-email"
+                                href="mailto:Carissa.mears@mearslaw.ca"
+                            >
+                                Carissa.mears@mearslaw.ca
+                            </a>
+                            <a className="team-profile-btn" href="#carissa-profile">
+                                View Profile
+                            </a>
+                        </div>
+                    </article>
+                </div>
+            </section>
+
             {/* Stats bar */}
             <section className="stats-section patterned-section">
                 <div className="container stats-grid">
@@ -74,7 +96,7 @@ export default function TeamPage() {
             {/* Note: "About Carissa" highlights grid removed as it was repetitive in the site and didn't look very clean due to that */}
 
             {/* Practice Areas */}
-            <section className="practice patterned-section">
+            <section id="carissa-profile" className="practice patterned-section">
                 <div className="container">
                     <h2>Practice Areas</h2>
                     <p className="sub">
@@ -414,6 +436,91 @@ export default function TeamPage() {
                     color: #0a1628;
                 }
 
+                /* ===== Meet Our Team ===== */
+                .meet-team {
+                    padding: 48px 0;
+                    background: #ffffff;
+                    border-bottom: 1px solid #e5e7eb;
+                }
+
+                .meet-team h2 {
+                    margin-bottom: 24px;
+                }
+
+                .team-card {
+                    display: flex;
+                    gap: 28px;
+                    align-items: stretch;
+                    max-width: 640px;
+                    background: #f9fafb;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 14px;
+                    padding: 24px;
+                    box-shadow: 0 6px 18px rgba(0, 0, 0, 0.05);
+                }
+
+                .team-photo {
+                    flex: 0 0 160px;
+                    width: 160px;
+                    min-height: 200px;
+                    border-radius: 12px;
+                    border: 1px solid #e5e7eb;
+                    background: linear-gradient(145deg, #e5e7eb 0%, #f3f4f6 50%, #e5e7eb 100%);
+                }
+
+                .team-card-body {
+                    display: flex;
+                    flex-direction: column;
+                    justify-content: center;
+                    gap: 10px;
+                    min-width: 0;
+                }
+
+                .team-name {
+                    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    font-size: 20px;
+                    font-weight: 700;
+                    line-height: 1.3;
+                    color: #0a1628;
+                    margin: 0;
+                }
+
+                .team-email {
+                    font: 400 15px/1.5 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #1e3a5f;
+                    text-decoration: none;
+                    border-bottom: 1px solid transparent;
+                    width: fit-content;
+                    transition: border-color 0.2s ease;
+                }
+
+                .team-email:hover {
+                    border-color: #1e3a5f;
+                }
+
+                .team-profile-btn {
+                    display: inline-flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: fit-content;
+                    margin-top: 8px;
+                    padding: 10px 20px;
+                    font: 600 14px/1 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #ffffff;
+                    background: #1e3a5f;
+                    border: 1px solid #1e3a5f;
+                    border-radius: 8px;
+                    text-decoration: none;
+                    transition: background 0.2s ease, box-shadow 0.2s ease, transform 0.2s ease;
+                }
+
+                .team-profile-btn:hover {
+                    background: #0a1628;
+                    border-color: #0a1628;
+                    box-shadow: 0 4px 12px rgba(30, 58, 95, 0.2);
+                    transform: translateY(-1px);
+                }
+
                 /* Patterned sections */
                 .patterned-section {
                     position: relative;
@@ -735,6 +842,24 @@ export default function TeamPage() {
                     .stats-grid { grid-template-columns: repeat(2, 1fr); }
                     .pill-grid { grid-template-columns: 1fr; }
                     .hero-meta { flex-direction: column; }
+                    .team-card {
+                        flex-direction: column;
+                        align-items: center;
+                        text-align: center;
+                    }
+                    .team-photo {
+                        width: 100%;
+                        max-width: 200px;
+                        flex: none;
+                    }
+                    .team-card-body {
+                        align-items: center;
+                    }
+                    .team-email,
+                    .team-profile-btn {
+                        margin-left: auto;
+                        margin-right: auto;
+                    }
                 }
             `}</style>
         </>
