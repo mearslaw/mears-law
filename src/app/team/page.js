@@ -101,17 +101,17 @@ export default function TeamPage() {
                             {
                                 num: "04",
                                 title: "Corporate & Commercial",
-                                body: "Mergers and Acquisitions, incorporations, shareholder agreements, commercial contracts, and ongoing corporate counsel for technology companies and growing businesses.",
+                                body: "Mergers and Acquisitions, incorporations, shareholder agreements, commercial contracts, employment law and ongoing corporate counsel for companies and growing businesses.",
                             },
                             {
                                 num: "05",
-                                title: "Real Estate",
-                                body: "Residential and commercial transactions across Ontario and the Caribbean, with specialized expertise advising diaspora buyers purchasing property in Jamaica.",
+                                title: "Litigation and Complex Disputes",
+                                body: "Data breach and privacy litigation, professional negligence, and employment disputes, with emerging expertise in AI-related liability and technology-driven claims. Additional experience in commercial and real estate disputes, advising on strategy, risk, and resolution in complex matters.",
                             },
                             {
                                 num: "06",
-                                title: "Wills & Estates",
-                                body: "Estate planning, wills, powers of attorney, and cross-border estate matters — including multi-jurisdictional planning for clients with assets in Canada and the Caribbean.",
+                                title: "Private Client",
+                                body: "Real estate transactions, estate planning, and multi-jurisdictional wealth structuring for clients with assets in Canada and the Caribbean.",
                             },
                         ].map((area) => (
                             <div key={area.num} className="pill practice-pill">
