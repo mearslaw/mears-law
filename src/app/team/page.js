@@ -41,9 +41,12 @@ export default function TeamPage() {
                             <div className="meta-label">TITLE</div>
                             <div className="meta-value">Founder &amp; Principal Lawyer</div>
                         </div>
-                        <div className="meta-card">
+                        <div className="meta-card jurisdictions-card">
                             <div className="meta-label">JURISDICTIONS</div>
-                            <div className="meta-value">Ontario · Jamaica · Trinidad &amp; Tobago</div>
+                            <div className="meta-value">Canada · Jamaica · Trinidad and Tobago</div>
+                            <p className="jurisdiction-note">
+                                Through Canada&apos;s interprovincial mobility framework, we are able to advise and support clients on matters involving multiple provinces, including technology, privacy, and commercial matters. Limitations may apply.
+                            </p>
                         </div>
                         <div className="meta-card">
                             <div className="meta-label">EXPERIENCE</div>
@@ -63,9 +66,9 @@ export default function TeamPage() {
                             <h3 className="team-name">Carissa Mears, LL.B., LL.M.</h3>
                             <a
                                 className="team-email"
-                                href="mailto:Carissa.mears@mearslaw.ca"
+                                href="mailto:carissa.mears@mearslaw.ca"
                             >
-                                Carissa.mears@mearslaw.ca
+                                carissa.mears@mearslaw.ca
                             </a>
                             <Link className="team-profile-btn" href="/team/carissa-mears">
                                 View Profile
@@ -81,9 +84,6 @@ export default function TeamPage() {
                     {[
                         { val: "10+", label: "Years of Practice" },
                         { val: "3", label: "Jurisdictions" },
-                        { val: "UN", label: "Policy Contributor" },
-                        { val: "EU", label: "AI Act Advisor" },
-                        { val: "CAIP", label: "AI Governance Certified" },
                     ].map((s, i) => (
                         <div key={i} className="stat-item">
                             <div className="stat-val">{s.val}</div>
@@ -184,6 +184,17 @@ export default function TeamPage() {
                 .meta-value {
                     font: 600 14px/1.4 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
                     color: #0a1628;
+                }
+
+                .jurisdictions-card {
+                    flex: 1 1 320px;
+                    max-width: 520px;
+                }
+
+                .jurisdiction-note {
+                    font: 400 13px/1.65 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #4b5563;
+                    margin: 8px 0 0;
                 }
 
                 /* ===== Meet Our Team ===== */
@@ -323,10 +334,12 @@ export default function TeamPage() {
 
                 .stats-grid {
                     display: grid;
-                    grid-template-columns: repeat(5, 1fr);
+                    grid-template-columns: repeat(2, 1fr);
                     gap: 0;
                     position: relative;
                     z-index: 1;
+                    max-width: 480px;
+                    margin: 0 auto;
                 }
 
                 .stat-item {
@@ -356,11 +369,10 @@ export default function TeamPage() {
 
                 /* Responsive */
                 @media (max-width: 900px) {
-                    .stats-grid { grid-template-columns: repeat(3, 1fr); }
+                    .stats-grid { max-width: 100%; }
                 }
 
                 @media (max-width: 600px) {
-                    .stats-grid { grid-template-columns: repeat(2, 1fr); }
                     .hero-meta { flex-direction: column; }
                     .team-card {
                         flex-direction: column;

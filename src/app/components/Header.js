@@ -757,12 +757,10 @@ export default function Header() {
       "a", // changed "button" to "a"
       {
         className: "btn btn-primary",
-        href: "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled",
-        target: "_blank",
-        rel: "noopener noreferrer",
+        href: "https://www.mearslaw.ca/contact",
         style: { textDecoration: "none" },
       },
-      "Book Consultation",
+      "Contact Us",
     ),
     h(
       "button",
@@ -965,12 +963,10 @@ export default function Header() {
       "a",
       {
         className: "btn",
-        href: "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled",
-        target: "_blank",
-        rel: "noopener noreferrer",
+        href: "https://www.mearslaw.ca/contact",
         style: { textDecoration: "none" },
       },
-      "Book Consultation",
+      "Contact Us",
     ),
   );
 

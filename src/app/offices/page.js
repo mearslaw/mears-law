@@ -195,6 +195,13 @@ export default function OfficesPage() {
     }
     .addr-block{ margin:0 0 24px; color:var(--text-primary); line-height:1.6; }
     .addr-line{ font-size:16px; line-height:1.6; color:var(--text-secondary); font-weight:400; }
+    .office-fine-print{
+      font-size:12px;
+      line-height:1.6;
+      color:var(--text-secondary);
+      margin:12px 0 0;
+      font-weight:400;
+    }
 
     .links{ margin:24px 0; }
     .btn-link{
@@ -281,6 +288,9 @@ export default function OfficesPage() {
                             h("div", { className: "addr-block", "aria-label": "Toronto address" },
                                 h("div", { className: "addr-line" }, caLine1),
                                 h("div", { className: "addr-line" }, caLine2)
+                            ),
+                            h("p", { className: "office-fine-print" },
+                                "Through Canada's interprovincial mobility framework, we are able to advise and support clients on matters involving multiple provinces, including technology, privacy, and commercial matters. Limitations may apply."
                             ),
                             h("div", { className: "links" },
                                 h("a", {

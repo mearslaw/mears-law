@@ -612,7 +612,7 @@ export default function ContactPage() {
     const email = (form.get("email") || "").trim();
     const message = (form.get("message") || "").trim();
 
-    if (!firstName || !lastName || !email || !message) {
+    if (!firstName || !lastName || !email || !message || !form.get("consultationAcknowledgement")) {
       setLoading(false);
       setStatus({ type: "error", msg: "Please fill in all required fields." });
       return;
@@ -820,6 +820,20 @@ export default function ContactPage() {
                   onBlur={() => handleBlur("message")}
                 />
               </div>
+            </div>
+
+            <div className="row">
+              <label className="checkbox-label">
+                <input
+                  type="checkbox"
+                  name="consultationAcknowledgement"
+                  value="accepted"
+                  required
+                />
+                <span className="checkbox-text">
+                  Sending this request for consultation does not create a solicitor-client relationship, will not make us your lawyers, and does not make you a client of the firm. We ask that you do not include confidential information as we cannot ensure that this information remains private and confidential. No information provided to you during the consultation and before you have retained our services is legal advice. We are not liable for any reliance on any legal information provided to you during the consultation and before you have retained our services. I acknowledge that I have read and accept the conditions outlined above.
+                </span>
+              </label>
             </div>
 
             {status.msg && (

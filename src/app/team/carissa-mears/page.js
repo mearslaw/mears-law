@@ -1,16 +1,84 @@
 "use client";
 
+import Image from "next/image";
+
+const AFFILIATION_LOGOS = [
+    {
+        name: "Law Society of Ontario",
+        src: "/images/team/law-society-ontario.png",
+    },
+    {
+        name: "Canadian Bar Association",
+        src: "/images/team/canadian-bar-association.png",
+    },
+    {
+        name: "General Legal Council Jamaica",
+        src: "/images/team/general-legal-council-jamaica.png",
+    },
+    {
+        name: "Law Association of Trinidad and Tobago",
+    },
+    {
+        name: "IAPP Member",
+    },
+    {
+        name: "Certified Privacy Professional Canada (IAPP)",
+    },
+    {
+        name: "AI Governance Professional (IAPP)",
+    },
+    {
+        name: "CIPM (IAPP)",
+    },
+    {
+        name: "ISO 27001 Certified Lead Implementor",
+    },
+];
+
 export default function CarissaMearsProfilePage() {
     return (
         <>
+            <section className="profile-hero">
+                <div className="container">
+                    <h1 className="profile-name">Carissa Mears, LL.B., LL.M.</h1>
+                    <p className="profile-title">Founder &amp; Principal Lawyer</p>
+                    <p className="profile-bio">
+                        Carissa manages the delivery of legal services across the firm&apos;s practice areas — from cutting-edge AI and privacy law to corporate transactions, real estate, and estates.
+                        Carissa also advises founders, professionals and individuals on complex matters throughout various stages of their lives. She works with clients across Canada and the Caribbean.
+                    </p>
+                    <div className="jurisdictions-section">
+                        <div className="meta-label">JURISDICTIONS</div>
+                        <div className="meta-value">Canada · Jamaica · Trinidad and Tobago</div>
+                        <p className="jurisdiction-note">
+                            Through Canada&apos;s interprovincial mobility framework, we are able to advise and support clients on matters involving multiple provinces, including technology, privacy, and commercial matters. Limitations may apply.
+                        </p>
+                    </div>
+                    <div className="affiliation-logos">
+                        {AFFILIATION_LOGOS.map((logo) => (
+                            <div className="logo-item" key={logo.name}>
+                                {logo.src ? (
+                                    <Image
+                                        src={logo.src}
+                                        alt={logo.name}
+                                        width={160}
+                                        height={80}
+                                        className="logo-image"
+                                    />
+                                ) : (
+                                    <div className="logo-placeholder" aria-label={logo.name}>
+                                        <span>{logo.name}</span>
+                                    </div>
+                                )}
+                            </div>
+                        ))}
+                    </div>
+                </div>
+            </section>
+
             {/* Practice Areas */}
             <section className="practice patterned-section">
                 <div className="container">
                     <h2>Practice Areas</h2>
-                    <p className="sub">
-                        Carissa manages the delivery of legal services across the firm's practice areas — from cutting-edge AI and privacy law to corporate transactions, real estate, and estates.
-                        Carissa also advises founders, professionals and individuals on complex matters throughout various stages of their lives. She works with clients across Canada and the Caribbean.
-                    </p>
                     <div className="pill-grid">
                         {[
                             {
@@ -190,58 +258,6 @@ export default function CarissaMearsProfilePage() {
                                     <div className="cred-divider" />
                                 </div>
                             ))}
-
-                            <div className="cred-section-title cred-gap">CERTIFICATIONS</div>
-                            <div className="cred-rule" />
-                            {[
-                                { code: "AIGP", name: "AI Governance Professional", issuer: "IAPP" },
-                                { code: "CIPP/C", name: "Certified Information Privacy Professional — Canada", issuer: "IAPP" },
-                                { code: "CIPM", name: "Certified Information Privacy Manager", issuer: "IAPP" },
-                                { code: "FIP", name: "Fellow of Information Privacy", issuer: "IAPP" },
-                                { code: "ISO", name: "ISO 42001 Lead Implementor — AI Management Systems", issuer: "PECB" },
-                            ].map((c, i) => (
-                                <div key={i} className="cert-row">
-                                    <div className="cert-code">{c.code}</div>
-                                    <div className="cert-detail">
-                                        <div className="cert-name">{c.name}</div>
-                                        <div className="cert-issuer">{c.issuer}</div>
-                                    </div>
-                                    <div className="cred-divider cert-divider" />
-                                </div>
-                            ))}
-                        </div>
-
-                        {/* Right column */}
-                        <div className="cred-col">
-                            <div className="cred-section-title">BAR ADMISSIONS</div>
-                            <div className="cred-rule" />
-                            {[
-                                { inst: "Law Society of Ontario", note: "Barrister & Solicitor — Ontario, Canada" },
-                                { inst: "General Legal Council", note: "Attorney-at-Law — Jamaica" },
-                                { inst: "Law Association of Trinidad & Tobago", note: "Attorney-at-Law — Trinidad & Tobago" },
-                            ].map((b, i) => (
-                                <div key={i} className="cred-item">
-                                    <div className="cred-inst">{b.inst}</div>
-                                    <div className="cred-degree">{b.note}</div>
-                                    <div className="cred-divider" />
-                                </div>
-                            ))}
-
-                            <div className="cred-section-title cred-gap">RECOGNITION &amp; AFFILIATIONS</div>
-                            <div className="cred-rule" />
-                            {[
-                                { role: "Former Fellow", org: "Centre for AI and Digital Policy (CAIDP)" },
-                                { role: "Member", org: "Law Association of Trinidad & Tobago (LATT)" },
-                                { role: "Member", org: "Law Society of Ontario (LSO)" },
-                                { role: "Member", org: "General Legal Council, Jamaica (GLC)" },
-                                { role: "Member", org: "International Association of Privacy Professionals (IAPP)" },
-                            ].map((a, i) => (
-                                <div key={i} className="affil-row">
-                                    <div className="affil-role">{a.role}</div>
-                                    <div className="affil-org">{a.org}</div>
-                                    <div className="cred-divider affil-divider" />
-                                </div>
-                            ))}
                         </div>
                     </div>
                 </div>
@@ -251,6 +267,98 @@ export default function CarissaMearsProfilePage() {
                 .container {
                     width: min(1200px, 92%);
                     margin: 0 auto;
+                }
+
+                .profile-hero {
+                    padding: 64px 0 48px;
+                    background: #ffffff;
+                    border-bottom: 1px solid #e5e7eb;
+                }
+
+                .profile-name {
+                    font-family: Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    font-size: clamp(28px, 4vw, 40px);
+                    line-height: 1.15;
+                    color: #0a1628;
+                    font-weight: 700;
+                    margin: 0 0 8px;
+                }
+
+                .profile-title {
+                    font: 600 15px/1.4 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #1e3a5f;
+                    margin: 0 0 16px;
+                }
+
+                .profile-bio {
+                    font: 400 16px/1.85 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #374151;
+                    margin: 0 0 32px;
+                    max-width: 900px;
+                }
+
+                .jurisdictions-section {
+                    margin-bottom: 32px;
+                    max-width: 900px;
+                }
+
+                .meta-label {
+                    font: 600 10px/1.2 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    letter-spacing: 0.14em;
+                    color: #9ca3af;
+                    margin-bottom: 4px;
+                }
+
+                .meta-value {
+                    font: 600 14px/1.4 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #0a1628;
+                    margin-bottom: 8px;
+                }
+
+                .jurisdiction-note {
+                    font: 400 14px/1.75 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #4b5563;
+                    margin: 0;
+                }
+
+                .affiliation-logos {
+                    display: flex;
+                    flex-wrap: wrap;
+                    align-items: center;
+                    gap: 20px;
+                }
+
+                .logo-item {
+                    flex: 0 1 160px;
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                }
+
+                .logo-image {
+                    width: auto;
+                    height: auto;
+                    max-width: 160px;
+                    max-height: 72px;
+                    object-fit: contain;
+                }
+
+                .logo-placeholder {
+                    display: flex;
+                    align-items: center;
+                    justify-content: center;
+                    width: 160px;
+                    min-height: 72px;
+                    padding: 12px;
+                    border: 1px solid #e5e7eb;
+                    border-radius: 10px;
+                    background: #f9fafb;
+                    text-align: center;
+                }
+
+                .logo-placeholder span {
+                    font: 600 11px/1.4 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #4b5563;
                 }
 
                 /* Patterned sections */

@@ -287,7 +287,7 @@ export default function Footer() {
     const svg = (attrs, children = []) => el("svg", attrs, ...children);
     const path = (attrs) => el("path", attrs);
 
-    const outlookBookingUrl = "https://outlook.office.com/book/IntakeMeeting@mearslaw.ca/?ismsaljsauthenabled";
+    const contactUrl = "https://www.mearslaw.ca/contact";
 
     return el(
         React.Fragment,
@@ -341,12 +341,10 @@ export default function Footer() {
                     "a",
                     {
                         className: "book-btn",
-                        href: outlookBookingUrl,
-                        target: "_blank",
-                        rel: "noopener noreferrer",
-                        "aria-label": "Book a consultation"
+                        href: contactUrl,
+                        "aria-label": "Contact Us"
                     },
-                    "Book a Consultation",
+                    "Contact Us",
                     el("span", { className: "btn-arrow" }, "→")
                 )
             )
