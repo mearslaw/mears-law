@@ -225,8 +225,8 @@ export default function OfficesPage() {
     const gmap = (q) => `https://www.google.com/maps/search/?api=1&query=${encodeURIComponent(q)}`;
 
     // Canada (Toronto)
-    const caLine1 = "1 King Street West, Suite 4800-165";
-    const caLine2 = "Toronto, Ontario, M5H 1A1";
+    const caLine1 = "4950 Yonge Street, Suite 2200";
+    const caLine2 = "Toronto, Ontario, M2N 6K1";
     const caQuery = `${caLine1}, ${caLine2}`;
     const telCA = "(437) 888-2974";
     const faxCA = "(647) 374-0066";
