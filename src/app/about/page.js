@@ -3,7 +3,6 @@
 
 import { useEffect, useRef } from "react";
 import Image from "next/image";
-import Link from "next/link";
 
 export default function AboutPage() {
   // Animate the underline once when the hero H1 becomes visible
@@ -250,29 +249,6 @@ export default function AboutPage() {
         {/*    </div>*/}
         {/*  </div>*/}
         {/*</section>*/}
-
-        {/* Just a replacement for now - another member has worked on this already*/}
-        <section className="team patterned-section">
-          <div className="container">
-            <h4>Our Team</h4>
-            <p style={{fontSize: "16px", lineHeight: "1.85", color: "#374151", marginBottom: "24px"}}>
-              Carissa advises governments, organizations, and founders on the legal issues that define modern risk — artificial intelligence, privacy, cybersecurity, and corporate transactions. She also counsels professionals and families on legal matters with clients across Canada and the Caribbean.
-            </p>
-
-            <Link href="/team" style={{
-              display: "inline-block",
-              padding: "12px 28px",
-              background: "#0a1628",
-              color: "#ffffff",
-              fontSize: "14px",
-              fontWeight: "600",
-              textDecoration: "none",
-              borderRadius: "8px",
-            }}>
-              Meet Carissa →
-            </Link>
-          </div>
-        </section>
 
         <style jsx>{`
           :global(html) {

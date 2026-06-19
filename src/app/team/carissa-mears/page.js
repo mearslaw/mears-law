@@ -6,34 +6,57 @@ const AFFILIATION_LOGOS = [
     {
         name: "Law Society of Ontario",
         src: "/images/team/law-society-ontario.png",
+        width: 1000,
+        height: 600,
     },
     {
         name: "Canadian Bar Association",
         src: "/images/team/canadian-bar-association.png",
+        width: 1000,
+        height: 600,
     },
     {
         name: "General Legal Council Jamaica",
         src: "/images/team/general-legal-council-jamaica.png",
+        width: 139,
+        height: 138,
     },
     {
         name: "Law Association of Trinidad and Tobago",
     },
     {
         name: "IAPP Member",
+        src: "/images/team/iapp-member.png",
+        width: 1024,
+        height: 573,
     },
     {
         name: "Certified Privacy Professional Canada (IAPP)",
+        src: "/images/team/cipp-canada.png",
+        width: 1024,
+        height: 576,
     },
     {
         name: "AI Governance Professional (IAPP)",
+        src: "/images/team/aigp.png",
+        width: 640,
+        height: 640,
     },
     {
         name: "CIPM (IAPP)",
+        src: "/images/team/cipm.png",
+        width: 279,
+        height: 281,
     },
     {
         name: "ISO 27001 Certified Lead Implementor",
+        src: "/images/team/pecb-iso-42001-implementer.png",
+        width: 600,
+        height: 600,
     },
 ];
+
+const LOGO_SIZE = 88;
 
 export default function CarissaMearsProfilePage() {
     return (
@@ -60,9 +83,14 @@ export default function CarissaMearsProfilePage() {
                                     <Image
                                         src={logo.src}
                                         alt={logo.name}
-                                        width={160}
-                                        height={80}
+                                        width={logo.width}
+                                        height={logo.height}
                                         className="logo-image"
+                                        style={{
+                                            width: LOGO_SIZE,
+                                            height: LOGO_SIZE,
+                                            objectFit: "contain",
+                                        }}
                                     />
                                 ) : (
                                     <div className="logo-placeholder" aria-label={logo.name}>
@@ -325,21 +353,20 @@ export default function CarissaMearsProfilePage() {
                     display: flex;
                     flex-wrap: wrap;
                     align-items: center;
-                    gap: 20px;
+                    gap: 10px;
                 }
 
                 .logo-item {
-                    flex: 0 1 160px;
                     display: flex;
                     align-items: center;
                     justify-content: center;
+                    width: ${LOGO_SIZE}px;
+                    height: ${LOGO_SIZE}px;
+                    flex-shrink: 0;
                 }
 
                 .logo-image {
-                    width: auto;
-                    height: auto;
-                    max-width: 160px;
-                    max-height: 72px;
+                    display: block;
                     object-fit: contain;
                 }
 
@@ -347,18 +374,19 @@ export default function CarissaMearsProfilePage() {
                     display: flex;
                     align-items: center;
                     justify-content: center;
-                    width: 160px;
-                    min-height: 72px;
-                    padding: 12px;
+                    width: ${LOGO_SIZE}px;
+                    height: ${LOGO_SIZE}px;
+                    padding: 0;
                     border: 1px solid #e5e7eb;
-                    border-radius: 10px;
+                    border-radius: 4px;
                     background: #f9fafb;
                     text-align: center;
+                    overflow: hidden;
                 }
 
                 .logo-placeholder span {
-                    font: 600 11px/1.4 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
-                    color: #4b5563;
+                    font: 600 5px/1.1 Inter, system-ui, -apple-system, "Segoe UI", Roboto, Arial, sans-serif;
+                    color: #9ca3af;
                 }
 
                 /* Patterned sections */
