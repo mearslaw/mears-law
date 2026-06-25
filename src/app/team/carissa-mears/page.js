@@ -22,7 +22,10 @@ const AFFILIATION_LOGOS = [
         height: 138,
     },
     {
-        name: "Law Association of Trinidad and Tobago",
+        name: "IAPP Fellow of Information Privacy (FIP)",
+        src: "/images/team/iapp-fip.png",
+        width: 1024,
+        height: 1024,
     },
     {
         name: "IAPP Member",
